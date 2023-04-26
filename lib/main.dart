@@ -1,3 +1,4 @@
+import 'package:budget_planner_app/view/screens/deadlines_screen.dart';
 import 'package:budget_planner_app/view/screens/profile_screen.dart';
 import 'package:budget_planner_app/view/screens/register_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: RegisterScreen(),
+      home: DeadlinesScreen(),
     );
   }
 }
