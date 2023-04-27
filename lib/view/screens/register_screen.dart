@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constant.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textformfield.dart';
 
@@ -13,22 +12,20 @@ class RegisterScreen extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.fromLTRB(10 * Constant.aa,
-              227 * Constant.aa, 10 * Constant.aa, 195 * Constant.aa),
+          padding: const EdgeInsets.fromLTRB(10, 227, 10, 195),
           width: double.infinity,
           color: Color(0xffededed),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: const EdgeInsets.fromLTRB(0 * Constant.aa,
-                    0 * Constant.aa, 1 * Constant.aa, 17 * Constant.aa),
+                margin: const EdgeInsets.fromLTRB(0, 0, 1, 17),
                 child: const Text(
                   'Register',
                   style: TextStyle(
-                    fontSize: 46 * Constant.bb,
+                    fontSize: 46,
                     fontWeight: FontWeight.w700,
-                    height: 1.115 * Constant.bb / Constant.aa,
+                    height: 1,
                     color: Color(0xff000000),
                   ),
                 ),
@@ -37,7 +34,7 @@ class RegisterScreen extends StatelessWidget {
               CustomTextFormField(hintText: 'E-mail'),
               SizedBox(
                 width: double.infinity,
-                height: 46 * Constant.aa,
+                height: 46,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -52,10 +49,9 @@ class RegisterScreen extends StatelessWidget {
               CustomTextFormField(hintText: 'Monthly Budget Average'),
               CustomTextFormField(hintText: 'Preferred currency'),
               Container(
-                margin: const EdgeInsets.fromLTRB(0 * Constant.aa,
-                    0 * Constant.aa, 0 * Constant.aa, 8 * Constant.aa),
+                margin: const EdgeInsets.fromLTRB(0, 0, 0, 8),
                 width: double.infinity,
-                height: 46 * Constant.aa,
+                height: 46,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -69,14 +65,10 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               Container(
-                  margin: const EdgeInsets.only(
-                      top: 6,
-                      left: 134 * Constant.aa,
-                      right: 134 * Constant.aa),
+                  margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
                   child: CustomButton(textButton: 'Submit')),
               Container(
-                margin: const EdgeInsets.fromLTRB(52 * Constant.aa,
-                    0 * Constant.aa, 57 * Constant.aa, 0 * Constant.aa),
+                margin: const EdgeInsets.fromLTRB(52, 0, 57, 0),
                 width: double.infinity,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -87,9 +79,9 @@ class RegisterScreen extends StatelessWidget {
                       const Text(
                         'If you already have an account please',
                         style: TextStyle(
-                          fontSize: 12 * Constant.bb,
+                          fontSize: 12,
                           fontWeight: FontWeight.w500,
-                          height: 1.115 * Constant.bb / Constant.aa,
+                          height: 1,
                           color: Color(0xff000000),
                         ),
                       ),
@@ -101,9 +93,9 @@ class RegisterScreen extends StatelessWidget {
                         child: const Text(
                           'log-in',
                           style: TextStyle(
-                            fontSize: 12 * Constant.bb,
+                            fontSize: 12,
                             fontWeight: FontWeight.w700,
-                            height: 1.115 * Constant.bb / Constant.aa,
+                            height: 1,
                             color: Color(0xff3356d2),
                           ),
                         ),

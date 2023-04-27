@@ -1,3 +1,4 @@
+import 'package:budget_planner_app/constants/appcolor.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/constant.dart';
@@ -9,7 +10,7 @@ class SheetsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffededed),
+      backgroundColor: AppColor.backgroundColor,
       body: SafeArea(
         child: Container(
           margin:
@@ -23,14 +24,15 @@ class SheetsScreen extends StatelessWidget {
                   const Text(
                     'Sheets',
                     style: TextStyle(
-                      fontSize: 28 * Constant.bb,
+                      fontSize: 28,
                       fontWeight: FontWeight.w700,
-                      height: 1.115 * Constant.bb / Constant.aa,
+                      height: 1,
                       color: Color(0xff000000),
                     ),
                   ),
                   SizedBox(
                     width: 100,
+                    // function
                     child: CustomButton(textButton: 'Add sheet'),
                   ),
                 ],
@@ -83,7 +85,7 @@ class CustomContainer extends StatelessWidget {
             style: const TextStyle(
               fontSize: 19,
               fontWeight: FontWeight.w300,
-              height: 1.115,
+              height: 1,
               color: Color(0xff000000),
             ),
           ),
@@ -92,7 +94,7 @@ class CustomContainer extends StatelessWidget {
             style: const TextStyle(
               fontSize: 19,
               fontWeight: FontWeight.w300,
-              height: 1.115,
+              height: 1,
               color: Color(0xff000000),
             ),
           ),
@@ -101,7 +103,7 @@ class CustomContainer extends StatelessWidget {
             style: const TextStyle(
               fontSize: 19,
               fontWeight: FontWeight.w300,
-              height: 1.115,
+              height: 1,
               color: Color(0xff000000),
             ),
           ),

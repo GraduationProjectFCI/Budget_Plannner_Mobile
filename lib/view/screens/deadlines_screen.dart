@@ -17,13 +17,16 @@ class DeadlinesScreen extends StatelessWidget {
               children: [
                 Row(
                   children: const [
-                    Text(
-                      'Deadlines',
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w700,
-                        height: 1.115 * 1.2,
-                        color: Color(0xff000000),
+                    Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Text(
+                        'Deadlines',
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.w700,
+                          height: 1,
+                          color: Color(0xff000000),
+                        ),
                       ),
                     ),
                   ],
@@ -77,7 +80,7 @@ class CustomContainer extends StatelessWidget {
             style: const TextStyle(
               fontSize: 19,
               fontWeight: FontWeight.w300,
-              height: 1.115,
+              height: 1,
               color: Color(0xff000000),
             ),
           ),
@@ -86,7 +89,7 @@ class CustomContainer extends StatelessWidget {
             style: const TextStyle(
               fontSize: 19,
               fontWeight: FontWeight.w300,
-              height: 1.115,
+              height: 1,
               color: Color(0xff000000),
             ),
           ),
@@ -95,7 +98,7 @@ class CustomContainer extends StatelessWidget {
             style: const TextStyle(
               fontSize: 19,
               fontWeight: FontWeight.w300,
-              height: 1.115,
+              height: 1,
               color: Color(0xff000000),
             ),
           ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../view/screens/buttom_navigation_bar_screen.dart';
 import '../view/screens/confirm_screen.dart';
 import '../view/screens/deadlines_screen.dart';
+import '../view/screens/home_screen.dart';
 import '../view/screens/login_screen.dart';
 import '../view/screens/profile_screen.dart';
 import '../view/screens/register_screen.dart';
@@ -14,6 +16,8 @@ class AppRoutes {
   static const String profile = '/profile';
   static const String confirmation = '/confirmation';
   static const String deadlines = '/sheets';
+  static const String home = '/home';
+  static const String bottomNavigationBar = '/BottomNavigationBarScreen';
 }
 
 Map<String, Widget Function(BuildContext)> routes = {
@@ -23,4 +27,6 @@ Map<String, Widget Function(BuildContext)> routes = {
   AppRoutes.sheets: (context) => SheetsScreen(),
   AppRoutes.profile: (context) => ProfileScreen(),
   AppRoutes.deadlines: (context) => DeadlinesScreen(),
+  AppRoutes.home: (context) => HomeScreen(),
+  AppRoutes.bottomNavigationBar: (context) => BottomNavigationBarScreen(),
 };

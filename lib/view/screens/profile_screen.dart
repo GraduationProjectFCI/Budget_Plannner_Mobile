@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 28 * Constant.bb,
                         fontWeight: FontWeight.w700,
-                        height: 1.115 * Constant.bb / Constant.aa,
+                        height: 1,
                         color: Color(0xff000000),
                       ),
                     ),

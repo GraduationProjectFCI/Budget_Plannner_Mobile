@@ -15,57 +15,51 @@ class ConfirmScreen extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.fromLTRB(10 * Constant.aa,
-              288 * Constant.aa, 10 * Constant.aa, 295 * Constant.aa),
+          padding: const EdgeInsets.fromLTRB(10, 280, 10, 295),
           width: double.infinity,
           color: AppColor.backgroundColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: const EdgeInsets.fromLTRB(0 * Constant.aa,
-                    0 * Constant.aa, 2 * Constant.aa, 14 * Constant.aa),
+                margin: const EdgeInsets.fromLTRB(0, 0, 2, 14),
                 child: const Text(
                   'Confirmation',
                   style: TextStyle(
-                    fontSize: 42 * Constant.bb,
+                    fontSize: 42,
                     fontWeight: FontWeight.w700,
-                    height: 1.115 * Constant.bb / Constant.aa,
+                    height: 1,
                     color: Color(0xff000000),
                   ),
                 ),
               ),
               Container(
-                margin: const EdgeInsets.fromLTRB(0 * Constant.aa,
-                    0 * Constant.aa, 8 * Constant.aa, 20 * Constant.aa),
+                margin: const EdgeInsets.fromLTRB(0, 0, 8, 20),
                 child: const Text(
                   'Enter the code that sent to your E-mail',
                   style: TextStyle(
-                    fontSize: 13 * Constant.bb,
+                    fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    height: 1.115 * Constant.bb / Constant.aa,
+                    height: 1,
                     color: Color(0xff000000),
                   ),
                 ),
               ),
               CustomTextFormField(hintText: 'Enter Code'),
               Container(
-                  margin: const EdgeInsets.only(
-                      top: 6,
-                      left: 134 * Constant.aa,
-                      right: 134 * Constant.aa),
+                  margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
                   child: CustomButton(textButton: 'Submit')),
               Container(
-                margin: const EdgeInsets.only(top: 6 * Constant.aa),
+                margin: const EdgeInsets.only(top: 6),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
                       'Resend Code ...? ',
                       style: TextStyle(
-                        fontSize: 12 * Constant.bb,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500,
-                        height: 1.115 * Constant.bb / Constant.aa,
+                        height: 1,
                         color: Color(0xff000000),
                       ),
                     ),
@@ -74,9 +68,9 @@ class ConfirmScreen extends StatelessWidget {
                       child: const Text(
                         'Click Here',
                         style: TextStyle(
-                          fontSize: 12 * Constant.bb,
+                          fontSize: 12,
                           fontWeight: FontWeight.w700,
-                          height: 1.115 * Constant.bb / Constant.aa,
+                          height: 1,
                           color: Color(0xff1f61c4),
                         ),
                       ),

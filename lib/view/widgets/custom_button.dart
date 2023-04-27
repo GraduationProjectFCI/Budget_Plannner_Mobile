@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/appcolor.dart';
-import '../../constants/constant.dart';
 
 class CustomButton extends StatelessWidget {
   CustomButton({
@@ -11,27 +10,27 @@ class CustomButton extends StatelessWidget {
   String textButton;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: TextButton(
         onPressed: () {},
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero,
         ),
         child: Container(
-          padding: EdgeInsets.all(3),
-          height: 32 * Constant.aa,
+          padding: const EdgeInsets.all(3),
+          height: 32,
           decoration: BoxDecoration(
             border: Border.all(color: AppColor.borderColor),
-            color: const Color(0xff57c4b2),
-            borderRadius: BorderRadius.circular(10 * Constant.aa),
+            color: AppColor.buttonColor,
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Center(
             child: Text(
               '$textButton',
               style: const TextStyle(
-                fontSize: 16 * Constant.bb,
+                fontSize: 16,
                 fontWeight: FontWeight.w700,
-                height: 1.115 * Constant.bb / Constant.aa,
+                height: 1,
                 color: Color(0xffffffff),
               ),
             ),

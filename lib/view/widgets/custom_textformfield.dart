@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/appcolor.dart';
-import '../../constants/constant.dart';
 
 class CustomTextFormField extends StatelessWidget {
   String hintText;
@@ -13,11 +12,8 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // nameCQi (83:75)
-      margin: const EdgeInsets.fromLTRB(
-          0 * Constant.aa, 0 * Constant.aa, 0 * Constant.aa, 16 * Constant.aa),
-      padding:
-          const EdgeInsets.fromLTRB(10 * Constant.aa, 0, 10 * Constant.aa, 0),
+      margin: const EdgeInsets.fromLTRB(0, 0, 0, 16),
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       width: double.infinity,
       height: 30,
       decoration: BoxDecoration(
@@ -25,7 +21,7 @@ class CustomTextFormField extends StatelessWidget {
           color: AppColor.hintTextColor,
         ),
         color: const Color(0xffffffff),
-        borderRadius: BorderRadius.circular(10 * Constant.aa),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: TextFormField(
         decoration: InputDecoration(
@@ -37,9 +33,9 @@ class CustomTextFormField extends StatelessWidget {
           ),
         ),
         style: const TextStyle(
-          fontSize: 15 * Constant.aa,
+          fontSize: 15,
           fontWeight: FontWeight.w500,
-          height: 1.115 * Constant.aa / Constant.aa,
+          height: 1,
           color: AppColor.hintTextColor,
         ),
       ),
