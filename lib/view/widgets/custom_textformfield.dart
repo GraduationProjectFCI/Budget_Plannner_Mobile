@@ -4,10 +4,10 @@ import '../../constants/appcolor.dart';
 
 class CustomTextFormField extends StatelessWidget {
   String hintText;
-  CustomTextFormField({
-    super.key,
-    required this.hintText,
-  });
+  void Function(String)? onChange;
+  TextEditingController? textController;
+  CustomTextFormField(
+      {super.key, required this.hintText, this.textController, this.onChange});
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +15,17 @@ class CustomTextFormField extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(0, 0, 0, 16),
       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       width: double.infinity,
-      height: 30,
+      height: 50,
       decoration: BoxDecoration(
         border: Border.all(
-          color: AppColor.hintTextColor,
+          color: AppColor.borderColor,
         ),
         color: const Color(0xffffffff),
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextFormField(
+        onChanged: onChange,
+        controller: textController,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: '$hintText',
