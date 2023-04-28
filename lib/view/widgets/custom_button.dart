@@ -6,13 +6,15 @@ class CustomButton extends StatelessWidget {
   CustomButton({
     super.key,
     required this.textButton,
+    this.onPressed
   });
+  VoidCallback? onPressed;
   String textButton;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: TextButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero,
         ),

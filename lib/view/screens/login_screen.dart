@@ -1,3 +1,4 @@
+import 'package:budget_planner_app/view/widgets/toast.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/appcolor.dart';
@@ -34,8 +35,14 @@ class LoginScreen extends StatelessWidget {
               CustomTextFormField(hintText: 'E-mail'),
               CustomTextFormField(hintText: 'Enter Password'),
               Container(
-                  margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
-                  child: CustomButton(textButton: 'Submit')),
+                margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
+                child: CustomButton(
+                  textButton: 'Submit',
+                  onPressed: () {
+                    toast();
+                  },
+                ),
+              ),
               Container(
                 margin: const EdgeInsets.only(left: 53, right: 58),
                 child: SingleChildScrollView(

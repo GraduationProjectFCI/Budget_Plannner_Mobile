@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BottomNavigationBarScreen(),
+      // home: BottomNavigationBarScreen(),
+      home: LoginScreen(),
     );
   }
 }
