@@ -1,3 +1,4 @@
+import 'package:budget_planner_app/helper/http_helper.dart';
 import 'package:budget_planner_app/view/widgets/toast.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,9 @@ import '../widgets/custom_button.dart';
 import '../widgets/custom_textformfield.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +35,24 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              CustomTextFormField(hintText: 'E-mail'),
-              CustomTextFormField(hintText: 'Enter Password'),
+              CustomTextFormField(
+                hintText: 'E-mail',
+                textController: emailController,
+              ),
+              CustomTextFormField(
+                hintText: 'Enter Password',
+                textController: passwordController,
+              ),
               Container(
                 margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
                 child: CustomButton(
                   textButton: 'Submit',
                   onPressed: () {
-                    toast();
+                    Http.postData(
+                      email: emailController.text,
+                      password: passwordController.text,
+                    );
+                    toast(msg: " hello wrold");
                   },
                 ),
               ),
