@@ -1,4 +1,5 @@
 import 'package:budget_planner_app/view/screens/buttom_navigation_bar_screen.dart';
+import 'package:budget_planner_app/view/screens/confirm_screen.dart';
 import 'package:budget_planner_app/view/screens/deadlines_screen.dart';
 import 'package:budget_planner_app/view/screens/profile_screen.dart';
 import 'package:budget_planner_app/view/screens/register_screen.dart';
@@ -22,8 +23,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: BottomNavigationBarScreen(),
-      home: LoginScreen(),
+      home: BottomNavigationBarScreen(),
+      // home: LoginScreen(),
     );
   }
 }

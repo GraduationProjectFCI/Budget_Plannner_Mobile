@@ -1,4 +1,6 @@
+import 'package:budget_planner_app/controller/confirmation_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../constants/appcolor.dart';
 import '../../constants/constant.dart';
@@ -7,8 +9,8 @@ import '../widgets/custom_button.dart';
 import '../widgets/custom_textformfield.dart';
 
 class ConfirmScreen extends StatelessWidget {
-  const ConfirmScreen({super.key});
-
+  ConfirmScreen({super.key});
+  ConfirmationController controller = Get.put(ConfirmationController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,10 +47,19 @@ class ConfirmScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              CustomTextFormField(hintText: 'Enter Code'),
+              CustomTextFormField(
+                hintText: 'Enter Code',
+                textController: controller.codeTextController,
+              ),
               Container(
-                  margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
-                  child: CustomButton(textButton: 'Submit')),
+                margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
+                child: CustomButton(
+                  textButton: 'Submit',
+                  onPressed: () async {
+                    await controller.confirm();
+                  },
+                ),
+              ),
               Container(
                 margin: const EdgeInsets.only(top: 6),
                 child: Row(

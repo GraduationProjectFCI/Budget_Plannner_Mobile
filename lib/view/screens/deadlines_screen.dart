@@ -12,10 +12,11 @@ class DeadlinesScreen extends StatelessWidget {
         child: Container(
           margin:
               const EdgeInsets.only(left: 10, right: 10, top: 16, bottom: 16),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Row(
+          child: Column(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Row(
                   children: const [
                     Padding(
                       padding: EdgeInsets.all(10.0),
@@ -31,18 +32,18 @@ class DeadlinesScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                CustomContainer(
-                    label: 'Phone Bill', date: 'Fri, 30 jan', money: '400'),
-                CustomContainer(
-                    label: 'Phone Bill', date: 'Fri, 30 jan', money: '400'),
-                CustomContainer(
-                    label: 'Phone Bill', date: 'Fri, 30 jan', money: '400'),
-                CustomContainer(
-                    label: 'Phone Bill', date: 'Fri, 30 jan', money: '400'),
-                CustomContainer(
-                    label: 'Phone Bill', date: 'Fri, 30 jan', money: '400'),
-              ],
-            ),
+              ),
+              Expanded(
+                flex: 10,
+                child: ListView.builder(
+                  itemCount: 20,
+                  itemBuilder: (context, index) {
+                    return CustomContainer(
+                        label: 'Phone Bill', date: 'Fri, 30 jan', money: '400');
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ),
