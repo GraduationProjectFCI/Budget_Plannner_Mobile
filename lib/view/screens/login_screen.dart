@@ -1,10 +1,18 @@
+import 'package:budget_planner_app/controller/login_controller.dart';
+import 'package:budget_planner_app/controller/login_controller.dart';
+import 'package:budget_planner_app/controller/login_controller.dart';
 import 'package:budget_planner_app/helper/http_helper.dart';
+import 'package:budget_planner_app/model/login_model.dart';
+import 'package:budget_planner_app/view/screens/buttom_navigation_bar_screen.dart';
 import 'package:budget_planner_app/view/widgets/toast.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../constants/appcolor.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textformfield.dart';
+import 'home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -13,6 +21,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LoginController controller = Get.put(LoginController());
     return Scaffold(
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
@@ -45,15 +54,44 @@ class LoginScreen extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
-                child: CustomButton(
-                  textButton: 'Submit',
-                  onPressed: () {
-                    Http.postData(
-                      email: emailController.text,
-                      password: passwordController.text,
-                    );
-                    toast(msg: " hello wrold");
-                  },
+                child: GetBuilder<LoginController>(
+                  builder: (c) => ConditionalBuilder(
+                    condition: controller.state.isTrue,
+                    builder: (context) => CustomButton(
+                      textButton: 'Submit',
+                      onPressed: () async {
+                        //  var value = await Http.login(
+                        //     email: "mohassen011@gmail.com",
+                        //     password: "123456Q@",
+                        //   );
+                        // Get.to(BottomNavigationBarScreen());
+                        print(emailController.text);
+                        print(passwordController.text);
+
+                        await controller.onSubmit(
+                          email: "mohassen011@gmail.com",
+                          password: "123456Q@",
+                        );
+                        // .then(() {
+                        // Get.off(HomeScreen());
+                        toast(msg: "controller.loginModel.message");
+                        if (await controller.loginModel?.status == 200) {
+                          print(await controller.loginModel?.status);
+                          print(controller.loginModel?.message);
+                          print(controller.loginModel?.token);
+                          print("get sccessful !!!!!!!!");
+                        } else {
+                          print("get failed !!!!!!!!");
+                          toast(msg: controller.loginModel?.message);
+                        }
+                        // });
+                        // },
+                        // );
+                      },
+                    ),
+                    fallback: (context) =>
+                        const Center(child: CircularProgressIndicator()),
+                  ),
                 ),
               ),
               Container(
@@ -97,3 +135,9 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+//    mohamedhassen011@gmail.com
+
+//   123456Q@

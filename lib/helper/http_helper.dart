@@ -4,26 +4,36 @@ import 'package:budget_planner_app/constants/endpoint.dart';
 import 'package:http/http.dart' as http;
 
 class Http {
-  static Future postData({
+  static Future login({
     required String email,
     required String password,
   }) async {
-    Uri uri = Uri.parse(Endpoint.login);
-    print("before @@@@@@@@@@@@@@@@@");
-    var response = await http.post(
-      uri,
-      body: {"email": email, "password": password},
-    );
-        print("after22222 @@@@@@@@@@@@@@@@@");
+    Map data = {
+      "email": email,
+      "password": password,
+    };
+    print(data);
 
-    if (response.statusCode == 200) {
-      var jsonResponse = jsonDecode(response.body);
-      print("after @@@@@@@@@@@@@@@@@");
-      print(jsonResponse);
-      return jsonResponse;
-    } else {
-      throw Exception('Failed to Login.');
-    }
+    String body = json.encode(data);
+    print(body);
+    var url = Uri.parse(Endpoint.login);
+    var response = await http.post(
+      url,
+      body: body,
+      headers: {
+        "Content-Type": "application/json",
+        "accept": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+    );
+    print("Http file ${response.body}");
+    print(response.statusCode);
     
+      var jsonResponse =await jsonDecode(response.body);
+
+      return jsonResponse;
+      //Or put here your next screen using Navigator.push() method
+      print('success');
+   
   }
 }
