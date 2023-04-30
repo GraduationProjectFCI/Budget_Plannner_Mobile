@@ -46,9 +46,7 @@ class Http {
       "currency": currency,
       "birthdate": birthdate
     };
-    print(data);
     String body = json.encode(data);
-    print(body);
     var url = Uri.parse(Endpoint.register);
     var response = await http.post(
       url,
@@ -59,22 +57,20 @@ class Http {
         "Access-Control-Allow-Origin": "*"
       },
     );
-    print(response.body);
-    print(response.statusCode);
     if (response.statusCode == 200) {
       //Or put here your next screen using Navigator.push() method
-      print('success');
-      return response.body;
-    } else if (response.statusCode == 400) {
-      print('${response.body}');
-      return response.body;
-      /*
-      {"status":400,"msg":["this email is registered"]}
-      */
-    } else {
-      print('${response.body}');
       return response.body;
     }
+    // else if (response.statusCode == 400) {
+    //   print('${response.body}');
+    //   return response.body;
+    //   /*
+    //   {"status":400,"msg":["this email is registered"]}
+    //   */
+    // } else {
+    //   print('${response.body}');
+    //   return response.body;
+    // }
   }
 
   static confirmation({

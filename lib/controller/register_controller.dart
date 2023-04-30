@@ -1,6 +1,10 @@
 import 'package:budget_planner_app/helper/http_helper.dart';
+import 'package:budget_planner_app/view/widgets/toast.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
+
+import '../constants/approutes.dart';
 
 class RegisterController extends GetxController {
   late TextEditingController nameTextController;
@@ -12,36 +16,45 @@ class RegisterController extends GetxController {
   late TextEditingController passwordTextController;
   late TextEditingController birthdateTextController;
   late TextEditingController rePasswordTextController;
-  String userId = '644c5648ca583538b257c403';
+  late String userId;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   signUp() async {
     print('helllllo sign up');
-    if (formKey.currentState!.validate()) {
-      // var response = await Http.register(
-      //   name: nameTextController.text,
-      //   email: emailTextController.text,
-      //   gender: genderTextController.text,
-      //   age: ageTextController.text,
-      //   budget: budgetAverageTextController.text,
-      //   password: passwordTextController.text,
-      //   birthdate: birthdateTextController.text,
-      //   currency: currencyTextController.text,
-      // );
-      // userId = response['user_id'];
-      // print("from controller ------    $response");
 
-      // Get.offNamed(AppRoutes.confirmation);
-      print('Valid');
-    } else {
-      print('Not Valid');
+    if (passwordTextController.text != rePasswordTextController.text) {
+      toast(msg: 'the password not the same');
+
+      return;
+    }
+    if (formKey.currentState!.validate()) {
+      var response = await Http.register(
+        name: nameTextController.text,
+        email: emailTextController.text,
+        gender: genderTextController.text,
+        age: ageTextController.text,
+        budget: budgetAverageTextController.text,
+        password: passwordTextController.text,
+        birthdate: birthdateTextController.text,
+        currency: currencyTextController.text,
+      );
+
+      if (response['status'] == 200) {
+        userId = response['user_id'];
+        toastSucsses(msg: response['msg']);
+        goToConfirm();
+      } else if (response['status'] == 400) {
+        toast(msg: response['msg'][0]);
+      } else {
+        toast(msg: response['msg'][0]);
+      }
     }
   }
 
   @override
-  goToLogin() {
-    // Get.offNamed(AppRoutes.login);
+  goToConfirm() {
+    Get.offNamed(AppRoutes.confirmation);
   }
 
   @override
