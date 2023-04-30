@@ -1,3 +1,4 @@
+import 'package:budget_planner_app/constants/approutes.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
 import 'package:budget_planner_app/view/screens/buttom_navigation_bar_screen.dart';
 import 'package:budget_planner_app/view/screens/confirm_screen.dart';
@@ -12,7 +13,7 @@ import 'view/screens/login_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-  String? token = await CacheHelper.prefs?.getString('token');
+  String? token = await CacheHelper.prefs?.getString('token188');
   runApp(MyApp(token));
 }
 
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      routes: routes ,
       home: token == null ? LoginScreen() : BottomNavigationBarScreen(),
     );
   }

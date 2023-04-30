@@ -18,7 +18,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  var formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     LoginController controller = Get.put(LoginController());
@@ -29,82 +29,100 @@ class LoginScreen extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(10, 263, 10, 269),
           width: double.infinity,
           color: AppColor.backgroundColor,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                margin: const EdgeInsets.fromLTRB(0, 0, 1, 41),
-                child: const Text(
-                  'Log-in',
-                  style: TextStyle(
-                    fontSize: 46,
-                    fontWeight: FontWeight.w700,
-                    height: 1,
-                    color: Color(0xff000000),
-                  ),
-                ),
-              ),
-              CustomTextFormField(
-                hintText: 'E-mail',
-                textController: emailController,
-              ),
-              CustomTextFormField(
-                hintText: 'Enter Password',
-                textController: passwordController,
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
-                child: GetBuilder<LoginController>(
-                  builder: (c) => ConditionalBuilder(
-                    condition: controller.state.isTrue,
-                    builder: (context) => CustomButton(
-                      textButton: 'Submit',
-                      onPressed:(){  controller.onSubmit(
-                          email: emailController.text,
-                          password: passwordController.text,
-                        );}
-                      
+          child: Form(
+            key: formkey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: const EdgeInsets.fromLTRB(0, 0, 1, 41),
+                  child: const Text(
+                    'Log-in',
+                    style: TextStyle(
+                      fontSize: 46,
+                      fontWeight: FontWeight.w700,
+                      height: 1,
+                      color: Color(0xff000000),
                     ),
-                    fallback: (context) =>
-                        const Center(child: CircularProgressIndicator()),
                   ),
                 ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 53, right: 58),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  physics: const NeverScrollableScrollPhysics(),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'If you don’t have an account please',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            height: 1,
-                            color: Color(0xff000000)),
-                      ),
-                      TextButton(
-                        // function
-                        onPressed: () {},
-
-                        child: const Text(
-                          'Register',
+                CustomTextFormField(
+                  hintText: 'E-mail',
+                  textController: emailController,
+                  validator: (Value) {
+                    if (Value?.isEmpty == true) {
+                      return 'please enter email';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 10,),
+                CustomTextFormField(
+                  hintText: 'Enter Password',
+                  textController: passwordController,
+                  validator: (Value) {
+                    if (Value?.isEmpty == true) {
+                      return 'please enter password';
+                    }
+                    return null;
+                  },
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
+                  child: GetBuilder<LoginController>(
+                    builder: (c) => ConditionalBuilder(
+                      condition: controller.state.isTrue,
+                      builder: (context) => CustomButton(
+                          textButton: 'Submit',
+                          onPressed: () {
+                            if (formkey.currentState!.validate()) {
+                              controller.onSubmit(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              );
+                            }
+                          },),
+                      fallback: (context) =>
+                          const Center(child: CircularProgressIndicator()),
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 53, right: 58),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    physics: const NeverScrollableScrollPhysics(),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'If you don’t have an account please',
                           style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            height: 1,
-                            color: Color(0xff3356d2),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              height: 1,
+                              color: Color(0xff000000)),
+                        ),
+                        TextButton(
+                          // function
+                          onPressed: () {},
+
+                          child: const Text(
+                            'Register',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              height: 1,
+                              color: Color(0xff3356d2),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
+import '../constants/approutes.dart';
 import '../helper/http_helper.dart';
 
 class LoginController extends GetxController {
@@ -27,7 +28,7 @@ class LoginController extends GetxController {
       state = true.obs;
 
       if (loginModel?.status == 200) {
-        Get.off(BottomNavigationBarScreen());
+        Get.offNamed(AppRoutes.bottomNavigationBar);
         CacheHelper.prefs?.setString('token', '${loginModel?.token}');
         
       } else {
