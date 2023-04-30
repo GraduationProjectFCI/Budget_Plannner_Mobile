@@ -59,35 +59,11 @@ class LoginScreen extends StatelessWidget {
                     condition: controller.state.isTrue,
                     builder: (context) => CustomButton(
                       textButton: 'Submit',
-                      onPressed: () async {
-                        //  var value = await Http.login(
-                        //     email: "mohassen011@gmail.com",
-                        //     password: "123456Q@",
-                        //   );
-                        // Get.to(BottomNavigationBarScreen());
-                        print(emailController.text);
-                        print(passwordController.text);
-
-                        await controller.onSubmit(
-                          email: "mohassen011@gmail.com",
-                          password: "123456Q@",
-                        );
-                        // .then(() {
-                        // Get.off(HomeScreen());
-                        toast(msg: "controller.loginModel.message");
-                        if (await controller.loginModel?.status == 200) {
-                          print(await controller.loginModel?.status);
-                          print(controller.loginModel?.message);
-                          print(controller.loginModel?.token);
-                          print("get sccessful !!!!!!!!");
-                        } else {
-                          print("get failed !!!!!!!!");
-                          toast(msg: controller.loginModel?.message);
-                        }
-                        // });
-                        // },
-                        // );
-                      },
+                      onPressed:(){  controller.onSubmit(
+                          email: emailController.text,
+                          password: passwordController.text,
+                        );}
+                      
                     ),
                     fallback: (context) =>
                         const Center(child: CircularProgressIndicator()),

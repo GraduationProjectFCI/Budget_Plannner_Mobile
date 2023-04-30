@@ -3,7 +3,10 @@ import 'dart:convert';
 import 'package:budget_planner_app/constants/endpoint.dart';
 import 'package:http/http.dart' as http;
 
+import '../model/login_model.dart';
+
 class Http {
+  // static LoginInfo? loginModel;
   static Future login({
     required String email,
     required String password,
@@ -30,7 +33,7 @@ class Http {
     print(response.statusCode);
     
       var jsonResponse =await jsonDecode(response.body);
-
+      
       return jsonResponse;
       //Or put here your next screen using Navigator.push() method
       print('success');
