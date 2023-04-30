@@ -40,15 +40,16 @@ class RegisterScreen extends StatelessWidget {
                   fieldType: TextInputType.name,
                   textController: controller.nameTextController,
                 ),
+                const SizedBox(height: 10),
                 CustomTextFormField(
                     validator: (value) {
                       return validInput(value!, 5, 100, 'email');
                     },
                     hintText: 'E-mail',
                     textController: controller.emailTextController),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: double.infinity,
-                  height: 46,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -70,39 +71,43 @@ class RegisterScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                const SizedBox(height: 10),
                 CustomTextFormField(
                     hintText: 'Monthly Budget Average',
                     fieldType: TextInputType.number,
                     textController: controller.budgetAverageTextController),
+                const SizedBox(height: 10),
                 CustomTextFormField(
                     hintText: 'Preferred currency',
                     textController: controller.currencyTextController),
+                const SizedBox(height: 10),
                 Container(
                   width: double.infinity,
-                  height: 46,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(
-                          child: CustomTextFormField(
-                              validator: (value) {
-                                return validInput(value!, 8, 100, 'password');
-                              },
-                              hintText: 'Enter Passwoed',
-                              textController:
-                                  controller.passwordTextController)),
+                        child: CustomTextFormField(
+                            validator: (value) {
+                              return validInput(value!, 8, 100, 'password');
+                            },
+                            hintText: 'Enter Passwoed',
+                            textController: controller.passwordTextController),
+                      ),
                       const SizedBox(width: 8),
                       Expanded(
-                          child: CustomTextFormField(
-                              validator: (value) {
-                                return validInput(value!, 8, 100, 'password');
-                              },
-                              hintText: 'Re-enter Password',
-                              textController:
-                                  controller.rePasswordTextController)),
+                        child: CustomTextFormField(
+                            validator: (value) {
+                              return validInput(value!, 8, 100, 'password');
+                            },
+                            hintText: 'Re-enter Password',
+                            textController:
+                                controller.rePasswordTextController),
+                      ),
                     ],
                   ),
                 ),
+                const SizedBox(height: 10),
                 CustomTextFormField(
                     hintText: 'birthdate',
                     textController: controller.birthdateTextController),
