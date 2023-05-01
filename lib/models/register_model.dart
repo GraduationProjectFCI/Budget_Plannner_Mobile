@@ -1,12 +1,12 @@
-class ResponseModel {
+class RegisterModel {
   int? status;
-  List<String>? msg;
+  var msg;
+  String? userId;
+  RegisterModel({this.status, this.msg, this.userId});
 
-  ResponseModel({this.status, this.msg});
-
-  ResponseModel.fromJson(Map<String, dynamic> json) {
+  RegisterModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    msg = json['msg'].cast<String>();
+    msg = json['msg'];
   }
 
   Map<String, dynamic> toJson() {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../view/screens/buttom_navigation_bar_screen.dart';
+import '../view/screens/bottom_navigation_bar_screen.dart';
 import '../view/screens/confirm_screen.dart';
 import '../view/screens/deadlines_screen.dart';
 import '../view/screens/home_screen.dart';

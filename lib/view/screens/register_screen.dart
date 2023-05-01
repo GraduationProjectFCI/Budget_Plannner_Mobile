@@ -118,7 +118,7 @@ class RegisterScreen extends StatelessWidget {
                       textButton: 'Submit',
                       onPressed: () async {
                         var res2 = await controller.signUp();
-                        print('\nfrom screen-------  $res2');
+                        // print('\nfrom screen-------  $res2');
                       },
                     )),
                 Container(
@@ -140,7 +140,9 @@ class RegisterScreen extends StatelessWidget {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            controller.goToLogin();
+                          },
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.zero,
                           ),

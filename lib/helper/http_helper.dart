@@ -1,6 +1,10 @@
 import 'dart:convert';
 
+import 'package:budget_planner_app/constants/approutes.dart';
 import 'package:budget_planner_app/constants/endpoint.dart';
+import 'package:budget_planner_app/models/register_model.dart';
+import 'package:budget_planner_app/view/widgets/toast.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../model/login_model.dart';
@@ -31,15 +35,16 @@ class Http {
     );
     print("Http file ${response.body}");
     print(response.statusCode);
-    
-      var jsonResponse =await jsonDecode(response.body);
-      
-      return jsonResponse;
-      //Or put here your next screen using Navigator.push() method
-      print('success');
-   
+
+    var jsonResponse = await jsonDecode(response.body);
+
+    return jsonResponse;
+    //Or put here your next screen using Navigator.push() method
+    print('success');
   }
-  static register({
+
+  // static String? userId;
+  static Future<Map<String, dynamic>> register({
     required String name,
     required String email,
     required String password,
@@ -70,33 +75,24 @@ class Http {
         "Access-Control-Allow-Origin": "*"
       },
     );
-    if (response.statusCode == 200) {
-      //Or put here your next screen using Navigator.push() method
-      return response.body;
-    }
-    // else if (response.statusCode == 400) {
-    //   print('${response.body}');
-    //   return response.body;
-    //   /*
-    //   {"status":400,"msg":["this email is registered"]}
-    //   */
-    // } else {
-    //   print('${response.body}');
-    //   return response.body;
-    // }
+    var registerData = await jsonDecode(response.body);
+
+    print(registerData);
+    return registerData;
   }
 
-  static confirmation({
-    required String userId,
+  static Future confirmation({
     required String code,
+    required String userId,
+    // RegisterModel? modelRegister,
   }) async {
     Map data = {
       "user_id": userId,
       "code": code,
     };
-    print(data);
+
     String body = json.encode(data);
-    print(body);
+    print('encode   $body');
     var url = Uri.parse(Endpoint.confirmation);
     var response = await http.post(
       url,
@@ -107,8 +103,10 @@ class Http {
         "Access-Control-Allow-Origin": "*"
       },
     );
-    print(response.body);
-    print(response.statusCode);
+
+    print('confirm before decode ${response.body}');
+    var jsondecode = await jsonDecode(response.body);
+    print('confirm after decode ${jsondecode}');
     if (response.statusCode == 200) {
       //Or put here your next screen using Navigator.push() method
       print('success');
