@@ -17,7 +17,7 @@ class AppRoutes {
   static const String confirmation = '/confirmation';
   static const String deadlines = '/sheets';
   static const String home = '/home';
-  static const String bottomNavigationBar = '/BottomNavigationBarScreen';
+  static const String bottomNavigationBar = '/bottom_navigationbarscreen';
 }
 
 Map<String, Widget Function(BuildContext)> routes = {
