@@ -3,7 +3,7 @@ import 'package:budget_planner_app/controller/login_controller.dart';
 import 'package:budget_planner_app/controller/login_controller.dart';
 import 'package:budget_planner_app/helper/http_helper.dart';
 import 'package:budget_planner_app/model/login_model.dart';
-import 'package:budget_planner_app/view/screens/buttom_navigation_bar_screen.dart';
+import 'package:budget_planner_app/view/screens/bottom_navigation_bar_screen.dart';
 import 'package:budget_planner_app/view/widgets/toast.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +56,9 @@ class LoginScreen extends StatelessWidget {
                     return null;
                   },
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 CustomTextFormField(
                   hintText: 'Enter Password',
                   textController: passwordController,
@@ -73,15 +75,16 @@ class LoginScreen extends StatelessWidget {
                     builder: (c) => ConditionalBuilder(
                       condition: controller.state.isTrue,
                       builder: (context) => CustomButton(
-                          textButton: 'Submit',
-                          onPressed: () {
-                            if (formkey.currentState!.validate()) {
-                              controller.onSubmit(
-                                email: emailController.text,
-                                password: passwordController.text,
-                              );
-                            }
-                          },),
+                        textButton: 'Submit',
+                        onPressed: () {
+                          if (formkey.currentState!.validate()) {
+                            controller.onSubmit(
+                              email: emailController.text,
+                              password: passwordController.text,
+                            );
+                          }
+                        },
+                      ),
                       fallback: (context) =>
                           const Center(child: CircularProgressIndicator()),
                     ),

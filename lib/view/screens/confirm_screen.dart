@@ -10,7 +10,9 @@ import '../widgets/custom_textformfield.dart';
 
 class ConfirmScreen extends StatelessWidget {
   ConfirmScreen({super.key});
+
   ConfirmationController controller = Get.put(ConfirmationController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
