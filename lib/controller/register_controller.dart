@@ -45,7 +45,8 @@ class RegisterController extends GetxController {
         var registerData = await value;
         if (registerData['status'] == 200) {
           userId = value['user_id'];
-          print(userId);
+          print('@@@@user id=  $userId');
+          Http.userId = userId;
 
           toast(msg: '${value['msg']}', color: Colors.green);
           Get.offNamed(AppRoutes.confirmation);

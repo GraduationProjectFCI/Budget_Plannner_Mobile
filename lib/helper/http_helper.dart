@@ -43,7 +43,7 @@ class Http {
     print('success');
   }
 
-  // static String? userId;
+  static String? userId;
   static Future<Map<String, dynamic>> register({
     required String name,
     required String email,
@@ -81,39 +81,45 @@ class Http {
     return registerData;
   }
 
-  static Future confirmation({
-    required String code,
-    required String userId,
-    // RegisterModel? modelRegister,
-  }) async {
+  static Future confirmation(
+      // {
+      // required String code,
+      // required String userId,
+      // RegisterModel? modelRegister,
+      // }
+      ) async {
     Map data = {
       "user_id": userId,
-      "code": code,
+      // "code": code,
     };
 
-    String body = json.encode(data);
-    print('encode   $body');
-    var url = Uri.parse(Endpoint.confirmation);
-    var response = await http.post(
-      url,
-      body: body,
-      headers: {
-        "Content-Type": "application/json",
-        "accept": "application/json",
-        "Access-Control-Allow-Origin": "*"
-      },
-    );
+    // String body = json.encode(data);
+    // print('encode   $body');
+    // var url = Uri.parse(Endpoint.confirmation);
+    // var response = await http.post(
+    //   url,
+    //   // body: body,
+    //   body: {
+    //     "user_id": '"645427029fbda9d1fd9e105a"',
+    //     "code": 839408,
+    //   },
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "accept": "application/json",
+    //     "Access-Control-Allow-Origin": "*"
+    //   },
+    // );
 
-    print('confirm before decode ${response.body}');
-    var jsondecode = await jsonDecode(response.body);
-    print('confirm after decode ${jsondecode}');
-    if (response.statusCode == 200) {
-      //Or put here your next screen using Navigator.push() method
-      print('success');
-      return response.body;
-    } else {
-      print('${response.body}');
-      return response.body;
-    }
+    // print('confirm before decode ${response.body}');
+    // var jsondecode = await jsonDecode(response.body);
+    // print('confirm after decode ${jsondecode}');
+    // if (response.statusCode == 200) {
+    //   //Or put here your next screen using Navigator.push() method
+    //   print('success');
+    //   return response.body;
+    // } else {
+    //   print('${response.body}');
+    //   return response.body;
+    // }
   }
 }
