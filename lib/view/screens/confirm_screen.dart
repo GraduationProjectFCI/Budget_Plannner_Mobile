@@ -53,11 +53,11 @@ class ConfirmScreen extends StatelessWidget {
                   ),
                 ),
                 CustomTextFormField(
-                  // validator: (value) {
-                  //   return validInput(value!, 6, 10, 'code');
-                  // },
+                  validator: (value) {
+                    return validInput(value!, 6, 10, 'code');
+                  },
                   hintText: 'Enter Code',
-                  // textController: controller.codeTextController,
+                  textController: controller.codeTextController,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
