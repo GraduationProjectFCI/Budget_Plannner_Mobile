@@ -3,4 +3,5 @@ class Endpoint {
   static const String login = "${url}login";
   static const String register = "${url}register";
   static const String confirmation = "${url}confirmation";
+  static const String homeData = "${url}user-data/";
 }

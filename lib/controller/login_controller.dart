@@ -39,6 +39,7 @@ class LoginController extends GetxController {
     }).catchError((error) {
       print(error.toString());
     });
+
     update();
   }
 }
