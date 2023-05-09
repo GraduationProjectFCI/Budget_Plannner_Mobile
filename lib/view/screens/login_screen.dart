@@ -1,6 +1,7 @@
 import 'package:budget_planner_app/controller/login_controller.dart';
 import 'package:budget_planner_app/controller/login_controller.dart';
 import 'package:budget_planner_app/controller/login_controller.dart';
+import 'package:budget_planner_app/functions/valid_input.dart';
 import 'package:budget_planner_app/helper/http_helper.dart';
 import 'package:budget_planner_app/model/login_model.dart';
 import 'package:budget_planner_app/view/screens/bottom_navigation_bar_screen.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constants/appcolor.dart';
+import '../../constants/approutes.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textformfield.dart';
 import 'home_screen.dart';
@@ -49,11 +51,8 @@ class LoginScreen extends StatelessWidget {
                 CustomTextFormField(
                   hintText: 'E-mail',
                   textController: emailController,
-                  validator: (Value) {
-                    if (Value?.isEmpty == true) {
-                      return 'please enter email';
-                    }
-                    return null;
+                  validator: (value) {
+                    return validInput(value!, 5, 100, 'email');
                   },
                 ),
                 SizedBox(
@@ -62,11 +61,8 @@ class LoginScreen extends StatelessWidget {
                 CustomTextFormField(
                   hintText: 'Enter Password',
                   textController: passwordController,
-                  validator: (Value) {
-                    if (Value?.isEmpty == true) {
-                      return 'please enter password';
-                    }
-                    return null;
+                  validator: (value) {
+                    return validInput(value!, 5, 100, 'password');
                   },
                 ),
                 Container(
@@ -91,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(left: 53, right: 58),
+                  // margin: const EdgeInsets.only(left: 53, right: 58),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     physics: const NeverScrollableScrollPhysics(),
@@ -108,7 +104,9 @@ class LoginScreen extends StatelessWidget {
                         ),
                         TextButton(
                           // function
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.offNamed(AppRoutes.register);
+                          },
 
                           child: const Text(
                             'Register',

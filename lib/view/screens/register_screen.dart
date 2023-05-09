@@ -122,13 +122,15 @@ class RegisterScreen extends StatelessWidget {
                       },
                     )),
                 Container(
-                  margin: const EdgeInsets.fromLTRB(52, 0, 57, 0),
-                  width: double.infinity,
+                  // margin: const EdgeInsets.fromLTRB(52, 0, 57, 0),
+                  // width: double.infinity,
+
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     physics: const NeverScrollableScrollPhysics(),
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
                           'If you already have an account please',
@@ -143,9 +145,6 @@ class RegisterScreen extends StatelessWidget {
                           onPressed: () {
                             controller.goToLogin();
                           },
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
                           child: const Text(
                             'log-in',
                             style: TextStyle(

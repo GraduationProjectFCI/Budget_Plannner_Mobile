@@ -26,8 +26,9 @@ class LoginController extends GetxController {
       loginModel = await LoginInfo.fromjson(value);
 
       state = true.obs;
-
-      if (loginModel?.status == 200) {
+      print('valueeeeeee     $value');
+      if (loginModel!.token != null) {
+        toast(msg: loginModel?.message, color: Colors.green);
         Get.offNamed(AppRoutes.bottomNavigationBar);
         CacheHelper.prefs?.setString('token', '${loginModel?.token}');
       } else {

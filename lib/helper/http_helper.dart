@@ -20,7 +20,6 @@ class Http {
       "password": password,
     };
     print(data);
-
     String body = json.encode(data);
     print(body);
     var url = Uri.parse(Endpoint.login);
