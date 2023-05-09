@@ -6,6 +6,7 @@ import 'package:budget_planner_app/view/screens/confirm_screen.dart';
 import 'package:budget_planner_app/view/screens/deadlines_screen.dart';
 import 'package:budget_planner_app/view/screens/profile_screen.dart';
 import 'package:budget_planner_app/view/screens/register_screen.dart';
+import 'package:budget_planner_app/view/screens/statics_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +15,7 @@ import 'view/screens/login_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-  String? token = await CacheHelper.prefs?.getString('token188');
+  String? token = await CacheHelper.prefs?.getString('token');
   runApp(MyApp(token));
 }
 
