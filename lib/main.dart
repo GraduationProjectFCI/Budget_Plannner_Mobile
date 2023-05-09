@@ -14,7 +14,7 @@ import 'view/screens/login_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-  String? token = await CacheHelper.prefs?.getString('token188');
+  String? token = await CacheHelper.prefs?.getString('token');
   runApp(MyApp(token));
 }
 
