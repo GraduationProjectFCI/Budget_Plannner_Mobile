@@ -75,8 +75,7 @@ class Http {
       },
     );
     var registerData = await jsonDecode(response.body);
-
-    print(registerData);
+    print('response body  aaaaaaaa  ${registerData}');
     return registerData;
   }
 
