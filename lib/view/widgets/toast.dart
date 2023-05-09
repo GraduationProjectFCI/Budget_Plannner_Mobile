@@ -6,7 +6,7 @@ toast({required String msg, Color color = Colors.red}) =>
         msg: msg,
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 5,
+        timeInSecForIosWeb: 30,
         backgroundColor: color,
         textColor: Colors.white,
         fontSize: 16.0);

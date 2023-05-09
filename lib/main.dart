@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: AppRoutes.login,
+      initialRoute: AppRoutes.register,
       routes: routes,
       // home: token == null ? LoginScreen() : BottomNavigationBarScreen(),
     );
