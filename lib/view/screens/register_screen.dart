@@ -1,6 +1,7 @@
 import 'package:budget_planner_app/constants/appcolor.dart';
 import 'package:budget_planner_app/controller/register_controller.dart';
 import 'package:budget_planner_app/functions/valid_input.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -112,15 +113,25 @@ class RegisterScreen extends StatelessWidget {
                     hintText: 'birthdate',
                     textController: controller.birthdateTextController),
                 Container(
-                    margin:
-                        const EdgeInsets.only(top: 6, left: 134, right: 134),
-                    child: CustomButton(
-                      textButton: 'Submit',
-                      onPressed: () async {
-                        var res2 = await controller.signUp();
-                        // print('\nfrom screen-------  $res2');
+                  margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
+                  child: GetBuilder<RegisterController>(
+                    builder: (c) => ConditionalBuilder(
+                      condition: controller.state.isTrue,
+                      builder: (context) {
+                        return CustomButton(
+                          textButton: 'Submit',
+                          onPressed: () async {
+                            var res2 = await controller.signUp();
+
+                            // print('\nfrom screen-------  $res2');
+                          },
+                        );
                       },
-                    )),
+                      fallback: (context) =>
+                          const Center(child: CircularProgressIndicator()),
+                    ),
+                  ),
+                ),
                 Container(
                   // margin: const EdgeInsets.fromLTRB(52, 0, 57, 0),
                   // width: double.infinity,

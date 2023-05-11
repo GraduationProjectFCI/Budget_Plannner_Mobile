@@ -11,35 +11,36 @@ class ConfirmationController extends GetxController {
   late TextEditingController codeTextController;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  RxBool state = true.obs;
 
   @override
   confirm() async {
     print('helllllo confirm');
     if (formKey.currentState!.validate()) {
+      state = false.obs;
+      WidgetsFlutterBinding.ensureInitialized();
+      update();
       await Http.confirmation(
         code: codeTextController.text,
       ).then((value) async {
         print('value form confirm controller $value');
-        if (value['status'] == 200) {
+        state = true.obs;
+        if (value['token'] != null) {
           toast(msg: '${value['msg']}', color: Colors.green);
-          goToLogin();
-        } else if (value['status'] == 400) {
-          print('status=400');
-          toast(msg: '${value['msg']}');
-          toast(msg: value['error'][0].toString());
+          goToBottonNavagation();
         } else {
           print('status=error');
           print(value);
           toast(msg: value['msg']);
         }
       });
-      // update();
+      update();
     }
   }
 
   @override
-  goToLogin() {
-    Get.offNamed(AppRoutes.login);
+  goToBottonNavagation() {
+    Get.offNamed(AppRoutes.bottomNavigationBar);
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:budget_planner_app/controller/confirmation_controller.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -56,45 +57,26 @@ class ConfirmScreen extends StatelessWidget {
                   validator: (value) {
                     return validInput(value!, 6, 10, 'code');
                   },
+                  fieldType: TextInputType.number,
                   hintText: 'Enter Code',
                   textController: controller.codeTextController,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
-                  child: CustomButton(
-                    textButton: 'Submit',
-                    onPressed: () async {
-                      await controller.confirm();
-                    },
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 6),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Resend Code ...? ',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          height: 1,
-                          color: Color(0xff000000),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          'Click Here',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            height: 1,
-                            color: Color(0xff1f61c4),
-                          ),
-                        ),
-                      ),
-                    ],
+                  child: GetBuilder<ConfirmationController>(
+                    builder: (c) => ConditionalBuilder(
+                      condition: controller.state.isTrue,
+                      builder: (context) {
+                        return CustomButton(
+                          textButton: 'Submit',
+                          onPressed: () async {
+                            await controller.confirm();
+                          },
+                        );
+                      },
+                      fallback: (context) =>
+                          const Center(child: CircularProgressIndicator()),
+                    ),
                   ),
                 ),
               ],

@@ -19,6 +19,7 @@ class RegisterController extends GetxController {
   late TextEditingController rePasswordTextController;
   late String userId;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  RxBool state = true.obs;
 
   @override
   signUp() async {
@@ -29,7 +30,11 @@ class RegisterController extends GetxController {
 
       return;
     }
+
     if (formKey.currentState!.validate()) {
+      state = false.obs;
+      WidgetsFlutterBinding.ensureInitialized();
+      update();
       Http.register(
         name: nameTextController.text,
         email: emailTextController.text,
@@ -40,42 +45,25 @@ class RegisterController extends GetxController {
         birthdate: birthdateTextController.text,
         currency: currencyTextController.text,
       ).then((value) async {
-        print('valueeeeeeeeeeeeee $value');
+        print('Register valueeeeeeeeeeeeee $value');
         RegisterModel registerModel = await RegisterModel.fromJson(value);
-        var registerData = await value;
-        if (registerData['status'] == 200) {
-          userId = value['user_id'];
-          print('@@@@user id=  $userId');
-          Http.userId = userId;
+        // print(registerModel.msg.toString());
+        // print(registerModel.userId.toString());
+        state = true.obs;
 
-          toast(msg: '${value['msg']}', color: Colors.green);
+        if (value['user_id'] != null) {
+          // userId = registerModel.userId.toString();
+          print('@@@@user id= ${registerModel.userId.toString()}');
+          Http.userId = registerModel.userId;
+
+          toast(msg: value['msg'].toString(), color: Colors.green);
           Get.offNamed(AppRoutes.confirmation);
-        } else if (registerModel.status == 400) {
-          print('status=400');
-
-          for (var element in registerModel.msg) {
-            toast(msg: element.toString());
-          }
-          update();
         } else {
           print('status=error');
-          for (var element in registerModel.msg) {
-            toast(msg: element.toString());
-          }
+          toast(msg: value['msg'].toString());
         }
         update();
       });
-
-      // print(response['msg'][0]);
-      // if (response['status'] == 200) {
-      //   userId = response['user_id'];
-      //   toastSucsses(msg: response['msg']);
-      //   goToConfirm();
-      // } else if (response['status'] == 400) {
-      //   toast(msg: response['msg'][0]);
-      // } else {
-      //   toast(msg: response['msg'][0]);
-      // }
     }
   }
 
