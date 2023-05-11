@@ -15,7 +15,7 @@ class AppRoutes {
   static const String sheets = '/sheets';
   static const String profile = '/profile';
   static const String confirmation = '/confirmation';
-  static const String deadlines = '/sheets';
+  static const String deadlines = '/deadline';
   static const String home = '/home';
   static const String bottomNavigationBar = '/bottom_navigationbarscreen';
 }
