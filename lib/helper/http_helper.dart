@@ -165,6 +165,92 @@ class Http {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     static Future postData({
     required Map<String, dynamic> map,
     required String endpoint,
@@ -193,7 +279,7 @@ class Http {
     print('success');
   }
 
-    static Future getData({ required String token, required String url}) async {
+    static Future getData({  String? token, required String url}) async {
     final headers = {'Authorization': 'Bearer $token'};
     // final queryParams = {'id': id};
     // final uri = Uri.parse(url).replace(queryParameters: queryParams);

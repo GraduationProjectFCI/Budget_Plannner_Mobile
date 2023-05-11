@@ -1,12 +1,14 @@
 import 'package:budget_planner_app/constants/appcolor.dart';
+import 'package:budget_planner_app/controller/sheets_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../constants/constant.dart';
 import '../widgets/custom_button.dart';
 
 class SheetsScreen extends StatelessWidget {
-  const SheetsScreen({super.key});
-
+   SheetsScreen({super.key});
+  sheetsController controller = Get.put(sheetsController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
