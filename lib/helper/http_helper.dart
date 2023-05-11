@@ -121,4 +121,94 @@ class Http {
       // Handle error
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    static Future postData({
+    required Map<String, dynamic> map,
+    required String endpoint,
+  }) async {
+    
+    print(map);
+    String body = json.encode(map);
+    print(body);
+    var url = Uri.parse(Endpoint.login);
+    var response = await http.post(
+      url,
+      body: body,
+      headers: {
+        "Content-Type": "application/json",
+        "accept": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+    );
+    print("Http file ${response.body}");
+    print(response.statusCode);
+
+    var jsonResponse = await jsonDecode(response.body);
+
+    return jsonResponse;
+    //Or put here your next screen using Navigator.push() method
+    print('success');
+  }
+
+    static Future getData({ required String token, required String url}) async {
+    final headers = {'Authorization': 'Bearer $token'};
+    // final queryParams = {'id': id};
+    // final uri = Uri.parse(url).replace(queryParameters: queryParams);
+    final uri = Uri.parse(url);
+    final response = await http.get(uri, headers: headers);
+    if (response.statusCode == 200) {
+      // Handle success
+      print('success!!!!');
+      print('body = ${response.body}');
+      return await jsonDecode(response.body);
+    } else {
+      print('error');
+      print('body = ${response.body}');
+      // Handle error
+    }
+  }
 }

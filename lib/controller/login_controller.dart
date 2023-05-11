@@ -17,7 +17,7 @@ class LoginController extends GetxController {
     required String email,
     required String password,
   }) async {
-    WidgetsFlutterBinding.ensureInitialized();
+    // WidgetsFlutterBinding.ensureInitialized();
     state = false.obs;
     update();
     Http.login(email: email, password: password).then((value) async {
