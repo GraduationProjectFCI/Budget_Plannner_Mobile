@@ -1,7 +1,6 @@
 import 'package:intl/intl.dart';
 
 String dateFromat(String originalDateString) {
-  
   String desiredFormat = "EEE, dd, MMM";
 
   DateTime originalDate = DateTime.parse(originalDateString);
@@ -9,15 +8,15 @@ String dateFromat(String originalDateString) {
   return formattedDate;
 }
 
-class SheetModel {
+class DeadlineModel {
   var message;
-  late List<UserData>? data;
+  late List<Data>? data;
 
-  SheetModel.fromJson(Map<String, dynamic> json) {
+  DeadlineModel.fromJson(Map<String, dynamic> json) {
     message = json['msg'];
     if (json['data'] != null) {
-      data = List<UserData>.from(
-        json['data'].map((x) => UserData.fromJson(x)),
+      data = List<Data>.from(
+        json['data'].map((x) => Data.fromJson(x)),
       );
     } else {
       data = [];
@@ -25,20 +24,22 @@ class SheetModel {
   }
 }
 
-class UserData {
+class Data {
   late String? userId;
   late String? sheetId;
-  late String? sheetType;
+  late String? deadlineName;
+  late String? deadlineDate;
   late String? createdAt;
   late String? updatedAt;
   int? value;
 
-  UserData.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     userId = json['user_id'];
     sheetId = json['_id'];
-    sheetType = json['sheet_type'];
-    createdAt =dateFromat( json['created_at']);
-    updatedAt =dateFromat( json['updated_at']);
-    value = json['value'];
+    deadlineName = json['deadline_name'];
+    deadlineDate = dateFromat(json['deadline_date']);
+    createdAt = dateFromat(json['created_at']);
+    updatedAt = dateFromat(json['updated_at']);
+    value = json['deadline_value'];
   }
 }

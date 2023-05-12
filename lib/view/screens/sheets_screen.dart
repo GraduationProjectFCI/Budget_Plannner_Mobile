@@ -52,11 +52,11 @@ class SheetsScreen extends StatelessWidget {
                       return ListView.separated(
                           itemBuilder: (context, index) => CustomContainer(
                               
-                              date: '${controller.model.data[index].updatedAt}',
-                              money: '${controller.model.data[index].value}'),
+                              date: '${controller.model.data![index].updatedAt}',
+                              money: '${controller.model.data![index].value}'),
                           separatorBuilder: (context, index) =>
                               SizedBox(height: 10),
-                          itemCount: controller.model.data.length);
+                          itemCount: controller.model.data!.length);
                       // Container(
                       //   child: ConditionalBuilder(
                       //     condition: controller.state == 3,

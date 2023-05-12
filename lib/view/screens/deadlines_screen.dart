@@ -1,50 +1,83 @@
 import 'package:budget_planner_app/constants/appcolor.dart';
+import 'package:budget_planner_app/controller/deadline_controller.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DeadlinesScreen extends StatelessWidget {
-  const DeadlinesScreen({super.key});
-
+   DeadlinesScreen({super.key});
+  DeadlineController controller = Get.put(DeadlineController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
-      body: SafeArea(
-        child: Container(
-          margin:
-              const EdgeInsets.only(left: 10, right: 10, top: 16, bottom: 16),
-          child: Column(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Row(
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Text(
-                        'Deadlines',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w700,
-                          height: 1,
-                          color: Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                  ],
+      body: Container(
+        margin:
+            const EdgeInsets.only(left: 10, right: 10, top: 16, bottom: 16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Text(
+                'Deadlines',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w700,
+                  height: 1,
+                  color: Color(0xff000000),
                 ),
               ),
-              Expanded(
-                flex: 10,
-                child: ListView.builder(
-                  itemCount: 20,
-                  itemBuilder: (context, index) {
-                    return CustomContainer(
-                        label: 'Phone Bill', date: 'Fri, 30 jan', money: '400');
+            ),
+            Expanded(
+              child: GetBuilder<DeadlineController>(builder: (c) {
+                return ConditionalBuilder(
+                  condition: controller.state == 3,
+                  fallback: (context) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  builder: (context) {
+                    print("eeeeeeeeeeeeeeeeeeeee");
+                    return ListView.separated(
+                        itemBuilder: (context, index) => CustomContainer(
+                          label: '${controller.model.data![index].deadlineName}',
+                            date:
+                                '${controller.model.data![index].updatedAt}',
+                            money: '${controller.model.data![index].value}'),
+                        separatorBuilder: (context, index) =>
+                            SizedBox(height: 10),
+                        itemCount: controller.model.data!.length);
+                    // Container(
+                    //   child: ConditionalBuilder(
+                    //     condition: controller.state == 3,
+                    //     fallback: (context) => Center(
+                    //       child: Text(
+                    //         'no data found',
+                    //         style: TextStyle(
+                    //             fontSize: 40,
+                    //             fontWeight: FontWeight.w500,
+                    //             color: Colors.grey),
+                    //       ),
+                    //     ),
+                    //     builder: (context) => ListView.separated(
+                    //         itemBuilder: (context, index) => CustomContainer(
+                    //             label:
+                    //                 '${controller.model.data[index].sheetType}',
+                    //             date:
+                    //                 '${controller.model.data[index].sheetType}',
+                    //             money:
+                    //                 '${controller.model.data[index].value}'),
+                    //         separatorBuilder: (context, index) =>
+                    //             SizedBox(height: 10),
+                    //         itemCount: controller.model.data.length),
+                    //   ),
+                    // );
                   },
-                ),
-              ),
-            ],
-          ),
+                );
+              }),
+            ),
+          ],
         ),
       ),
     );
