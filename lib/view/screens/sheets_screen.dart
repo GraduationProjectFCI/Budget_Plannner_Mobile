@@ -35,39 +35,37 @@ class SheetsScreen extends StatelessWidget {
                       color: Color(0xff000000),
                     ),
                   ),
-                  SizedBox(
-                    width: 100,
-                    // function
-                    child: CustomButton(textButton: 'Add sheet'),
+                  Row(
+                    children: [
+                      const Text(
+                        'Sheets',
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.w700,
+                          height: 1,
+                          color: Color(0xff000000),
+                        ),
+                      ),
+                      const Spacer(),
+                      SizedBox(
+                          width: 100,
+                          child: CustomButton(
+                              textButton: 'Add import',
+                              onPressed: () {
+                                Get.toNamed(AppRoutes.importScreen);
+                              })),
+                      const SizedBox(width: 10),
+                      SizedBox(
+                          width: 100,
+                          child: CustomButton(
+                              textButton: 'Add export',
+                              onPressed: () {
+                                Get.toNamed(AppRoutes.exportScreen);
+                              })),
+                    ],
                   ),
                 ],
               ),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              
               Expanded(
                 child: GetBuilder<sheetsController>(builder: (c) {
                   return ConditionalBuilder(
@@ -79,7 +77,8 @@ class SheetsScreen extends StatelessWidget {
                       print("eeeeeeeeeeeeeeeeeeeee");
                       return ListView.separated(
                           itemBuilder: (context, index) => CustomContainer(
-                            sheetId: '${controller.model.data![index].sheetId}',
+                              sheetId:
+                                  '${controller.model.data![index].sheetId}',
                               date:
                                   '${controller.model.data![index].updatedAt}',
                               money: '${controller.model.data![index].value}'),
@@ -148,7 +147,7 @@ class CustomContainer extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Get.toNamed(AppRoutes.sheetInfo,arguments: sheetId );
+          Get.toNamed(AppRoutes.sheetInfo, arguments: sheetId);
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
