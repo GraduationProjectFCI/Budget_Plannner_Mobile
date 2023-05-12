@@ -6,26 +6,20 @@ import 'package:get/get.dart';
 
 class sheetsController extends GetxController {
   late SheetModel model;
-   int state = 1;
+  int state = 1;
   @override
   void onInit() {
     state = 1;
-    update();
     var url;
     String? token = CacheHelper.prefs!.getString('token');
     Http.getData(token: token, url: Endpoint.sheetData).then((value) {
       model = SheetModel.fromJson(value);
-
       if (model.data == null) {
         state = 2;
-        update();
       } else {
         state = 3;
-        update();
       }
-      update();
 
-     
       update();
     });
     update();

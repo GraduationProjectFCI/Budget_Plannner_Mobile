@@ -26,93 +26,90 @@ class SheetsScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Sheets',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: Color(0xff000000),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      const Text(
-                        'Sheets',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w700,
-                          height: 1,
-                          color: Color(0xff000000),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        const Text(
+                          'Sheets',
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w700,
+                            height: 1,
+                            color: Color(0xff000000),
+                          ),
                         ),
-                      ),
-                      const Spacer(),
-                      SizedBox(
-                          width: 100,
-                          child: CustomButton(
-                              textButton: 'Add import',
-                              onPressed: () {
-                                Get.toNamed(AppRoutes.importScreen);
-                              })),
-                      const SizedBox(width: 10),
-                      SizedBox(
-                          width: 100,
-                          child: CustomButton(
-                              textButton: 'Add export',
-                              onPressed: () {
-                                Get.toNamed(AppRoutes.exportScreen);
-                              })),
-                    ],
+                        const Spacer(),
+                        SizedBox(
+                            width: 100,
+                            child: CustomButton(
+                                textButton: 'Add import',
+                                onPressed: () {
+                                  Get.toNamed(AppRoutes.importScreen);
+                                })),
+                        const SizedBox(width: 10),
+                        SizedBox(
+                            width: 100,
+                            child: CustomButton(
+                                textButton: 'Add export',
+                                onPressed: () {
+                                  Get.toNamed(AppRoutes.exportScreen);
+                                })),
+                      ],
+                    ),
                   ),
                 ],
               ),
               Expanded(
-                child: GetBuilder<sheetsController>(builder: (c) {
-                  return ConditionalBuilder(
-                    condition: controller.state == 3,
-                    fallback: (context) => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    builder: (context) {
-                      print("eeeeeeeeeeeeeeeeeeeee");
-                      return ListView.separated(
-                          itemBuilder: (context, index) => CustomContainer(
-                              sheetId:
-                                  '${controller.model.data![index].sheetId}',
-                              date:
-                                  '${controller.model.data![index].updatedAt}',
-                              money: '${controller.model.data![index].value}'),
-                          separatorBuilder: (context, index) =>
-                              SizedBox(height: 10),
-                          itemCount: controller.model.data!.length);
-                      // Container(
-                      //   child: ConditionalBuilder(
-                      //     condition: controller.state == 3,
-                      //     fallback: (context) => Center(
-                      //       child: Text(
-                      //         'no data found',
-                      //         style: TextStyle(
-                      //             fontSize: 40,
-                      //             fontWeight: FontWeight.w500,
-                      //             color: Colors.grey),
-                      //       ),
-                      //     ),
-                      //     builder: (context) => ListView.separated(
-                      //         itemBuilder: (context, index) => CustomContainer(
-                      //             label:
-                      //                 '${controller.model.data[index].sheetType}',
-                      //             date:
-                      //                 '${controller.model.data[index].sheetType}',
-                      //             money:
-                      //                 '${controller.model.data[index].value}'),
-                      //         separatorBuilder: (context, index) =>
-                      //             SizedBox(height: 10),
-                      //         itemCount: controller.model.data.length),
-                      //   ),
-                      // );
-                    },
-                  );
-                }),
+                child: SizedBox(
+                  height: double.infinity,
+                  child: GetBuilder<sheetsController>(builder: (c) {
+                    return ConditionalBuilder(
+                      condition: controller.state == 3,
+                      fallback: (context) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      builder: (context) {
+                        print("eeeeeeeeeeeeeeeeeeeee");
+                        return ListView.separated(
+                            itemBuilder: (context, index) => CustomContainer(
+                                sheetId:
+                                    '${controller.model.data![index].sheetId}',
+                                date:
+                                    '${controller.model.data![index].updatedAt}',
+                                money:
+                                    '${controller.model.data![index].value}'),
+                            separatorBuilder: (context, index) =>
+                                SizedBox(height: 10),
+                            itemCount: controller.model.data!.length);
+                        // Container(
+                        //   child: ConditionalBuilder(
+                        //     condition: controller.state == 3,
+                        //     fallback: (context) => Center(
+                        //       child: Text(
+                        //         'no data found',
+                        //         style: TextStyle(
+                        //             fontSize: 40,
+                        //             fontWeight: FontWeight.w500,
+                        //             color: Colors.grey),
+                        //       ),
+                        //     ),
+                        //     builder: (context) => ListView.separated(
+                        //         itemBuilder: (context, index) => CustomContainer(
+                        //             label:
+                        //                 '${controller.model.data[index].sheetType}',
+                        //             date:
+                        //                 '${controller.model.data[index].sheetType}',
+                        //             money:
+                        //                 '${controller.model.data[index].value}'),
+                        //         separatorBuilder: (context, index) =>
+                        //             SizedBox(height: 10),
+                        //         itemCount: controller.model.data.length),
+                        //   ),
+                        // );
+                      },
+                    );
+                  }),
+                ),
               ),
             ],
           ),

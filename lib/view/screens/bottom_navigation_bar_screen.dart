@@ -2,6 +2,7 @@ import 'package:budget_planner_app/view/screens/home_screen.dart';
 import 'package:budget_planner_app/view/screens/login_screen.dart';
 import 'package:budget_planner_app/view/screens/profile_screen.dart';
 import 'package:budget_planner_app/view/screens/register_screen.dart';
+import 'package:budget_planner_app/view/screens/statics_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/default_transitions.dart';
@@ -28,8 +29,8 @@ class BottomNavigationBarScreen extends StatelessWidget {
           children: [
             HomeScreen(),
             SheetsScreen(),
+            StaticsScreen(),
             DeadlinesScreen(),
-            ConfirmScreen(),
             ProfileScreen(),
           ],
         ),
