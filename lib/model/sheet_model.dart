@@ -1,5 +1,16 @@
+import 'package:intl/intl.dart';
+
+String dateFromat(String originalDateString) {
+  
+  String desiredFormat = "EEE, dd, MMM";
+
+  DateTime originalDate = DateTime.parse(originalDateString);
+  String formattedDate = DateFormat(desiredFormat).format(originalDate);
+  return formattedDate;
+}
+
 class SheetModel {
-  late String message;
+  var message;
   late List<UserData> data;
 
   SheetModel.fromJson(Map<String, dynamic> json) {
@@ -20,12 +31,14 @@ class UserData {
   late String? sheetType;
   late String? createdAt;
   late String? updatedAt;
+  int? value;
 
   UserData.fromJson(Map<String, dynamic> json) {
     userId = json['user_id'];
     sheetId = json['_id'];
     sheetType = json['sheet_type'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    createdAt =dateFromat( json['created_at']);
+    updatedAt =dateFromat( json['updated_at']);
+    value = json['value'];
   }
 }
