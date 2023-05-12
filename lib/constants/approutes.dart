@@ -1,3 +1,5 @@
+import 'package:budget_planner_app/view/screens/deadline_info.dart';
+import 'package:budget_planner_app/view/screens/sheet_info.dart';
 import 'package:flutter/material.dart';
 
 import '../view/screens/bottom_navigation_bar_screen.dart';
@@ -17,6 +19,8 @@ class AppRoutes {
   static const String confirmation = '/confirmation';
   static const String deadlines = '/deadline';
   static const String home = '/home';
+  static const String sheetInfo = '/sheetInfo';
+  static const String deadlineInfo = '/deadlineInfo';
   static const String bottomNavigationBar = '/bottom_navigationbarscreen';
 }
 
@@ -28,5 +32,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   AppRoutes.profile: (context) => ProfileScreen(),
   AppRoutes.deadlines: (context) => DeadlinesScreen(),
   AppRoutes.home: (context) => HomeScreen(),
+  AppRoutes.sheetInfo: (context) => SheetInfo(),
+  AppRoutes.deadlineInfo: (context) => DeadlineInfo(),
   AppRoutes.bottomNavigationBar: (context) => BottomNavigationBarScreen(),
 };

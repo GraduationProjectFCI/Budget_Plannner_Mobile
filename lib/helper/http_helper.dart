@@ -251,11 +251,43 @@ class Http {
 
 
 
-    static Future postData({
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  static Future postData({
     required Map<String, dynamic> map,
     required String endpoint,
   }) async {
-    
     print(map);
     String body = json.encode(map);
     print(body);
@@ -279,12 +311,29 @@ class Http {
     print('success');
   }
 
-    static Future getData({  String? token, required String url}) async {
+  static Future getData({String? token, required String url}) async {
     final headers = {'Authorization': 'Bearer $token'};
     // final queryParams = {'id': id};
     // final uri = Uri.parse(url).replace(queryParameters: queryParams);
     final uri = Uri.parse(url);
     final response = await http.get(uri, headers: headers);
+    if (response.statusCode == 200) {
+      // Handle success
+      print('success!!!!');
+      print('body = ${response.body}');
+      return await jsonDecode(response.body);
+    } else {
+      print('error');
+      print('body = ${response.body}');
+      // Handle error
+    }
+  }
+
+  static Future delete({required String token, required String url}) async {
+    final headers = {'Authorization': 'Bearer $token'};
+
+    final uri = Uri.parse(url);
+    final response = await http.delete(uri, headers: headers);
     if (response.statusCode == 200) {
       // Handle success
       print('success!!!!');

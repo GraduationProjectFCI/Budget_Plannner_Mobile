@@ -25,8 +25,7 @@ class sheetsController extends GetxController {
       }
       update();
 
-      print("messsssssssss ${model.message}");
-      print("messsssssssss ${model.data![1].sheetId}");
+     
       update();
     });
     update();

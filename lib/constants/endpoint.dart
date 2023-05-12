@@ -22,10 +22,11 @@ class Endpoint {
 
 
 
-// https://relieved-frog-gloves.cyclic.app/api/v1/app/sheets
-//  https://relieved-frog-gloves.cyclic.app/api/v1/app/deadlines
+
   // mohamed hassan
   static const String sheetData = "${url}app/sheets";
+  static const String sheetDelete = "${url}app/sheets/";
   static const String deadlineData = "${url}app/deadlines";
+  static const String deadlineDelete = "${url}app/deadlines/";
 
 }
