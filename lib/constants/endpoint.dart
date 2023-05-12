@@ -23,8 +23,10 @@ class Endpoint {
 
 
 
-
   // mohamed hassan
   static const String sheetData = "${url}app/sheets";
+  static const String sheetDelete = "${url}app/sheets/";
+  static const String deadlineData = "${url}app/deadlines";
+  static const String deadlineDelete = "${url}app/deadlines/";
 
 }
