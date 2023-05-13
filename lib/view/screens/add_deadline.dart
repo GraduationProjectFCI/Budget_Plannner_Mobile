@@ -29,7 +29,10 @@ class AddDeadlineScreen extends StatelessWidget {
               children: [
                 const Text(
                   'Import',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w100,
+                      fontSize: 30,
+                    ),
                 ),
                 SizedBox(
                   height: 30,

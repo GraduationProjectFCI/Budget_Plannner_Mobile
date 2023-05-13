@@ -25,11 +25,9 @@ class DeadlinesScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Deadlines',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: Color(0xff000000),
+                     style: TextStyle(
+                      fontWeight: FontWeight.w100,
+                      fontSize: 30,
                     ),
                   ),
                   const Spacer(),
