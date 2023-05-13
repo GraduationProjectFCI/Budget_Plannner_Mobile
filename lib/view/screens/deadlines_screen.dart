@@ -1,6 +1,7 @@
 import 'package:budget_planner_app/constants/appcolor.dart';
 import 'package:budget_planner_app/constants/approutes.dart';
 import 'package:budget_planner_app/controller/deadline_controller.dart';
+import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,14 +21,27 @@ class DeadlinesScreen extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(10.0),
-              child: Text(
-                'Deadlines',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w700,
-                  height: 1,
-                  color: Color(0xff000000),
-                ),
+              child: Row(
+                children: [
+                  Text(
+                    'Deadlines',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w700,
+                      height: 1,
+                      color: Color(0xff000000),
+                    ),
+                  ),
+                  const Spacer(),
+                  SizedBox(
+                      width: 120,
+                      child: CustomButton(
+                          textButton: 'Add deadline',
+                          onPressed: () {
+                            Get.toNamed(AppRoutes.addDeadline);
+                          })),
+                  const SizedBox(width: 10),
+                ],
               ),
             ),
             Expanded(
@@ -38,7 +52,7 @@ class DeadlinesScreen extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   ),
                   builder: (context) {
-                    print("eeeeeeeeeeeeeeeeeeeee");
+                    
                     return ListView.separated(
                         itemBuilder: (context, index) => CustomContainer(
                           deadlineId: '${controller.model.data![index].sheetId}',
