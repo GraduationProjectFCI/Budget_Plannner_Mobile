@@ -287,15 +287,17 @@ class Http {
   static Future postData({
     required Map<String, dynamic> map,
     required String endpoint,
+     String? token,
   }) async {
     print(map);
     String body = json.encode(map);
     print(body);
-    var url = Uri.parse(Endpoint.login);
+    var url = Uri.parse(endpoint);
     var response = await http.post(
       url,
       body: body,
       headers: {
+        'Authorization': 'Bearer $token',
         "Content-Type": "application/json",
         "accept": "application/json",
         "Access-Control-Allow-Origin": "*"
@@ -310,6 +312,9 @@ class Http {
     //Or put here your next screen using Navigator.push() method
     print('success');
   }
+
+
+
 
   static Future getData({String? token, required String url}) async {
     final headers = {'Authorization': 'Bearer $token'};

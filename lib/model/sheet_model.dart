@@ -1,12 +1,12 @@
-import 'package:intl/intl.dart';
+import 'package:date_format/date_format.dart';
+
 
 String dateFromat(String originalDateString) {
   
-  String desiredFormat = "EEE, dd, MMM";
 
-  DateTime originalDate = DateTime.parse(originalDateString);
-  String formattedDate = DateFormat(desiredFormat).format(originalDate);
-  return formattedDate;
+  return formatDate(
+      DateTime.parse(originalDateString), [D, ' ', dd, ' ', M]);
+  
 }
 
 class SheetModel {
