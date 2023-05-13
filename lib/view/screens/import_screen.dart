@@ -49,6 +49,7 @@ class ImportScreen extends StatelessWidget {
                           height: 10,
                         ),
                         DropdownButton(
+                          isExpanded: true,
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
@@ -97,7 +98,7 @@ class ImportScreen extends StatelessWidget {
                         TextFormField(
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                              suffix: const Text('EGP'),
+                              // suffix: const Text('EGP'),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
@@ -147,11 +148,14 @@ class ImportScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       color: AppColor.hintTextColor,
                     ),
+                    // child: Padding(
+                    // padding: const EdgeInsets.only(right: 180.0),
                     child: const Text(
-                      'Total',
+                      '                Total                  ',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
+                    // ),
                   ),
                   Container(
                     padding: EdgeInsets.all(10),

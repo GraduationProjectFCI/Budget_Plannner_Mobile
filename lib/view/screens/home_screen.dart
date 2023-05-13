@@ -28,17 +28,15 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // CustomButton(textButton: textButton)
-
                       Padding(
-                        padding: EdgeInsets.all(20),
+                        padding: EdgeInsets.only(top: 20, left: 20, right: 20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               'Home',
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w100,
                                 fontSize: 30,
                               ),
                             ),
@@ -60,16 +58,14 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
 
-                      // here stop
-
                       homeList(name: "Counters", length: 1),
                       const SizedBox(
                         height: 20,
                       ),
-                      homeList(
-                        length: 5,
-                        name: "Consumption Target",
-                      ),
+                      // homeList(
+                      //   length: 5,
+                      //   name: "Consumption Target",
+                      // ),
                     ],
                   ),
                 ],

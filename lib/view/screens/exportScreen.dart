@@ -21,7 +21,10 @@ class ExportScreen extends StatelessWidget {
                 children: [
                   const Text(
                     'Export',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w100,
+                      fontSize: 30,
+                    ),
                   ),
                   CustomButton(
                     onPressed: () {

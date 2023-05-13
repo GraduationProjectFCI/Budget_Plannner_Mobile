@@ -34,10 +34,8 @@ class ConfirmScreen extends StatelessWidget {
                   child: const Text(
                     'Confirmation',
                     style: TextStyle(
-                      fontSize: 42,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: Color(0xff000000),
+                      fontWeight: FontWeight.w100,
+                      fontSize: 30,
                     ),
                   ),
                 ),

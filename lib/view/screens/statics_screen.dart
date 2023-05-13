@@ -1,4 +1,3 @@
-
 import 'package:budget_planner_app/constants/appcolor.dart';
 import 'package:budget_planner_app/view/screens/deadlines_screen.dart';
 import 'package:budget_planner_app/view/widgets/statistics_element.dart';
@@ -23,32 +22,33 @@ class StaticsScreen extends StatelessWidget {
                 child: Text(
                   'Statistics',
                   style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 40,
+                    fontWeight: FontWeight.w100,
+                    fontSize: 30,
                   ),
                 ),
               ),
-              
-               Padding(
-                padding: EdgeInsets.fromLTRB(30.0, 0, 0, 20),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      '3890',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w100,
-                        fontSize: 75,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Spent',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w200,
+                          fontSize: 26,
+                        ),
                       ),
-                    ),
-                    Text(
-                      'Total spent',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w200,
-                        fontSize: 25,
+                      Text(
+                        '3890',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w200,
+                          fontSize: 85,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               const Padding(
@@ -57,7 +57,6 @@ class StaticsScreen extends StatelessWidget {
                   color: Colors.black12,
                 ),
               ),
-            
               Expanded(
                 flex: 10,
                 child: ListView.builder(

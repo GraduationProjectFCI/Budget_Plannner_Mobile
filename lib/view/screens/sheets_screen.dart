@@ -32,10 +32,8 @@ class SheetsScreen extends StatelessWidget {
                         const Text(
                           'Sheets',
                           style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.w700,
-                            height: 1,
-                            color: Color(0xff000000),
+                            fontWeight: FontWeight.w100,
+                            fontSize: 30,
                           ),
                         ),
                         const Spacer(),
