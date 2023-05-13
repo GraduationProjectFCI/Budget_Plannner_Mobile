@@ -144,7 +144,7 @@ class AddDeadlineScreen extends StatelessWidget {
                     builder: (c) => ConditionalBuilder(
                       condition: controller.state.isTrue,
                       builder: (context) => CustomButton(
-                        textButton: 'Submit',
+                        textButton: 'add',
                         onPressed: () {
                           if (formkey.currentState!.validate()) {
                             controller.sendData(
