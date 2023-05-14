@@ -1,3 +1,4 @@
+import 'package:budget_planner_app/constants/appcolor.dart';
 import 'package:budget_planner_app/constants/approutes.dart';
 import 'package:budget_planner_app/controller/confirmation_controller.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'budget planner',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
+
       ),
       // initialRoute: AppRoutes.bottomNavigationBar,
       initialRoute: token != null ? AppRoutes.bottomNavigationBar : AppRoutes.login,

@@ -1,13 +1,4 @@
-import 'package:date_format/date_format.dart';
-
-
-String dateFromat(String originalDateString) {
-  
-
-  return formatDate(
-      DateTime.parse(originalDateString), [D, ' ', dd, ' ', M]);
-  
-}
+import 'package:budget_planner_app/functions/date_format.dart';
 
 class SheetModel {
   var message;
@@ -37,8 +28,8 @@ class UserData {
     userId = json['user_id'];
     sheetId = json['_id'];
     sheetType = json['sheet_type'];
-    createdAt =dateFromat( json['created_at']);
-    updatedAt =dateFromat( json['updated_at']);
+    createdAt = dateFormat( json['created_at']);
+    updatedAt = dateFormat( json['updated_at']);
     value = json['value'];
   }
 }

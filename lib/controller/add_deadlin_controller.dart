@@ -6,13 +6,13 @@ import 'package:budget_planner_app/view/widgets/toast.dart';
 import 'package:get/get.dart';
 
 class AddDeadlineController extends GetxController {
-  RxBool state = true.obs;
+  bool state = true;
   Future< void> sendData({
     required String name,
     required String date,
     required int value,
   }) async {
-    state = false.obs;
+    state = false;
     Map<String,dynamic> data = {
       "deadline_name": name,
       "deadline_date": date,
@@ -22,7 +22,8 @@ class AddDeadlineController extends GetxController {
     String? token = CacheHelper.prefs!.getString('token');
     Http.postData(endpoint: Endpoint.deadlineData, token: token,map: data).then((value) {
       toast(msg: value['msg']);
-      state = true.obs;
+      state = true;
+      
       update();
     });
     update();
