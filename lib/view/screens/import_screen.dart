@@ -118,7 +118,7 @@ class ImportScreen extends StatelessWidget {
                 height: 400,
                 child: ListView.separated(
                   separatorBuilder: (context, index) => Divider(),
-                  itemCount: 33,
+                  itemCount: 3,
                   itemBuilder: (context, index) {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -148,14 +148,16 @@ class ImportScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       color: AppColor.hintTextColor,
                     ),
-                    // child: Padding(
-                    // padding: const EdgeInsets.only(right: 180.0),
-                    child: const Text(
-                      '                Total                  ',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 180.0),
+                      child: Text(
+                        'Total',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                    // ),
                   ),
                   Container(
                     padding: EdgeInsets.all(10),

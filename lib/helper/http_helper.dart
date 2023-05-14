@@ -121,173 +121,10 @@ class Http {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   static Future postData({
     required Map<String, dynamic> map,
     required String endpoint,
-     String? token,
+    String? token,
   }) async {
     print(map);
     String body = json.encode(map);
@@ -313,9 +150,6 @@ class Http {
     print('success');
   }
 
-
-
-
   static Future getData({String? token, required String url}) async {
     final headers = {'Authorization': 'Bearer $token'};
     // final queryParams = {'id': id};
@@ -330,6 +164,7 @@ class Http {
     } else {
       print('error');
       print('body = ${response.body}');
+      return await jsonDecode(response.body);
       // Handle error
     }
   }
@@ -347,6 +182,9 @@ class Http {
     } else {
       print('error');
       print('body = ${response.body}');
+      print('body = ${jsonDecode(response.body)}');
+
+      return await jsonDecode(response.body);
       // Handle error
     }
   }
