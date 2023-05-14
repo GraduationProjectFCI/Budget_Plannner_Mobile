@@ -49,10 +49,7 @@ class SheetsScreen extends StatelessWidget {
                                       .createSheat(sheetType: "import")
                                       .then((value) {
                                     
-                                    Get.toNamed(
-                                      AppRoutes.exportScreen,
-                                      arguments: controller.sheetInfo,
-                                    );
+                                   
                                   });
                                 },
                               ),
@@ -73,10 +70,7 @@ class SheetsScreen extends StatelessWidget {
                                   controller
                                       .createSheat(sheetType: "export")
                                       .then((value) {
-                                    Get.toNamed(
-                                      AppRoutes.exportScreen,
-                                      arguments: controller.sheetInfo,
-                                    );
+                                      
                                   });
                                 },
                               ),

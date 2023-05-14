@@ -7,9 +7,8 @@ import 'package:get/get.dart';
 class DeadlineController extends GetxController {
   late DeadlineModel model;
   int state = 1;
-  @override
-  void onInit() {
-    state = 1;
+  void getDeadlineData(){
+     state = 1;
     var url;
     String? token = CacheHelper.prefs!.getString('token');
     Http.getData(token: token, url: Endpoint.deadlineData).then((value) {
@@ -24,5 +23,10 @@ class DeadlineController extends GetxController {
       update();
     });
     update();
+  }
+  @override
+  void onInit() {
+    getDeadlineData();
+    
   }
 }
