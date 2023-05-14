@@ -37,21 +37,54 @@ class SheetsScreen extends StatelessWidget {
                           ),
                         ),
                         const Spacer(),
-                        SizedBox(
-                            width: 100,
-                            child: CustomButton(
+                        Container(
+                          margin: const EdgeInsets.only(left: 8, right: 8),
+                          child: GetBuilder<sheetsController>(
+                            builder: (c) => ConditionalBuilder(
+                              condition: controller.importButtomState.isTrue,
+                              builder: (context) => CustomButton(
                                 textButton: 'Add import',
                                 onPressed: () {
-                                  Get.toNamed(AppRoutes.importScreen);
-                                })),
+                                  controller
+                                      .createSheat(sheetType: "import")
+                                      .then((value) {
+                                    
+                                    Get.toNamed(
+                                      AppRoutes.exportScreen,
+                                      arguments: controller.sheetInfo,
+                                    );
+                                  });
+                                },
+                              ),
+                              fallback: (context) => const Center(
+                                  child: CircularProgressIndicator()),
+                            ),
+                          ),
+                        ),
                         const SizedBox(width: 10),
-                        SizedBox(
-                            width: 100,
-                            child: CustomButton(
-                                textButton: 'Add export',
+                        Container(
+                          margin: const EdgeInsets.only(left: 8, right: 8),
+                          child: GetBuilder<sheetsController>(
+                            builder: (c) => ConditionalBuilder(
+                              condition: controller.exportButtomState.isTrue,
+                              builder: (context) => CustomButton(
+                                textButton: 'Add Export',
                                 onPressed: () {
-                                  Get.toNamed(AppRoutes.exportScreen);
-                                })),
+                                  controller
+                                      .createSheat(sheetType: "export")
+                                      .then((value) {
+                                    Get.toNamed(
+                                      AppRoutes.exportScreen,
+                                      arguments: controller.sheetInfo,
+                                    );
+                                  });
+                                },
+                              ),
+                              fallback: (context) => const Center(
+                                  child: CircularProgressIndicator()),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

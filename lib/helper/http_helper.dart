@@ -146,18 +146,16 @@ class Http {
     var jsonResponse = await jsonDecode(response.body);
 
     return jsonResponse;
-    //Or put here your next screen using Navigator.push() method
-    print('success');
+    
   }
 
   static Future getData({String? token, required String url}) async {
     final headers = {'Authorization': 'Bearer $token'};
-    // final queryParams = {'id': id};
-    // final uri = Uri.parse(url).replace(queryParameters: queryParams);
+    
     final uri = Uri.parse(url);
     final response = await http.get(uri, headers: headers);
     if (response.statusCode == 200) {
-      // Handle success
+      
       print('success!!!!');
       print('body = ${response.body}');
       return await jsonDecode(response.body);

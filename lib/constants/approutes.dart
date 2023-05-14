@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../view/screens/bottom_navigation_bar_screen.dart';
 import '../view/screens/confirm_screen.dart';
 import '../view/screens/deadlines_screen.dart';
-import '../view/screens/exportScreen.dart';
+import '../view/screens/expense_screen.dart';
 import '../view/screens/home_screen.dart';
 import '../view/screens/import_screen.dart';
 import '../view/screens/login_screen.dart';

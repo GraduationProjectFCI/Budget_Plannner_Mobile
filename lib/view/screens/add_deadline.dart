@@ -1,6 +1,6 @@
 import 'package:budget_planner_app/constants/appcolor.dart';
 import 'package:budget_planner_app/constants/approutes.dart';
-import 'package:budget_planner_app/controller/add_deadlin.dart';
+import 'package:budget_planner_app/controller/add_deadlin_controller.dart';
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:budget_planner_app/view/widgets/date_time.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
