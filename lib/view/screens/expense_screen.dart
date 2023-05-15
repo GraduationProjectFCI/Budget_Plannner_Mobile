@@ -1,5 +1,6 @@
 import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/app_routes.dart';
+import 'package:budget_planner_app/constants/constant.dart';
 import 'package:budget_planner_app/controller/add_sheet_controller.dart';
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -106,10 +107,10 @@ class ExportScreen extends StatelessWidget {
                                 iconSize: 50,
                                 items: [
                                   ...List.generate(
-                                    5,
+                                    Constant.labelsList.length,
                                     (index) => DropdownMenuItem(
-                                      child: Text('food'),
-                                      value: 'food',
+                                      child: Text(Constant.labelsList[index]),
+                                      value: Constant.labelsList[index],
                                     ),
                                   ),
                                 ],
