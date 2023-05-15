@@ -34,14 +34,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: AppColor.primaryColor,
       ),
-      initialRoute: AppRoutes.bottomNavigationBar,
+      initialRoute: AppRoutes.AddDeleteLabelsScreen,
       // initialRoute:
       //     token != null ? AppRoutes.bottomNavigationBar : AppRoutes.login,
       routes: routes,
     );
   }
 }
-
+//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDVjYjcwN2ZiMzEyMzlmMjA3YTYwMTgiLCJuYW1lIjoiYWxpIiwiaWF0IjoxNjg0MTE4NDMzLCJleHAiOjE2ODQyMDQ4MzN9.gCz_6u17Jj1Ma0bEXpJcIJmkGdeJZNMWxAPqxvfhODk
 
 // sinajul.mudige@rungel.net
 

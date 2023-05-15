@@ -47,7 +47,7 @@ class ConfirmationController extends GetxController {
 
   @override
   goToLabelScreen() {
-    Get.offAllNamed(AppRoutes.AddLabelsScreen);
+    Get.offAllNamed(AppRoutes.AddDeleteLabelsScreen);
   }
 
   @override

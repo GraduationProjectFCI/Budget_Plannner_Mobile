@@ -151,7 +151,7 @@ class Http {
   static Future updateData({
     required Map<String, dynamic> map,
     required String endpoint,
-    String? token,
+    required String? token,
   }) async {
     print(map);
     String body = json.encode(map);
@@ -175,7 +175,7 @@ class Http {
     return jsonResponse;
   }
 
-  static Future getData({String? token, required String url}) async {
+  static Future getData({required String? token, required String url}) async {
     final headers = {'Authorization': 'Bearer $token'};
 
     final uri = Uri.parse(url);
@@ -192,7 +192,7 @@ class Http {
     }
   }
 
-  static Future delete({required String token, required String url}) async {
+  static Future delete({required String? token, required String url}) async {
     final headers = {'Authorization': 'Bearer $token'};
 
     final uri = Uri.parse(url);
