@@ -62,7 +62,7 @@ class AddDeadlineScreen extends StatelessWidget {
                               }
                               return null;
                             },
-                            keyboardType: TextInputType.number,
+                            keyboardType: TextInputType.name,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15),
