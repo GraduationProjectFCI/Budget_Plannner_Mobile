@@ -107,35 +107,7 @@ class AddDeadlineScreen extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                // Flexible(
-                //   child: Container(
-                //     padding: const EdgeInsets.all(15),
-                //     color: AppColor.hintTextColor,
-                //     height: 400,
-                //     child: ListView.separated(
-                //       separatorBuilder: (context, index) => Divider(),
-                //       itemCount: 33,
-                //       itemBuilder: (context, index) {
-                //         return Row(
-                //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //           children: const [
-                //             Text(
-                //               'Food',
-                //               style: TextStyle(
-                //                   fontSize: 20, fontWeight: FontWeight.bold),
-                //             ),
-                //             Text(
-                //               '555 EGP',
-                //               style: TextStyle(
-                //                   fontSize: 20, fontWeight: FontWeight.bold),
-                //             ),
-                //           ],
-                //         );
-                //       },
-                //     ),
-                //   ),
-                // ),
-                // Spacer(),
+                
                 SizedBox(
                   height: 30,
                 ),
