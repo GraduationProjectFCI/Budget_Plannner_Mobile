@@ -13,6 +13,7 @@ class StatisticsController extends GetxController {
     var url;
     String? token = CacheHelper.prefs!.getString('token');
     Http.getData(token: token, url: Endpoint.statisticsData).then((value) {
+     
       model = StatisticsModel.fromJson(value);
 
       if (model.data == null) {
