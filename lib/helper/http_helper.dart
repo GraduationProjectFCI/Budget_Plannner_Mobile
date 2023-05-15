@@ -124,34 +124,7 @@ class Http {
   static Future postData({
     required Map<String, dynamic> map,
     required String endpoint,
-    required String? token,
-  }) async {
-    print(map);
-    String body = json.encode(map);
-    print(body);
-    var url = Uri.parse(endpoint);
-    var response = await http.post(
-      url,
-      body: body,
-      headers: {
-        'Authorization': 'Bearer $token',
-        "Content-Type": "application/json",
-        "accept": "application/json",
-        "Access-Control-Allow-Origin": "*"
-      },
-    );
-    print("Http file ${response.body}");
-    print(response.statusCode);
-
-    var jsonResponse = await jsonDecode(response.body);
-
-    return jsonResponse;
-  }
-
-  static Future updateData({
-    required Map<String, dynamic> map,
-    required String endpoint,
-    required String? token,
+    String? token,
   }) async {
     print(map);
     String body = json.encode(map);
@@ -175,7 +148,34 @@ class Http {
     return jsonResponse;
   }
 
-  static Future getData({required String? token, required String url}) async {
+  static Future updateData({
+    required Map<String, dynamic> map,
+    required String endpoint,
+    String? token,
+  }) async {
+    print(map);
+    String body = json.encode(map);
+    print(body);
+    var url = Uri.parse(endpoint);
+    var response = await http.patch(
+      url,
+      body: body,
+      headers: {
+        'Authorization': 'Bearer $token',
+        "Content-Type": "application/json",
+        "accept": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+    );
+    print("Http file ${response.body}");
+    print(response.statusCode);
+
+    var jsonResponse = await jsonDecode(response.body);
+
+    return jsonResponse;
+  }
+
+  static Future getData({String? token, required String url}) async {
     final headers = {'Authorization': 'Bearer $token'};
 
     final uri = Uri.parse(url);

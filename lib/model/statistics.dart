@@ -24,18 +24,20 @@ class StatisticsModel {
 class statistics {
   late String sheetId;
   late String userId;
+  late String label;
   late double totalExpenses;
-  late double totalBudget;
-  late double totalSpent;
+  late double totalBudgetPercen;
+  late double totalSpentPercen;
   late String createdAt;
   late String updatedAt;
 
   statistics.fromJson(Map<String, dynamic> json) {
     sheetId = json['_id'];
     userId = json['user_id'];
-    totalExpenses = json['total_Expenses'].toDouble();
-    totalBudget = json['total_Budget'].toDouble();
-    totalSpent = json['total_Spent'].toDouble();
+    label = json['label'];
+    totalExpenses = json['expensesSum'].toDouble();
+    totalBudgetPercen = json['labelPercentageTotal'].toDouble();
+    totalSpentPercen = json['labelPercentageSpent'].toDouble();
     createdAt = dateFormat(json['created_at']);
     updatedAt = dateFormat(json['updated_at']);
   }
