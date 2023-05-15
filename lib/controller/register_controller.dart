@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
 import '../constants/app_routes.dart';
+import '../helper/cashe_helper.dart';
 
 class RegisterController extends GetxController {
   late TextEditingController nameTextController;
@@ -17,7 +18,6 @@ class RegisterController extends GetxController {
   late TextEditingController passwordTextController;
   late TextEditingController birthdateTextController;
   late TextEditingController rePasswordTextController;
-  late String userId;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   RxBool state = true.obs;
 
@@ -47,6 +47,7 @@ class RegisterController extends GetxController {
       ).then((value) async {
         print('Register valueeeeeeeeeeeeee $value');
         RegisterModel registerModel = await RegisterModel.fromJson(value);
+        print(value);
         // print(registerModel.msg.toString());
         // print(registerModel.userId.toString());
         state = true.obs;
@@ -54,9 +55,8 @@ class RegisterController extends GetxController {
         if (value['user_id'] != null) {
           // userId = registerModel.userId.toString();
           print('@@@@user id= ${registerModel.userId.toString()}');
-          Http.userId = registerModel.userId;
-
           toast(msg: value['msg'].toString(), color: Colors.green);
+          CacheHelper.prefs?.setString('user_id', '${registerModel.userId}');
           Get.offNamed(AppRoutes.confirmation);
         } else {
           print('status=error');

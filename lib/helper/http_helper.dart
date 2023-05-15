@@ -42,7 +42,6 @@ class Http {
     print('success');
   }
 
-  static String? userId;
   static Future<Map<String, dynamic>> register({
     required String name,
     required String email,
@@ -81,6 +80,7 @@ class Http {
 
   static Future confirmation({
     required String code,
+    required String userId,
   }) async {
     final data = {'user_id': userId, 'code': code};
     final body = json.encode(data);
@@ -124,13 +124,13 @@ class Http {
   static Future postData({
     required Map<String, dynamic> map,
     required String endpoint,
-    String? token,
+    required String? token,
   }) async {
     print(map);
     String body = json.encode(map);
     print(body);
     var url = Uri.parse(endpoint);
-    var response = await http.patch(
+    var response = await http.post(
       url,
       body: body,
       headers: {

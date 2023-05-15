@@ -13,37 +13,39 @@ class ProfileScreen extends StatelessWidget {
         body: SafeArea(
           child: Container(
             margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                  children: const [
-                    Text(
-                      'Profile',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w100,
-                        fontSize: 30,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    children: const [
+                      Text(
+                        'Profile',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w100,
+                          fontSize: 30,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 26,
-                ),
-                const CircleAvatar(
-                  radius: 80,
-                  backgroundImage: AssetImage('assets/photo2.jpg'),
-                ),
-                const SizedBox(
-                  height: 32,
-                ),
-                CustomContainer(label: 'Name', text: 'Mo’men Khaled'),
-                CustomContainer(label: 'E-mail', text: 'momenk208@gmail.com'),
-                CustomContainer(label: 'Gender', text: 'Male'),
-                CustomContainer(label: 'Budget', text: '7000'),
-                CustomContainer(label: 'Currency', text: 'Egyption Pound'),
-                CustomContainer(label: 'Address', text: 'Egypt- Minya'),
-              ],
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 26,
+                  ),
+                  const CircleAvatar(
+                    radius: 80,
+                    backgroundImage: AssetImage('assets/photo2.jpg'),
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  CustomContainer(label: 'Name', text: 'Mo’men Khaled'),
+                  CustomContainer(label: 'E-mail', text: 'momenk208@gmail.com'),
+                  CustomContainer(label: 'Gender', text: 'Male'),
+                  CustomContainer(label: 'Budget', text: '7000'),
+                  CustomContainer(label: 'Currency', text: 'Egyption Pound'),
+                  CustomContainer(label: 'Address', text: 'Egypt- Minya'),
+                ],
+              ),
             ),
           ),
         ));

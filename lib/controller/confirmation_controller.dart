@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/state_manager.dart';
 
+import '../helper/cashe_helper.dart';
+
 class ConfirmationController extends GetxController {
   late TextEditingController codeTextController;
 
@@ -17,18 +19,23 @@ class ConfirmationController extends GetxController {
   confirm() async {
     print('helllllo confirm');
     if (formKey.currentState!.validate()) {
+      String userId = await CacheHelper.prefs!.getString('user_id') as String;
+      print(userId);
       state = false.obs;
       WidgetsFlutterBinding.ensureInitialized();
       update();
-      await Http.confirmation(
-        code: codeTextController.text,
-      ).then((value) async {
+      await Http.confirmation(code: codeTextController.text, userId: userId)
+          .then((value) async {
         print('value form confirm controller $value');
         state = true.obs;
+        print(value['token']);
         if (value['token'] != null) {
           toast(msg: '${value['msg']}', color: Colors.green);
-          goToBottonNavagation();
+          goToLabelScreen();
         } else {
+          state = true.obs;
+          WidgetsFlutterBinding.ensureInitialized();
+          update();
           print('status=error');
           print(value);
           toast(msg: value['msg']);
@@ -39,8 +46,8 @@ class ConfirmationController extends GetxController {
   }
 
   @override
-  goToBottonNavagation() {
-    Get.offNamed(AppRoutes.bottomNavigationBar);
+  goToLabelScreen() {
+    Get.offAllNamed(AppRoutes.AddLabelsScreen);
   }
 
   @override
