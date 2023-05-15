@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: AppColor.primaryColor,
       ),
-      initialRoute: AppRoutes.addDeadline,
+      initialRoute: AppRoutes.bottomNavigationBar,
       // initialRoute:
       //     token != null ? AppRoutes.bottomNavigationBar : AppRoutes.login,
       routes: routes,

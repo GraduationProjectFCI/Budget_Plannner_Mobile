@@ -26,7 +26,7 @@ class AddDeadlineScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Import',
+                  'Deadline',
                   style: TextStyle(
                     fontWeight: FontWeight.w100,
                     fontSize: 30,
