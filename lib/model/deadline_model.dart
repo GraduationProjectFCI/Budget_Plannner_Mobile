@@ -1,12 +1,4 @@
-import 'package:intl/intl.dart';
-
-String dateFromat(String originalDateString) {
-  String desiredFormat = "EEE, dd, MMM";
-
-  DateTime originalDate = DateTime.parse(originalDateString);
-  String formattedDate = DateFormat(desiredFormat).format(originalDate);
-  return formattedDate;
-}
+import 'package:budget_planner_app/functions/date_format.dart';
 
 class DeadlineModel {
   var message;
@@ -37,9 +29,9 @@ class Data {
     userId = json['user_id'];
     sheetId = json['_id'];
     deadlineName = json['deadline_name'];
-    deadlineDate = dateFromat(json['deadline_date']);
-    createdAt = dateFromat(json['created_at']);
-    updatedAt = dateFromat(json['updated_at']);
+    deadlineDate = dateFormat(json['deadline_date']);
+    createdAt = dateFormat(json['created_at']);
+    updatedAt = dateFormat(json['updated_at']);
     value = json['deadline_value'];
   }
 }

@@ -1,6 +1,7 @@
 import 'package:budget_planner_app/constants/appcolor.dart';
 import 'package:budget_planner_app/constants/approutes.dart';
 import 'package:budget_planner_app/controller/add_deadlin_controller.dart';
+import 'package:budget_planner_app/controller/deadline_controller.dart';
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:budget_planner_app/view/widgets/date_time.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -14,6 +15,7 @@ class AddDeadlineScreen extends StatelessWidget {
   TextEditingController valueController = TextEditingController();
   var formkey = GlobalKey<FormState>();
   AddDeadlineController controller = Get.put(AddDeadlineController());
+  DeadlineController conttrollrerDeadline = Get.put(DeadlineController());
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +32,9 @@ class AddDeadlineScreen extends StatelessWidget {
                 const Text(
                   'Import',
                   style: TextStyle(
-                      fontWeight: FontWeight.w100,
-                      fontSize: 30,
-                    ),
+                    fontWeight: FontWeight.w100,
+                    fontSize: 30,
+                  ),
                 ),
                 SizedBox(
                   height: 30,
@@ -145,17 +147,22 @@ class AddDeadlineScreen extends StatelessWidget {
                   margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
                   child: GetBuilder<AddDeadlineController>(
                     builder: (c) => ConditionalBuilder(
-                      condition: controller.state.isTrue,
+                      condition: controller.state,
                       builder: (context) => CustomButton(
                         textButton: 'add',
                         onPressed: () {
                           if (formkey.currentState!.validate()) {
-                            controller.sendData(
+                            controller
+                                .sendData(
                               date: dateTimeController.text,
-                              name:deadlineController.text ,
-                              value: int.parse(valueController.text)  ,
-                            ).then((value) {
-                              Get.offAllNamed(AppRoutes.bottomNavigationBar);
+                              name: deadlineController.text,
+                              value: int.parse(valueController.text),
+                            )
+                                .then((value) {
+                              valueController.clear();
+                              deadlineController.clear();
+                              dateTimeController.clear();
+                              conttrollrerDeadline.getDeadlineData();
                             });
                           }
                         },

@@ -1,3 +1,4 @@
+import 'package:budget_planner_app/constants/approutes.dart';
 import 'package:budget_planner_app/constants/endpoint.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
 import 'package:budget_planner_app/helper/http_helper.dart';
@@ -8,8 +9,8 @@ import 'package:get/get.dart';
 class sheetsController extends GetxController {
   late SheetModel model;
   int state = 1;
-  @override
-  void onInit() {
+
+  void getSheetData() {
     state = 1;
     var url;
     String? token = CacheHelper.prefs!.getString('token');
@@ -24,6 +25,11 @@ class sheetsController extends GetxController {
       update();
     });
     update();
+  }
+
+  @override
+  void onInit() {
+    getSheetData();
   }
 
   RxBool exportButtomState = true.obs;
@@ -48,6 +54,10 @@ class sheetsController extends GetxController {
       toast(msg: value['msg']);
       exportButtomState = true.obs;
       importButtomState = true.obs;
+      Get.toNamed(
+        AppRoutes.exportScreen,
+        arguments: sheetInfo,
+      );
       update();
     });
     update();

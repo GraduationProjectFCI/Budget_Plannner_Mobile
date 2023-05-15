@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 class DeadlinesScreen extends StatelessWidget {
   DeadlinesScreen({super.key});
   DeadlineController controller = Get.put(DeadlineController());
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,31 +62,7 @@ class DeadlinesScreen extends StatelessWidget {
                         separatorBuilder: (context, index) =>
                             SizedBox(height: 10),
                         itemCount: controller.model.data!.length);
-                    // Container(
-                    //   child: ConditionalBuilder(
-                    //     condition: controller.state == 3,
-                    //     fallback: (context) => Center(
-                    //       child: Text(
-                    //         'no data found',
-                    //         style: TextStyle(
-                    //             fontSize: 40,
-                    //             fontWeight: FontWeight.w500,
-                    //             color: Colors.grey),
-                    //       ),
-                    //     ),
-                    //     builder: (context) => ListView.separated(
-                    //         itemBuilder: (context, index) => CustomContainer(
-                    //             label:
-                    //                 '${controller.model.data[index].sheetType}',
-                    //             date:
-                    //                 '${controller.model.data[index].sheetType}',
-                    //             money:
-                    //                 '${controller.model.data[index].value}'),
-                    //         separatorBuilder: (context, index) =>
-                    //             SizedBox(height: 10),
-                    //         itemCount: controller.model.data.length),
-                    //   ),
-                    // );
+                    
                   },
                 );
               }),
