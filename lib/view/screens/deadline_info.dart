@@ -1,5 +1,4 @@
-import 'package:budget_planner_app/constants/appcolor.dart';
-import 'package:budget_planner_app/constants/approutes.dart';
+import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/endpoint.dart';
 import 'package:budget_planner_app/controller/deadline_controller.dart';
 import 'package:budget_planner_app/controller/deadline_info_controller.dart';
