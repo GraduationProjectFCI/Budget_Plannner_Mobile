@@ -74,6 +74,12 @@ class LabelController extends GetxController {
             // }
             String labels = await jsonEncode(value);
             await CacheHelper.prefs?.setString('labels', labels);
+            String? a = await CacheHelper.prefs?.getString('labels');
+            Map<String, dynamic> labels1 = await jsonDecode(a!);
+            LabelModel labelModel1 = await LabelModel.fromJson(labels1);
+            print(labelModel1.data![0].label);
+            // Constant.labelsList.add(labelModel1.data);
+            // print(' ########## ${Constant.labelsList[0]}');
             state = true.obs;
             WidgetsFlutterBinding.ensureInitialized();
             update();

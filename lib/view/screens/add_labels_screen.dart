@@ -110,7 +110,7 @@ class AddDeleteLabelsScreen extends StatelessWidget {
 
                                             //  await   controller.deleteLabel();
                                           },
-                                          icon: Icon(
+                                          icon: const Icon(
                                             Icons.delete,
                                             color: Colors.red,
                                           )),
