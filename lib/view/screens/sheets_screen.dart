@@ -48,10 +48,9 @@ class SheetsScreen extends StatelessWidget {
                                   controller
                                       .createSheat(sheetType: "import")
                                       .then((value) {
-                                    
                                     Get.toNamed(
                                       AppRoutes.exportScreen,
-                                      arguments: controller.sheetInfo,
+                                      arguments: c.sheetInfo,
                                     );
                                   });
                                 },

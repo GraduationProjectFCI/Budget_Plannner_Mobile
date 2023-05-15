@@ -8,7 +8,7 @@ import '../view/screens/confirm_screen.dart';
 import '../view/screens/deadlines_screen.dart';
 import '../view/screens/expense_screen.dart';
 import '../view/screens/home_screen.dart';
-import '../view/screens/import_screen.dart';
+// import '../view/screens/import_screen.dart';
 import '../view/screens/login_screen.dart';
 import '../view/screens/profile_screen.dart';
 import '../view/screens/register_screen.dart';
@@ -25,7 +25,7 @@ class AppRoutes {
   static const String sheetInfo = '/sheetInfo';
   static const String deadlineInfo = '/deadlineInfo';
   static const String bottomNavigationBar = '/bottom_navigationbarscreen';
-  static const String importScreen = '/importscreen';
+  // static const String importScreen = '/importscreen';
   static const String exportScreen = '/export_screen';
   static const String addDeadline = '/add_deadline';
 }
@@ -41,7 +41,6 @@ Map<String, Widget Function(BuildContext)> routes = {
   AppRoutes.sheetInfo: (context) => SheetInfo(),
   AppRoutes.deadlineInfo: (context) => DeadlineInfo(),
   AppRoutes.bottomNavigationBar: (context) => BottomNavigationBarScreen(),
-  AppRoutes.importScreen: (context) => ImportScreen(),
   AppRoutes.exportScreen: (context) => ExportScreen(),
   AppRoutes.addDeadline: (context) => AddDeadlineScreen(),
 };

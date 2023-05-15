@@ -28,7 +28,7 @@ class sheetsController extends GetxController {
 
   RxBool exportButtomState = true.obs;
   RxBool importButtomState = true.obs;
-  
+
   List<String> sheetInfo = [];
   Future<void> createSheat({
     required String sheetType,
@@ -38,13 +38,13 @@ class sheetsController extends GetxController {
     } else {
       importButtomState = false.obs;
     }
-    sheetInfo.add(sheetType) ;
+    sheetInfo.add(sheetType);
     Map<String, dynamic> data = {"sheet_type": sheetType};
 
     String? token = CacheHelper.prefs!.getString('token');
     Http.postData(endpoint: Endpoint.sheetData, token: token, map: data)
         .then((value) {
-      sheetInfo.add(value['data']['_id']) ;
+      sheetInfo.add(value['data']['_id']);
       toast(msg: value['msg']);
       exportButtomState = true.obs;
       importButtomState = true.obs;

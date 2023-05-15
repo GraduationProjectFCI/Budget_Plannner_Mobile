@@ -15,7 +15,7 @@ class ExportScreen extends StatelessWidget {
   TextEditingController labelController = TextEditingController();
   var formkey = GlobalKey<FormState>();
   String? label;
-  List<String> sheetInfo = Get.arguments;
+  // List<String> sheetInfo = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +31,7 @@ class ExportScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${sheetInfo[0]}',
+                        'import',
                         style: const TextStyle(
                           fontWeight: FontWeight.w100,
                           fontSize: 30,
@@ -49,7 +49,7 @@ class ExportScreen extends StatelessWidget {
                                 if (formkey.currentState!.validate()) {
                                   controller
                                       .sendData(
-                                    sheetId: sheetInfo[1],
+                                    sheetId: 'sheetInfo[1]',
                                     label: labelController.text,
                                     // description: ,
                                     values: int.parse(valueController.text),
@@ -166,7 +166,7 @@ class ExportScreen extends StatelessWidget {
                                   if (formkey.currentState!.validate()) {
                                     controller
                                         .sendData(
-                                      sheetId: sheetInfo[1],
+                                      sheetId: 'sheetInfo[1]',
                                       label: labelController.text,
                                       // description: ,
                                       values: int.parse(valueController.text),
