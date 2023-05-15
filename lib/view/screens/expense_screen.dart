@@ -1,5 +1,5 @@
-import 'package:budget_planner_app/constants/appcolor.dart';
-import 'package:budget_planner_app/constants/approutes.dart';
+import 'package:budget_planner_app/constants/app_color.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/controller/add_sheet_controller.dart';
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -30,9 +30,9 @@ class ExportScreen extends StatelessWidget {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'import',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.w100,
                           fontSize: 30,
                         ),
@@ -81,16 +81,16 @@ class ExportScreen extends StatelessWidget {
                               width: 140,
                               child: Column(
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Labels',
                                     style: TextStyle(fontSize: 20),
                                   ),
-                                  const SizedBox(
+                                  SizedBox(
                                     height: 10,
                                   ),
                                   // DropdownButton(
                                   //   value: " label",
-                                    
+
                                   //   style: const TextStyle(
                                   //     color: Colors.white,
                                   //     fontSize: 16,
@@ -124,9 +124,6 @@ class ExportScreen extends StatelessWidget {
                                   //   },
                                   //   hint: const Text('Select Label'),
                                   // ),
-
-
-                                
                                 ],
                               ),
                             ),
@@ -145,12 +142,12 @@ class ExportScreen extends StatelessWidget {
                                     keyboardType: TextInputType.number,
                                     controller: valueController,
                                     decoration: InputDecoration(
-                                        // suffix: const Text('EGP'),
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                        fillColor: AppColor.hintTextColor),
+                                      // suffix: const Text('EGP'),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      fillColor: AppColor.hintTextColor,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -191,35 +188,7 @@ class ExportScreen extends StatelessWidget {
                         const SizedBox(
                           height: 15,
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(15),
-                          color: AppColor.hintTextColor,
-                          height: 400,
-                          child: ListView.separated(
-                            separatorBuilder: (context, index) => Divider(),
-                            itemCount: 33,
-                            itemBuilder: (context, index) {
-                              return Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: const [
-                                  Text(
-                                    'Food',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    '555 EGP',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
-                        ),
+                        BuildCustomList(),
                         const SizedBox(
                           height: 80,
                         ),
@@ -260,6 +229,43 @@ class ExportScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class BuildCustomList extends StatelessWidget {
+  const BuildCustomList({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(15),
+      // color: AppColor.hintTextColor,
+      height: 400,
+      child: ListView.separated(
+        separatorBuilder: (context, index) => Divider(),
+        itemCount: 3,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  'Food',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '555 EGP',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

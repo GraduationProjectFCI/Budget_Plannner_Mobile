@@ -1,5 +1,5 @@
-import 'package:budget_planner_app/constants/appcolor.dart';
-import 'package:budget_planner_app/constants/approutes.dart';
+import 'package:budget_planner_app/constants/app_color.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/controller/home_controller.dart';
 import 'package:budget_planner_app/controller/login_controller.dart';
 import 'package:budget_planner_app/controller/register_controller.dart';

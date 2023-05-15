@@ -1,5 +1,5 @@
-import 'package:budget_planner_app/constants/appcolor.dart';
-import 'package:budget_planner_app/constants/approutes.dart';
+import 'package:budget_planner_app/constants/app_color.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/controller/deadline_controller.dart';
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class DeadlinesScreen extends StatelessWidget {
   DeadlinesScreen({super.key});
   DeadlineController controller = Get.put(DeadlineController());
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class DeadlinesScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Deadlines',
-                     style: TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w100,
                       fontSize: 30,
                     ),
@@ -51,10 +51,10 @@ class DeadlinesScreen extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   ),
                   builder: (context) {
-                    
                     return ListView.separated(
                         itemBuilder: (context, index) => CustomContainer(
-                          deadlineId: '${controller.model.data![index].sheetId}',
+                            deadlineId:
+                                '${controller.model.data![index].sheetId}',
                             label:
                                 '${controller.model.data![index].deadlineName}',
                             date: '${controller.model.data![index].updatedAt}',
@@ -62,7 +62,6 @@ class DeadlinesScreen extends StatelessWidget {
                         separatorBuilder: (context, index) =>
                             SizedBox(height: 10),
                         itemCount: controller.model.data!.length);
-                    
                   },
                 );
               }),

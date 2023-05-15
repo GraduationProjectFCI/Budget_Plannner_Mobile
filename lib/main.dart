@@ -1,5 +1,5 @@
-import 'package:budget_planner_app/constants/appcolor.dart';
-import 'package:budget_planner_app/constants/approutes.dart';
+import 'package:budget_planner_app/constants/app_color.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/controller/confirmation_controller.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
 import 'package:budget_planner_app/view/screens/bottom_navigation_bar_screen.dart';
@@ -32,10 +32,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'budget planner',
       theme: ThemeData(
-        primarySwatch: Colors.green,
-
+        primarySwatch: AppColor.primaryColor,
       ),
-      initialRoute: AppRoutes.login,
+      initialRoute: AppRoutes.exportScreen,
       // initialRoute:
       //     token != null ? AppRoutes.bottomNavigationBar : AppRoutes.login,
       routes: routes,

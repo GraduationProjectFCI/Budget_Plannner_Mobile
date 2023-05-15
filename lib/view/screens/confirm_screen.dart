@@ -3,7 +3,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constants/appcolor.dart';
+import '../../constants/app_color.dart';
 import '../../constants/constant.dart';
 
 import '../../functions/valid_input.dart';

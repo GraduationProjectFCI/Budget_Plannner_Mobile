@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/default_transitions.dart';
 
-import '../../constants/appcolor.dart';
+import '../../constants/app_color.dart';
 import '../../controller/bottom_navigationbar_controller.dart';
 import 'confirm_screen.dart';
 import 'deadlines_screen.dart';

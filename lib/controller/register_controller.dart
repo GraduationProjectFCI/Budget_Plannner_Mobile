@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
-import '../constants/approutes.dart';
+import '../constants/app_routes.dart';
 
 class RegisterController extends GetxController {
   late TextEditingController nameTextController;

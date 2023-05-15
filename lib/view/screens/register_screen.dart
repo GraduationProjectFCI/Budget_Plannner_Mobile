@@ -1,4 +1,4 @@
-import 'package:budget_planner_app/constants/appcolor.dart';
+import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/controller/register_controller.dart';
 import 'package:budget_planner_app/functions/valid_input.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';

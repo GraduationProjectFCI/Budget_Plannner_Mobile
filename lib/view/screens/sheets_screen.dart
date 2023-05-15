@@ -1,5 +1,5 @@
-import 'package:budget_planner_app/constants/appcolor.dart';
-import 'package:budget_planner_app/constants/approutes.dart';
+import 'package:budget_planner_app/constants/app_color.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/controller/sheets_controller.dart';
 import 'package:budget_planner_app/view/screens/sheet_info.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';

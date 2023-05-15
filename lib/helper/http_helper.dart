@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:budget_planner_app/constants/approutes.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/constants/endpoint.dart';
 import 'package:budget_planner_app/models/register_model.dart';
 import 'package:budget_planner_app/view/widgets/toast.dart';
@@ -146,16 +146,14 @@ class Http {
     var jsonResponse = await jsonDecode(response.body);
 
     return jsonResponse;
-    
   }
 
   static Future getData({String? token, required String url}) async {
     final headers = {'Authorization': 'Bearer $token'};
-    
+
     final uri = Uri.parse(url);
     final response = await http.get(uri, headers: headers);
     if (response.statusCode == 200) {
-      
       print('success!!!!');
       print('body = ${response.body}');
       return await jsonDecode(response.body);

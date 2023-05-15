@@ -1,4 +1,4 @@
-import 'package:budget_planner_app/constants/approutes.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/constants/endpoint.dart';
 import 'package:budget_planner_app/controller/sheets_controller.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
@@ -23,15 +23,16 @@ class SheetInfo extends StatelessWidget {
           textButton: "Delete",
           onPressed: () {
             String? token = CacheHelper.prefs!.getString('token');
-            Http.delete(url: '${Endpoint.sheetDelete}$sheetId', token: token!).then((value) {
-              toast(msg: "${value['msg']}",color: Color.fromARGB(255, 3, 216, 244));
-               controller.model.data
+            Http.delete(url: '${Endpoint.sheetDelete}$sheetId', token: token!)
+                .then((value) {
+              toast(
+                  msg: "${value['msg']}",
+                  color: Color.fromARGB(255, 3, 216, 244));
+              controller.model.data
                   ?.removeWhere((userData) => userData.sheetId == sheetId);
 
               Get.offAllNamed(AppRoutes.bottomNavigationBar);
-            
             });
-           
           },
         ),
       ),

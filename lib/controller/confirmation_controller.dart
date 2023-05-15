@@ -1,4 +1,4 @@
-import 'package:budget_planner_app/constants/approutes.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/controller/register_controller.dart';
 import 'package:budget_planner_app/helper/http_helper.dart';
 import 'package:budget_planner_app/view/widgets/toast.dart';

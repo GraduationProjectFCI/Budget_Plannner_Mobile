@@ -1,4 +1,4 @@
-import 'package:budget_planner_app/constants/approutes.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/constants/endpoint.dart';
 import 'package:budget_planner_app/controller/deadline_controller.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
@@ -23,17 +23,17 @@ class DeadlineInfo extends StatelessWidget {
           textButton: "Delete",
           onPressed: () {
             String? token = CacheHelper.prefs!.getString('token');
-            Http.delete(url: '${Endpoint.deadlineDelete}$deadlinId', token: token!)
+            Http.delete(
+                    url: '${Endpoint.deadlineDelete}$deadlinId', token: token!)
                 .then((value) {
               toast(
                   msg: "${value['msg']}",
                   color: Color.fromARGB(255, 3, 216, 244));
-                   controller.model.data
+              controller.model.data
                   ?.removeWhere((userData) => userData.sheetId == deadlinId);
 
               Get.offAllNamed(AppRoutes.bottomNavigationBar);
             });
-           
           },
         ),
       ),

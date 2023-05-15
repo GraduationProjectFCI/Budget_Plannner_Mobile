@@ -1,5 +1,5 @@
-import 'package:budget_planner_app/constants/appcolor.dart';
-import 'package:budget_planner_app/constants/approutes.dart';
+import 'package:budget_planner_app/constants/app_color.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/controller/add_deadlin_controller.dart';
 import 'package:budget_planner_app/controller/deadline_controller.dart';
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 class AddDeadlineScreen extends StatelessWidget {
   AddDeadlineScreen({super.key});
   AddDeadlineController controller = Get.put(AddDeadlineController());
- var formkey = GlobalKey<FormState>();
+  var formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -150,14 +150,12 @@ class AddDeadlineScreen extends StatelessWidget {
                           if (formkey.currentState!.validate()) {
                             controller
                                 .sendData(
-                              date: controller.dateTimeController.text,
-                              name: controller.deadlineController.text,
-                              value: int.parse(
+                                  date: controller.dateTimeController.text,
+                                  name: controller.deadlineController.text,
+                                  value: int.parse(
                                       controller.valueController.text),
-                            )
-                                .then((value) {
-                              
-                            });
+                                )
+                                .then((value) {});
                           }
                         },
                       ),

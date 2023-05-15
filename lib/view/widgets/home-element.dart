@@ -1,4 +1,4 @@
-import 'package:budget_planner_app/constants/appcolor.dart';
+import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 

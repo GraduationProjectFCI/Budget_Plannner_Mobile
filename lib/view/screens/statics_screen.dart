@@ -1,4 +1,4 @@
-import 'package:budget_planner_app/constants/appcolor.dart';
+import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/controller/statistics_controller.dart';
 import 'package:budget_planner_app/view/screens/deadlines_screen.dart';
 import 'package:budget_planner_app/view/widgets/statistics_element.dart';
@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class StaticsScreen extends StatelessWidget {
-   StaticsScreen({super.key});
-    StatisticsController controller = Get.put(StatisticsController());
+  StaticsScreen({super.key});
+  StatisticsController controller = Get.put(StatisticsController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +44,7 @@ class StaticsScreen extends StatelessWidget {
                       ),
                       Text(
                         '${controller.spanBudget}',
-                        style:const TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w200,
                           fontSize: 85,
                         ),
