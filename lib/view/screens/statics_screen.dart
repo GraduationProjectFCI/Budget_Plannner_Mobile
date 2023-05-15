@@ -2,12 +2,13 @@ import 'package:budget_planner_app/constants/appcolor.dart';
 import 'package:budget_planner_app/controller/statistics_controller.dart';
 import 'package:budget_planner_app/view/screens/deadlines_screen.dart';
 import 'package:budget_planner_app/view/widgets/statistics_element.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class StaticsScreen extends StatelessWidget {
-   StaticsScreen({super.key});
-    StatisticsController controller = Get.put(StatisticsController());
+  StaticsScreen({super.key});
+  StatisticsController controller = Get.put(StatisticsController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,13 +43,15 @@ class StaticsScreen extends StatelessWidget {
                           fontSize: 26,
                         ),
                       ),
-                      Text(
-                        '${controller.spanBudget}',
-                        style:const TextStyle(
-                          fontWeight: FontWeight.w200,
-                          fontSize: 85,
-                        ),
-                      ),
+                      GetBuilder<StatisticsController>(builder: (c) {
+                        return Text(
+                          '${controller.spanBudget}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w200,
+                            fontSize: 85,
+                          ),
+                        );
+                      })
                     ],
                   ),
                 ),
@@ -59,16 +62,50 @@ class StaticsScreen extends StatelessWidget {
                   color: Colors.black12,
                 ),
               ),
+
+//xxxxxxxxxxxxxxxxxx
+
               Expanded(
-                flex: 10,
-                child: ListView.builder(
-                  itemCount: 20,
-                  itemBuilder: (context, index) {
-                    return StatisticsContainer(
-                        label: 'Phone Bill', percentage: '45', money: '400');
-                  },
+                child: SizedBox(
+                  height: double.infinity,
+                  child: GetBuilder<StatisticsController>(builder: (c) {
+                    return ConditionalBuilder(
+                      condition: controller.state == 3,
+                      fallback: (context) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      builder: (context) {
+                        print("eeeeeeeeeeeeeeeeeeeee");
+                        return ListView.separated(
+                            itemBuilder: (context, index) =>
+                                StatisticsContainer(
+                                  label: controller.model.data?[index].label,
+                                  // label: "hello ",
+                                  percentage:
+                                      '${controller.model.data?[index].totalBudgetPercen}',
+                                  money:
+                                      '${controller.model.data?[index].totalExpenses}',
+                                ),
+                            separatorBuilder: (context, index) =>
+                                SizedBox(height: 10),
+                            itemCount: controller.model.data!.length);
+                      },
+                    );
+                  }),
                 ),
               ),
+
+              //XXXXXXXXXXXXXXX
+              // Expanded(
+              //   flex: 10,
+              //   child: ListView.builder(
+              //     itemCount: 20,
+              //     itemBuilder: (context, index) {
+              //       return StatisticsContainer(
+              //           label: 'Phone Bill', percentage: '45', money: '400');
+              //     },
+              //   ),
+              // ),
             ],
           ),
         ),

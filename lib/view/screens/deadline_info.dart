@@ -117,7 +117,7 @@ class DeadlineInfo extends StatelessWidget {
                   height: 30,
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
+                  margin: const EdgeInsets.only(top: 6),
                   child: GetBuilder<UpdateDeadlineController>(
                     builder: (c) => ConditionalBuilder(
                       condition: controller.state,
@@ -126,7 +126,8 @@ class DeadlineInfo extends StatelessWidget {
                         onPressed: () {
                           if (formkey.currentState!.validate()) {
                             controller
-                                .sendData(
+                                .updateData(
+                                  deadlineId: deadlinId ,
                                   date: controller.dateTimeController.text,
                                   name: controller.deadlineController.text,
                                   value: int.parse(
@@ -145,6 +146,7 @@ class DeadlineInfo extends StatelessWidget {
                   height: 30,
                 ),
                 CustomButton(
+
                   textButton: "Delete",
                   onPressed: () {
                     controller.deleteDeadline(deadlinId: deadlinId );

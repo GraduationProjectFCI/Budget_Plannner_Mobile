@@ -42,10 +42,11 @@ class UpdateDeadlineController extends GetxController {
 
 
 
-  Future<void> sendData({
+  Future<void> updateData({
     required String name,
     required String date,
     required int value,
+    required String deadlineId,
   }) async {
     state = false;
     Map<String, dynamic> data = {
@@ -55,7 +56,7 @@ class UpdateDeadlineController extends GetxController {
     };
 
     String? token = CacheHelper.prefs!.getString('token');
-    Http.postData(endpoint: Endpoint.deadlinePost, token: token, map: data)
+    Http.updateData(endpoint: "${Endpoint.deadlinePost}/$deadlineId", token: token, map: data)
         .then((value) {
       toast(msg: value['msg']);
       state = true;
