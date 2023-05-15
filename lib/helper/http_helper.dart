@@ -315,6 +315,34 @@ class Http {
 
 
 
+  static Future updateData({
+    required Map<String, dynamic> map,
+    required String endpoint,
+    String? token,
+  }) async {
+    print(map);
+    String body = json.encode(map);
+    print(body);
+    var url = Uri.parse(endpoint);
+    var response = await http.patch(
+      url,
+      body: body,
+      headers: {
+        'Authorization': 'Bearer $token',
+        "Content-Type": "application/json",
+        "accept": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+    );
+    print("Http file ${response.body}");
+    print(response.statusCode);
+
+    var jsonResponse = await jsonDecode(response.body);
+
+    return jsonResponse;
+  }
+
+
   static Future getData({String? token, required String url}) async {
     final headers = {'Authorization': 'Bearer $token'};
     
