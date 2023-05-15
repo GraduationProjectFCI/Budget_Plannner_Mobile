@@ -10,12 +10,8 @@ import 'package:get/get.dart';
 
 class AddDeadlineScreen extends StatelessWidget {
   AddDeadlineScreen({super.key});
-  TextEditingController dateTimeController = TextEditingController();
-  TextEditingController deadlineController = TextEditingController();
-  TextEditingController valueController = TextEditingController();
-  var formkey = GlobalKey<FormState>();
   AddDeadlineController controller = Get.put(AddDeadlineController());
-  DeadlineController conttrollrerDeadline = Get.put(DeadlineController());
+ var formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +35,7 @@ class AddDeadlineScreen extends StatelessWidget {
                 SizedBox(
                   height: 30,
                 ),
-                picker(dateTimeController: dateTimeController),
+                picker(dateTimeController: controller.dateTimeController),
                 const SizedBox(
                   height: 30,
                 ),
@@ -59,7 +55,7 @@ class AddDeadlineScreen extends StatelessWidget {
                             height: 10,
                           ),
                           TextFormField(
-                            controller: deadlineController,
+                            controller: controller.deadlineController,
                             validator: (Value) {
                               if (Value!.isEmpty) {
                                 return "please enter deadline name";
@@ -88,7 +84,7 @@ class AddDeadlineScreen extends StatelessWidget {
                             height: 10,
                           ),
                           TextFormField(
-                            controller: valueController,
+                            controller: controller.valueController,
                             validator: (Value) {
                               if (Value!.isEmpty) {
                                 return "please enter deadline name";
@@ -154,15 +150,13 @@ class AddDeadlineScreen extends StatelessWidget {
                           if (formkey.currentState!.validate()) {
                             controller
                                 .sendData(
-                              date: dateTimeController.text,
-                              name: deadlineController.text,
-                              value: int.parse(valueController.text),
+                              date: controller.dateTimeController.text,
+                              name: controller.deadlineController.text,
+                              value: int.parse(
+                                      controller.valueController.text),
                             )
                                 .then((value) {
-                              valueController.clear();
-                              deadlineController.clear();
-                              dateTimeController.clear();
-                              conttrollrerDeadline.getDeadlineData();
+                              
                             });
                           }
                         },

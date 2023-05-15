@@ -58,6 +58,7 @@ class sheetsController extends GetxController {
         AppRoutes.exportScreen,
         arguments: sheetInfo,
       );
+      getSheetData();
       update();
     });
     update();
