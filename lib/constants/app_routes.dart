@@ -1,5 +1,6 @@
 import 'package:budget_planner_app/view/screens/add_deadline.dart';
 import 'package:budget_planner_app/view/screens/deadline_info.dart';
+import 'package:budget_planner_app/view/screens/add_labels_screen.dart';
 import 'package:budget_planner_app/view/screens/sheet_info.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +29,7 @@ class AppRoutes {
   // static const String importScreen = '/importscreen';
   static const String exportScreen = '/export_screen';
   static const String addDeadline = '/add_deadline';
+  static const String AddLabelsScreen = '/labels_screen';
 }
 
 Map<String, Widget Function(BuildContext)> routes = {
@@ -43,4 +45,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   AppRoutes.bottomNavigationBar: (context) => BottomNavigationBarScreen(),
   AppRoutes.exportScreen: (context) => ExportScreen(),
   AppRoutes.addDeadline: (context) => AddDeadlineScreen(),
+  AppRoutes.AddLabelsScreen: (context) => AddLabelsScreen(),
 };
