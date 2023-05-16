@@ -66,8 +66,19 @@ class ProfileScreen extends StatelessWidget {
                       label: 'Currency',
                       text: '${controller.profileModel?.userData.currency}'),
                   // CustomContainer(label: 'Address', text: '${controller.profileModel?.userData.}'),
+                    const SizedBox(
+                    height: 10,
+                  ),
+                  CustomButton(
+                    colorButton: AppColor.buttonColor,
+                    textButton: 'Update Profile',
+                    onPressed: () async {
+                      Get.toNamed(AppRoutes.updateProfile);
+                    },
+                  ),
+                  
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   CustomButton(
                     colorButton: Colors.red,

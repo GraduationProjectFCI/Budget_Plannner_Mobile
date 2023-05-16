@@ -22,6 +22,8 @@ class AddSheetController extends GetxController {
         .then((value) {
       toast(msg: value['msg']);
       state = true.obs;
+      Get.back();
+
       update();
     });
     update();

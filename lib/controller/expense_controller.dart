@@ -53,28 +53,34 @@ class ExpenseController extends GetxController {
   Future<void> createSheat({
     required String sheetType,
   }) async {
-    state = false;
-    Map<String, dynamic> data = {"sheet_type": sheetType};
-    update();
-    String? token = CacheHelper.prefs!.getString('token');
-    Http.postData(endpoint: Endpoint.sheetData, token: token, map: data)
-        .then((value) async {
-      sheetId = value['data']['_id'];
-      await test(expense: expenses, toke: token!, id: sheetId);
+    if (expenses.isEmpty) {
+      toast(msg: "should add labels");
+    } else {
+      state = false;
+      Map<String, dynamic> data = {"sheet_type": sheetType};
+      update();
+      String? token = CacheHelper.prefs!.getString('token');
+      Http.postData(endpoint: Endpoint.sheetData, token: token, map: data)
+          .then((value) async {
+        sheetId = value['data']['_id'];
+        await test(expense: expenses, toke: token!, id: sheetId);
 
-      await refesh.getSheetData();
-      state = true;
+        await refesh.getSheetData();
+        state = true;
+        update();
+        Get.back();
+
+        // Get.offAllNamed(
+        //   AppRoutes.bottomNavigationBar,
+        // );
+        toast(msg: value['msg'], color: Colors.green);
+        valueController.clear();
+        descrController.clear();
+        labelController.clear();
+        update();
+      });
       update();
-      Get.offAllNamed(
-        AppRoutes.bottomNavigationBar,
-      );
-      toast(msg: value['msg'], color: Colors.green);
-      valueController.clear();
-      descrController.clear();
-      labelController.clear();
-      update();
-    });
-    update();
+    }
   }
 
   Future<void> test(

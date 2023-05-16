@@ -60,14 +60,20 @@ class SheetInfo extends StatelessWidget {
                 }),
               ),
             ),
-            CustomButton(
-              textButton: "Delete All",
-              onPressed: () {
-                controller.deleteSheet(sheetId: sheetId);
-                
-                
-              },
+             GetBuilder<sheetInfoController>(
+              builder: (c) => ConditionalBuilder(
+                condition: controller.deletestate,
+                builder: (context) => CustomButton(
+                  textButton: "Delete All",
+                  onPressed: () {
+                    controller.deleteSheet(sheetId: sheetId);
+                  },
+                ),
+                fallback: (context) =>
+                    const Center(child: CircularProgressIndicator()),
+              ),
             ),
+            
           ]),
         ),
       ),
