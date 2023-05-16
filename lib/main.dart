@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: AppColor.primaryColor,
       ),
-      initialRoute: AppRoutes.register,
+      initialRoute: AppRoutes.AddDeleteLabelsScreen,
       // initialRoute:
       //     token != null ? AppRoutes.bottomNavigationBar : AppRoutes.login,
       routes: routes,

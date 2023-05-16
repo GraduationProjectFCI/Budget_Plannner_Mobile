@@ -98,21 +98,23 @@ class AddDeleteLabelsScreen extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        '   ${Constant.labelsList[index]}',
-                                        style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w200,
+                                      Expanded(
+                                        child: Text(
+                                          '   ${Constant.labelsList[index].label}',
+                                          style: const TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w200,
+                                          ),
                                         ),
                                       ),
                                       IconButton(
                                           // delete
                                           onPressed: () async {
-                                            //
-                                            toast(
-                                                msg:
-                                                    'It is being worked on 🐼 ');
-                                            //  await   controller.deleteLabel();
+                                            String labelId = Constant
+                                                .labelsList[index].LabelId
+                                                .toString();
+                                            await controller.deleteLabel(
+                                                labelUrl: labelId);
                                           },
                                           icon: const Icon(
                                             Icons.delete,
