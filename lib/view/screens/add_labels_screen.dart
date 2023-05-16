@@ -65,17 +65,19 @@ class AddDeleteLabelsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                ConditionalBuilder(
-                  condition: controller.state.isTrue,
-                  fallback: (context) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  builder: (context) => CustomButton(
-                    textButton: 'Add',
-                    onPressed: () async {
-                      await controller.addLabel();
-                      // await controller.getLabels();
-                    },
+                GetBuilder<LabelController>(
+                  builder: (controller) => ConditionalBuilder(
+                    condition: controller.state.isTrue,
+                    fallback: (context) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    builder: (context) => CustomButton(
+                      textButton: 'Add',
+                      onPressed: () async {
+                        await controller.addLabel();
+                        // await controller.getLabels();
+                      },
+                    ),
                   ),
                 ),
                 GetBuilder<LabelController>(
@@ -107,7 +109,9 @@ class AddDeleteLabelsScreen extends StatelessWidget {
                                           // delete
                                           onPressed: () async {
                                             //
-
+                                            toast(
+                                                msg:
+                                                    'It is being worked on 🐼 ');
                                             //  await   controller.deleteLabel();
                                           },
                                           icon: const Icon(

@@ -44,6 +44,8 @@ class SheetsScreen extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.only(left: 8, right: 8),
                           child: CustomButton(
+                            paddingLeft: 5,
+                            paddingRight: 5,
                             textButton: 'Add import',
                             onPressed: () {
                               Get.toNamed(
@@ -57,6 +59,8 @@ class SheetsScreen extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.only(left: 8, right: 8),
                           child: CustomButton(
+                            paddingLeft: 5,
+                            paddingRight: 5,
                             textButton: 'Add Export',
                             onPressed: () {
                               Get.toNamed(
@@ -92,7 +96,7 @@ class SheetsScreen extends StatelessWidget {
                                     '${controller.model.data![index].value}'),
                             separatorBuilder: (context, index) =>
                                 SizedBox(height: 10),
-                            itemCount: c.model.data!.length);
+                            itemCount: controller.model.data!.length);
                       },
                     );
                   }),

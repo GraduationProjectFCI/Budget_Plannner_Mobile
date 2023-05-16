@@ -59,6 +59,7 @@ class RegisterController extends GetxController {
           CacheHelper.prefs?.setString('user_id', '${registerModel.userId}');
           Get.offNamed(AppRoutes.confirmation);
         } else {
+          state = true.obs;
           print('status=error');
           toast(msg: value['msg'].toString());
         }
