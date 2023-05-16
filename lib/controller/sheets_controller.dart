@@ -8,20 +8,14 @@ import 'package:get/get.dart';
 
 class sheetsController extends GetxController {
   late SheetModel model;
-  int state = 1;
+  bool state = true;
 
-  void getSheetData() {
-    state = 1;
-    var url;
+  Future<void> getSheetData() async {
+    state = false;
     String? token = CacheHelper.prefs!.getString('token');
     Http.getData(token: token, url: Endpoint.sheetData).then((value) {
       model = SheetModel.fromJson(value);
-      if (model.data == null) {
-        state = 2;
-      } else {
-        state = 3;
-      }
-
+      state = true;
       update();
     });
     update();
@@ -30,37 +24,5 @@ class sheetsController extends GetxController {
   @override
   void onInit() {
     getSheetData();
-  }
-
-  RxBool exportButtomState = true.obs;
-  RxBool importButtomState = true.obs;
-
-  List<String> sheetInfo = [];
-  Future<void> createSheat({
-    required String sheetType,
-  }) async {
-    if (sheetType == 'export') {
-      exportButtomState = false.obs;
-    } else {
-      importButtomState = false.obs;
-    }
-    sheetInfo.add(sheetType);
-    Map<String, dynamic> data = {"sheet_type": sheetType};
-
-    String? token = CacheHelper.prefs!.getString('token');
-    Http.postData(endpoint: Endpoint.sheetData, token: token, map: data)
-        .then((value) {
-      sheetInfo.add(value['data']['_id']);
-      toast(msg: value['msg']);
-      exportButtomState = true.obs;
-      importButtomState = true.obs;
-      Get.toNamed(
-        AppRoutes.exportScreen,
-        arguments: sheetInfo,
-      );
-      getSheetData();
-      update();
-    });
-    update();
   }
 }

@@ -9,7 +9,7 @@ class DeadlineController extends GetxController {
   int state = 1;
   void getDeadlineData(){
      state = 1;
-    var url;
+    
     String? token = CacheHelper.prefs!.getString('token');
     Http.getData(token: token, url: Endpoint.deadlineData).then((value) {
       model = DeadlineModel.fromJson(value);

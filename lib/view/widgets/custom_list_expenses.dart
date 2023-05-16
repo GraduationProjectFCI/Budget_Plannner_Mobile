@@ -1,13 +1,15 @@
 import 'package:budget_planner_app/constants/app_color.dart';
+import 'package:budget_planner_app/controller/expense_controller.dart';
 import 'package:flutter/material.dart';
 
 class BuildCustomListExpenses extends StatelessWidget {
   // model
 
   BuildCustomListExpenses({
+    required this.expenses,
     super.key,
   });
-
+  List<Map<String, dynamic>>? expenses;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +19,7 @@ class BuildCustomListExpenses extends StatelessWidget {
           height: 5,
           thickness: 1,
         ),
-        itemCount: 5,
+        itemCount: expenses!.length ,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
@@ -25,14 +27,14 @@ class BuildCustomListExpenses extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  'label',
+                  '${expenses?[index]["label"]}',
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'value \$',
+                  '${expenses?[index]["value"]} \$',
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
