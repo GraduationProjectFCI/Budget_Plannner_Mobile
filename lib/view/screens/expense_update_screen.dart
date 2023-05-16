@@ -39,11 +39,11 @@ class ExportUdateScreen extends StatelessWidget {
                         width: 160,
                         child: Column(
                           children: [
-                            Text(
+                            const Text(
                               'Labels',
                               style: TextStyle(fontSize: 20),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             DropdownButton(
@@ -60,8 +60,9 @@ class ExportUdateScreen extends StatelessWidget {
                                 ...List.generate(
                                   Constant.labelsList.length,
                                   (index) => DropdownMenuItem(
-                                    child: Text(Constant.labelsList[index]),
-                                    value: Constant.labelsList[index],
+                                    child: Text(Constant.labelsList[index].label
+                                        .toString()),
+                                    value: Constant.labelsList[index].label,
                                   ),
                                 ),
                               ],
@@ -75,7 +76,7 @@ class ExportUdateScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 80,
                         child: Column(
@@ -116,10 +117,11 @@ class ExportUdateScreen extends StatelessWidget {
                     keyboardType: TextInputType.text,
                     controller: controller.descrpionController,
                     validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "enter descrpition";
-                                }
-                                return null;},
+                      if (value!.isEmpty) {
+                        return "enter descrpition";
+                      }
+                      return null;
+                    },
                     decoration: InputDecoration(
                       // suffix: const Text('EGP'),
                       border: OutlineInputBorder(
@@ -138,12 +140,12 @@ class ExportUdateScreen extends StatelessWidget {
                       textButton: 'Update',
                       onPressed: () {
                         if (controller.formkey.currentState!.validate())
-                        controller.updatExpense(
-                          expenseId: expenseId,
-                          label: controller.labelController.text,
-                          value: int.parse(controller.valueController.text),
-                          description: controller.descrpionController.text,
-                        );
+                          controller.updatExpense(
+                            expenseId: expenseId,
+                            label: controller.labelController.text,
+                            value: int.parse(controller.valueController.text),
+                            description: controller.descrpionController.text,
+                          );
                       },
                     ),
                   ),

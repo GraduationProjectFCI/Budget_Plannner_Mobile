@@ -1,5 +1,6 @@
 import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/controller/home_controller.dart';
+import 'package:budget_planner_app/controller/label_controller.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key});
 
   HomeController controllerHome = Get.put(HomeController());
+  LabelController controllerlabel = Get.put(LabelController());
 
   @override
   Widget build(BuildContext context) {
