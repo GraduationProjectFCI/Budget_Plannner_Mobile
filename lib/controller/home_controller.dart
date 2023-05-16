@@ -1,20 +1,32 @@
+import 'package:budget_planner_app/helper/cashe_helper.dart';
+import 'package:budget_planner_app/models/home_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../helper/http_helper.dart';
 
 class HomeController extends GetxController {
-  // late TextEditingController codeTextController;
-
-  // GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  test() async {
+  RxBool state = true.obs;
+  HomeModel? homeModel;
+  getHomeData() async {
     print('helllllo Home');
-    var res = await Http.getHomeData(
-        id: '64543ef6ae79fe64a4a01094',
-        token:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU0M2VmNmFlNzlmZTY0YTRhMDEwOTQiLCJuYW1lIjoiQWJkYWxsYWgiLCJpYXQiOjE2ODM0MDU4OTMsImV4cCI6MTY4MzQ5MjI5M30.KQZCbO7x0rPILe5khiav2LnLGi8-SdBiBHCimZnmyK8');
+    state = false.obs;
+    Http.getHomeData(token: CacheHelper.prefs!.getString('token').toString())
+        .then((value) {
+      print('sucess');
+      print('Home controllrer = $value');
+      homeModel = HomeModel.fromJson(value);
+      state = true.obs;
+      WidgetsFlutterBinding.ensureInitialized();
+      update();
+    });
 
-    print('Home controllrer = $res');
-    // update();
+    update();
+  }
+
+  @override
+  void onInit() {
+    getHomeData();
+    super.onInit();
   }
 }

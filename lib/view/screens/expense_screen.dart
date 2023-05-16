@@ -14,8 +14,6 @@ import '../widgets/custom_list_expenses.dart';
 class ExportScreen extends StatelessWidget {
   ExportScreen({super.key});
   ExpenseController controller = Get.put(ExpenseController());
- 
-
 
   String? label;
   String sheetType = Get.arguments;
@@ -34,9 +32,9 @@ class ExportScreen extends StatelessWidget {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                       Text(
+                      Text(
                         sheetType,
-                        style:const TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w100,
                           fontSize: 30,
                         ),
@@ -54,11 +52,11 @@ class ExportScreen extends StatelessWidget {
                               paddingButtom: 5,
                               textButton: 'Save',
                               onPressed: () {
-                                controller.createSheat(
-                                  sheetType: sheetType,
-                                ).then((value) {
-                                   
-                                });
+                                controller
+                                    .createSheat(
+                                      sheetType: sheetType,
+                                    )
+                                    .then((value) {});
                               },
                             ),
                             fallback: (context) => const Center(
@@ -102,8 +100,9 @@ class ExportScreen extends StatelessWidget {
                                   ...List.generate(
                                     Constant.labelsList.length,
                                     (index) => DropdownMenuItem(
-                                      child: Text(Constant.labelsList[index]),
-                                      value: Constant.labelsList[index],
+                                      child: Text(
+                                          Constant.labelsList[index].label!),
+                                      value: Constant.labelsList[index].label,
                                     ),
                                   ),
                                 ],

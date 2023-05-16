@@ -4,7 +4,7 @@ import 'package:budget_planner_app/helper/http_helper.dart';
 import 'package:budget_planner_app/models/label_model.dart';
 
 class Constant {
-  static List labelsList = ['n','mo','f'];
+  static List<LabelData> labelsList = [];
 
   Map<String, String> labelMap = {};
 }
