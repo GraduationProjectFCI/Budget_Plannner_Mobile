@@ -1,6 +1,8 @@
 import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/app_routes.dart';
+import 'package:budget_planner_app/controller/profile_controller.dart';
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,13 +14,19 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProfileController controller = Get.put(ProfileController());
     return Scaffold(
-        backgroundColor: AppColor.backgroundColor,
-        body: SafeArea(
+      backgroundColor: AppColor.backgroundColor,
+      body: SafeArea(
           child: Container(
-            margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
-            child: SingleChildScrollView(
-              child: Column(
+        margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
+        child: SingleChildScrollView(
+          child: GetBuilder<ProfileController>(
+            builder: (controller) => ConditionalBuilder(
+              condition: controller.state.isTrue,
+              fallback: (context) => const Center(
+                  heightFactor: 20, child: CircularProgressIndicator()),
+              builder: (context) => Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Row(
@@ -42,12 +50,22 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 32,
                   ),
-                  CustomContainer(label: 'Name', text: 'Mo’men Khaled'),
-                  CustomContainer(label: 'E-mail', text: 'momenk208@gmail.com'),
-                  CustomContainer(label: 'Gender', text: 'Male'),
-                  CustomContainer(label: 'Budget', text: '7000'),
-                  CustomContainer(label: 'Currency', text: 'Egyption Pound'),
-                  CustomContainer(label: 'Address', text: 'Egypt- Minya'),
+                  CustomContainer(
+                      label: 'Name',
+                      text: '${controller.profileModel?.userData.name}'),
+                  CustomContainer(
+                      label: 'E-mail',
+                      text: '${controller.profileModel?.userData.email}'),
+                  CustomContainer(
+                      label: 'Gender',
+                      text: '${controller.profileModel?.userData.gender}'),
+                  CustomContainer(
+                      label: 'Budget',
+                      text: '${controller.profileModel?.userData.budget}'),
+                  CustomContainer(
+                      label: 'Currency',
+                      text: '${controller.profileModel?.userData.currency}'),
+                  // CustomContainer(label: 'Address', text: '${controller.profileModel?.userData.}'),
                   const SizedBox(
                     height: 5,
                   ),
@@ -63,7 +81,9 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
           ),
-        ));
+        ),
+      )),
+    );
   }
 }
 
