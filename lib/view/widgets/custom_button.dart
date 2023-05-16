@@ -11,6 +11,7 @@ class CustomButton extends StatelessWidget {
     this.paddingTop,
     this.paddingLeft,
     this.paddingRight,
+    this.colorButton,
   });
   double? paddingTop;
   double? paddingButtom;
@@ -18,6 +19,7 @@ class CustomButton extends StatelessWidget {
   double? paddingRight;
   VoidCallback? onPressed;
   String textButton;
+  Color? colorButton;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -36,7 +38,7 @@ class CustomButton extends StatelessWidget {
           height: 32,
           decoration: BoxDecoration(
             // border: Border.all(color: AppColor.borderColor),
-            color: AppColor.buttonColor,
+            color: colorButton == null ? AppColor.buttonColor : colorButton,
             borderRadius: BorderRadius.circular(5),
           ),
           child: Center(

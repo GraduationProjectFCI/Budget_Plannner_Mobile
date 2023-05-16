@@ -40,13 +40,6 @@ class HomeScreen extends StatelessWidget {
                                 fontSize: 30,
                               ),
                             ),
-                            CustomButton(
-                              textButton: 'Log out',
-                              onPressed: () async {
-                                await CacheHelper.prefs?.clear;
-                                Get.offAllNamed(AppRoutes.login);
-                              },
-                            ),
                           ],
                         ),
                       ),

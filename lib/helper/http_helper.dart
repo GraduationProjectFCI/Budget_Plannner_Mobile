@@ -130,7 +130,7 @@ class Http {
     String body = json.encode(map);
     print(body);
     var url = Uri.parse(endpoint);
-    var response = await http.patch(
+    var response = await http.post(
       url,
       body: body,
       headers: {

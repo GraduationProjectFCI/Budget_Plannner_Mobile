@@ -31,6 +31,7 @@ class ConfirmationController extends GetxController {
         print(value['token']);
         if (value['token'] != null) {
           toast(msg: '${value['msg']}', color: Colors.green);
+          CacheHelper.prefs?.setString('token', '${value['token']}');
           goToLabelScreen();
         } else {
           state = true.obs;

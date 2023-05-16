@@ -1,7 +1,11 @@
 import 'package:budget_planner_app/constants/app_color.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
+import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../constants/constant.dart';
+import '../../helper/cashe_helper.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -44,6 +48,17 @@ class ProfileScreen extends StatelessWidget {
                   CustomContainer(label: 'Budget', text: '7000'),
                   CustomContainer(label: 'Currency', text: 'Egyption Pound'),
                   CustomContainer(label: 'Address', text: 'Egypt- Minya'),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  CustomButton(
+                    colorButton: Colors.red,
+                    textButton: 'Log out',
+                    onPressed: () async {
+                      await CacheHelper.prefs?.clear;
+                      Get.offAllNamed(AppRoutes.login);
+                    },
+                  ),
                 ],
               ),
             ),

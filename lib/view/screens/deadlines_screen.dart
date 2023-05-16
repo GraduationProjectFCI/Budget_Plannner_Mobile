@@ -33,8 +33,9 @@ class DeadlinesScreen extends StatelessWidget {
                   ),
                   const Spacer(),
                   SizedBox(
-                      width: 120,
                       child: CustomButton(
+                          paddingLeft: 5,
+                          paddingRight: 5,
                           textButton: 'Add deadline',
                           onPressed: () {
                             Get.toNamed(AppRoutes.addDeadline);

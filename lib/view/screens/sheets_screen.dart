@@ -43,6 +43,8 @@ class SheetsScreen extends StatelessWidget {
                             builder: (c) => ConditionalBuilder(
                               condition: controller.importButtomState.isTrue,
                               builder: (context) => CustomButton(
+                                paddingLeft: 5,
+                                paddingRight: 5,
                                 textButton: 'Add import',
                                 onPressed: () {
                                   controller
@@ -60,13 +62,14 @@ class SheetsScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 10),
                         Container(
                           margin: const EdgeInsets.only(left: 8, right: 8),
                           child: GetBuilder<sheetsController>(
                             builder: (c) => ConditionalBuilder(
                               condition: controller.exportButtomState.isTrue,
                               builder: (context) => CustomButton(
+                                paddingLeft: 5,
+                                paddingRight: 5,
                                 textButton: 'Add Export',
                                 onPressed: () {
                                   controller
@@ -111,7 +114,6 @@ class SheetsScreen extends StatelessWidget {
                             separatorBuilder: (context, index) =>
                                 SizedBox(height: 10),
                             itemCount: controller.model.data!.length);
-                      
                       },
                     );
                   }),
