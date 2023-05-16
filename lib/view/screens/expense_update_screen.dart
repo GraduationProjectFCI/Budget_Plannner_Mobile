@@ -39,11 +39,11 @@ class ExportUdateScreen extends StatelessWidget {
                         width: 160,
                         child: Column(
                           children: [
-                            Text(
+                            const Text(
                               'Labels',
                               style: TextStyle(fontSize: 20),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             DropdownButton(
@@ -76,7 +76,7 @@ class ExportUdateScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 80,
                         child: Column(
@@ -135,7 +135,7 @@ class ExportUdateScreen extends StatelessWidget {
                     height: 30,
                   ),
 
-                   GetBuilder<UpdateExpenseController>(
+                  GetBuilder<UpdateExpenseController>(
                     builder: (c) => ConditionalBuilder(
                       condition: controller.updatestate,
                       builder: (context) => Container(
@@ -160,7 +160,7 @@ class ExportUdateScreen extends StatelessWidget {
                           const Center(child: CircularProgressIndicator()),
                     ),
                   ),
-                  
+
                   const SizedBox(
                     height: 30,
                   ),
@@ -168,17 +168,16 @@ class ExportUdateScreen extends StatelessWidget {
                   GetBuilder<UpdateExpenseController>(
                     builder: (c) => ConditionalBuilder(
                       condition: controller.deleteestate,
-                      builder: (context) =>  CustomButton(
-                    textButton: "Delete",
-                    onPressed: () {
-                      controller.deleteExpense(expenseId: expenseId);
-                    },
-                  ),
+                      builder: (context) => CustomButton(
+                        textButton: "Delete",
+                        onPressed: () {
+                          controller.deleteExpense(expenseId: expenseId);
+                        },
+                      ),
                       fallback: (context) =>
                           const Center(child: CircularProgressIndicator()),
                     ),
                   ),
-                 
                 ]),
                 // )
               ],
