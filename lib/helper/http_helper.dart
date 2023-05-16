@@ -130,7 +130,7 @@ class Http {
     String body = json.encode(map);
     print(body);
     var url = Uri.parse(endpoint);
-    var response = await http.patch(
+    var response = await http.post(
       url,
       body: body,
       headers: {
@@ -140,7 +140,7 @@ class Http {
         "Access-Control-Allow-Origin": "*"
       },
     );
-    print("Http file ${response.body}");
+    print("Http file!!!! ${response.body}");
     print(response.statusCode);
 
     var jsonResponse = await jsonDecode(response.body);

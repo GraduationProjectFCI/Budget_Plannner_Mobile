@@ -88,7 +88,8 @@ class StaticsScreen extends StatelessWidget {
                                 ),
                             separatorBuilder: (context, index) =>
                                 SizedBox(height: 10),
-                            itemCount: controller.model.data!.length);
+                            itemCount: controller.model.data!.length,
+                            );
                       },
                     );
                   }),

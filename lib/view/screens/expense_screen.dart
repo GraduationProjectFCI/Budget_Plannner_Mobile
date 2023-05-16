@@ -2,6 +2,7 @@ import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/constants/constant.dart';
 import 'package:budget_planner_app/controller/add_sheet_controller.dart';
+import 'package:budget_planner_app/controller/sheets_controller.dart';
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +14,11 @@ import '../widgets/custom_list_expenses.dart';
 class ExportScreen extends StatelessWidget {
   ExportScreen({super.key});
   ExpenseController controller = Get.put(ExpenseController());
-  TextEditingController valueController = TextEditingController();
-  TextEditingController labelController = TextEditingController();
-  var formkey = GlobalKey<FormState>();
+ 
+
+
   String? label;
-  // List<String> sheetInfo = Get.arguments;
+  String sheetType = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +28,15 @@ class ExportScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Form(
-            key: formkey,
+            key: controller.formkey,
             child: ListView(
               children: [
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'import',
-                        style: TextStyle(
+                       Text(
+                        sheetType,
+                        style:const TextStyle(
                           fontWeight: FontWeight.w100,
                           fontSize: 30,
                         ),
@@ -45,27 +46,19 @@ class ExportScreen extends StatelessWidget {
                         margin: const EdgeInsets.only(left: 8, right: 8),
                         child: GetBuilder<ExpenseController>(
                           builder: (c) => ConditionalBuilder(
-                            condition: controller.state.isTrue,
+                            condition: controller.state,
                             builder: (context) => CustomButton(
                               paddingLeft: 10,
                               paddingRight: 14,
                               paddingTop: 5,
                               paddingButtom: 5,
-                              textButton: 'Add',
+                              textButton: 'Save',
                               onPressed: () {
-                                if (formkey.currentState!.validate()) {
-                                  controller
-                                      .sendData(
-                                    sheetId: 'sheetInfo[1]',
-                                    label: labelController.text,
-                                    // description: ,
-                                    values: int.parse(valueController.text),
-                                  )
-                                      .then((value) {
-                                    valueController.clear();
-                                    labelController.clear();
-                                  });
-                                }
+                                controller.createSheat(
+                                  sheetType: sheetType,
+                                ).then((value) {
+                                   
+                                });
                               },
                             ),
                             fallback: (context) => const Center(
@@ -115,7 +108,8 @@ class ExportScreen extends StatelessWidget {
                                   ),
                                 ],
                                 onChanged: (value) {
-                                  labelController.text = value.toString();
+                                  controller.labelController.text =
+                                      value.toString();
                                   print(value);
                                 },
                                 hint: const Text('Select Label'),
@@ -137,7 +131,13 @@ class ExportScreen extends StatelessWidget {
                               ),
                               TextFormField(
                                 keyboardType: TextInputType.number,
-                                controller: valueController,
+                                controller: controller.valueController,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "enter value";
+                                  }
+                                  return null;
+                                },
                                 decoration: InputDecoration(
                                   // suffix: const Text('EGP'),
                                   border: OutlineInputBorder(
@@ -154,41 +154,39 @@ class ExportScreen extends StatelessWidget {
                     const SizedBox(
                       height: 15,
                     ),
+                    TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: controller.descrController,
+                      decoration: InputDecoration(
+                        // suffix: const Text('EGP'),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        hintText: "add descrtpiton",
+                        fillColor: AppColor.hintTextColor,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
                     Container(
                       margin: const EdgeInsets.only(left: 8, right: 8),
-                      child: GetBuilder<ExpenseController>(
-                        builder: (c) => ConditionalBuilder(
-                          condition: controller.state.isTrue,
-                          builder: (context) => CustomButton(
-                            textButton: 'add',
-                            onPressed: () {
-                              if (formkey.currentState!.validate()) {
-                                controller
-                                    .sendData(
-                                  sheetId: 'sheetInfo[1]',
-                                  label: labelController.text,
-                                  // description: ,
-                                  values: int.parse(valueController.text),
-                                )
-                                    .then((value) {
-                                  //TODO
-                                  // will add element to list
-                                });
-                              }
-                            },
-                          ),
-                          fallback: (context) =>
-                              const Center(child: CircularProgressIndicator()),
-                        ),
+                      child: CustomButton(
+                        textButton: 'add',
+                        onPressed: () {
+                          controller.addData();
+                        },
                       ),
                     ),
                     const SizedBox(
                       height: 15,
                     ),
                     // list
-                    BuildCustomListExpenses(
-                        //model
-                        ),
+                    GetBuilder<ExpenseController>(
+                      builder: (c) => BuildCustomListExpenses(
+                        expenses: controller.expenses,
+                      ),
+                    ),
 
                     const SizedBox(
                       height: 20,
@@ -214,10 +212,12 @@ class ExportScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                             color: AppColor.hintTextColor,
                           ),
-                          child: Text(
-                            '${controller.total} EGP',
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                          child: GetBuilder<ExpenseController>(
+                            builder: (c) => Text(
+                              '${controller.total} EGP',
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                       ],

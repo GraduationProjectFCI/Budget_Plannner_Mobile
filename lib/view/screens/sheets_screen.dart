@@ -39,49 +39,30 @@ class SheetsScreen extends StatelessWidget {
                         const Spacer(),
                         Container(
                           margin: const EdgeInsets.only(left: 8, right: 8),
-                          child: GetBuilder<sheetsController>(
-                            builder: (c) => ConditionalBuilder(
-                              condition: controller.importButtomState.isTrue,
-                              builder: (context) => CustomButton(
-                                textButton: 'Add import',
-                                onPressed: () {
-                                  controller
-                                      .createSheat(sheetType: "import")
-                                      .then((value) {
-                                    Get.toNamed(
-                                      AppRoutes.exportScreen,
-                                      arguments: c.sheetInfo,
-                                    );
-                                  });
-                                },
-                              ),
-                              fallback: (context) => const Center(
-                                  child: CircularProgressIndicator()),
-                            ),
+                          child: CustomButton(
+                            textButton: 'Add import',
+                            onPressed: () {
+                              Get.toNamed(
+                                AppRoutes.exportScreen,
+                                arguments: "import",
+                              );
+                            },
                           ),
                         ),
                         const SizedBox(width: 10),
                         Container(
                           margin: const EdgeInsets.only(left: 8, right: 8),
-                          child: GetBuilder<sheetsController>(
-                            builder: (c) => ConditionalBuilder(
-                              condition: controller.exportButtomState.isTrue,
-                              builder: (context) => CustomButton(
-                                textButton: 'Add Export',
-                                onPressed: () {
-                                  controller
-                                      .createSheat(sheetType: "export")
-                                      .then((value) {
-                                    Get.toNamed(
-                                      AppRoutes.exportScreen,
-                                      arguments: controller.sheetInfo,
-                                    );
-                                  });
-                                },
-                              ),
-                              fallback: (context) => const Center(
-                                  child: CircularProgressIndicator()),
-                            ),
+                          child: CustomButton(
+                            textButton: 'Add Export',
+                            onPressed: () {
+                              
+                                  
+                                Get.toNamed(
+                                  AppRoutes.exportScreen,
+                                  arguments: "export" ,
+                                );
+                              
+                            },
                           ),
                         ),
                       ],
@@ -94,7 +75,7 @@ class SheetsScreen extends StatelessWidget {
                   height: double.infinity,
                   child: GetBuilder<sheetsController>(builder: (c) {
                     return ConditionalBuilder(
-                      condition: controller.state == 3,
+                      condition: controller.state,
                       fallback: (context) => const Center(
                         child: CircularProgressIndicator(),
                       ),
@@ -110,8 +91,7 @@ class SheetsScreen extends StatelessWidget {
                                     '${controller.model.data![index].value}'),
                             separatorBuilder: (context, index) =>
                                 SizedBox(height: 10),
-                            itemCount: controller.model.data!.length);
-                      
+                            itemCount: c.model.data!.length);
                       },
                     );
                   }),

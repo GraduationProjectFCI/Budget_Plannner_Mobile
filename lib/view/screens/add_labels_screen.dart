@@ -73,8 +73,8 @@ class AddDeleteLabelsScreen extends StatelessWidget {
                   builder: (context) => CustomButton(
                     textButton: 'Add',
                     onPressed: () async {
-                      // await controller.addLabel();
-                      await controller.getLabels();
+                      await controller.addLabel();
+                      // await controller.getLabels();
                     },
                   ),
                 ),
