@@ -14,14 +14,14 @@ import '../widgets/custom_list_expenses.dart';
 class ExportScreen extends StatelessWidget {
   ExportScreen({super.key});
   ExpenseController controller = Get.put(ExpenseController());
- 
-
 
   String? label;
   String sheetType = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
+    controller.expenses.clear();
+    controller.total = 0;
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       body: SafeArea(
@@ -34,9 +34,9 @@ class ExportScreen extends StatelessWidget {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                       Text(
+                      Text(
                         sheetType,
-                        style:const TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w100,
                           fontSize: 30,
                         ),
@@ -54,11 +54,11 @@ class ExportScreen extends StatelessWidget {
                               paddingButtom: 5,
                               textButton: 'Save',
                               onPressed: () {
-                                controller.createSheat(
-                                  sheetType: sheetType,
-                                ).then((value) {
-                                   
-                                });
+                                controller
+                                    .createSheat(
+                                      sheetType: sheetType,
+                                    )
+                                    .then((value) {});
                               },
                             ),
                             fallback: (context) => const Center(

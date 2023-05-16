@@ -1,5 +1,6 @@
 import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/app_routes.dart';
+import 'package:budget_planner_app/controller/expense_controller.dart';
 import 'package:budget_planner_app/controller/sheets_controller.dart';
 import 'package:budget_planner_app/view/screens/sheet_info.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -12,8 +13,11 @@ import '../widgets/custom_button.dart';
 class SheetsScreen extends StatelessWidget {
   SheetsScreen({super.key});
   sheetsController controller = Get.put(sheetsController());
+  ExpenseController cont = Get.put(ExpenseController());
+
   @override
   Widget build(BuildContext context) {
+    cont.expenses.clear();
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       body: SafeArea(
@@ -55,13 +59,10 @@ class SheetsScreen extends StatelessWidget {
                           child: CustomButton(
                             textButton: 'Add Export',
                             onPressed: () {
-                              
-                                  
-                                Get.toNamed(
-                                  AppRoutes.exportScreen,
-                                  arguments: "export" ,
-                                );
-                              
+                              Get.toNamed(
+                                AppRoutes.exportScreen,
+                                arguments: "export",
+                              );
                             },
                           ),
                         ),

@@ -43,6 +43,7 @@ class ExpenseController extends GetxController {
     Http.postData(
             endpoint: '${Endpoint.sheetData}/$sheetId', token: token, map: data)
         .then((value) {
+      refesh.getSheetData();
       print("sheet id!!!! $sheetId");
     });
   }
@@ -82,8 +83,11 @@ class ExpenseController extends GetxController {
       required List<Map<String, dynamic>> expense,
       required String toke}) async {
     for (int i = 0; i < expense.length; i++) {
-      await addLabel(data: expenses[i], sheetId: id!, token: toke).then((value) {
-        refesh.getSheetData();
+      await addLabel(data: expenses[i], sheetId: id!, token: toke)
+          .then((value) {
+        expenses.removeAt(i);
+        total = 0;
+        update();
       });
     }
   }
