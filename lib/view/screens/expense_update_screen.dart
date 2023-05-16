@@ -137,6 +137,7 @@ class ExportUdateScreen extends StatelessWidget {
                     child: CustomButton(
                       textButton: 'Update',
                       onPressed: () {
+                        if (controller.formkey.currentState!.validate())
                         controller.updatExpense(
                           expenseId: expenseId,
                           label: controller.labelController.text,
