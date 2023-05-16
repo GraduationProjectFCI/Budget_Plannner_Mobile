@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:budget_planner_app/constants/approutes.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/constants/endpoint.dart';
 import 'package:budget_planner_app/models/register_model.dart';
 import 'package:budget_planner_app/view/widgets/toast.dart';
@@ -42,7 +42,6 @@ class Http {
     print('success');
   }
 
-  static String? userId;
   static Future<Map<String, dynamic>> register({
     required String name,
     required String email,
@@ -81,6 +80,7 @@ class Http {
 
   static Future confirmation({
     required String code,
+    required String userId,
   }) async {
     final data = {'user_id': userId, 'code': code};
     final body = json.encode(data);
@@ -121,149 +121,47 @@ class Http {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    static Future postData({
+  static Future postData({
     required Map<String, dynamic> map,
     required String endpoint,
+    String? token,
   }) async {
-    
     print(map);
     String body = json.encode(map);
     print(body);
-    var url = Uri.parse(Endpoint.login);
+    var url = Uri.parse(endpoint);
     var response = await http.post(
       url,
       body: body,
       headers: {
+        'Authorization': 'Bearer $token',
+        "Content-Type": "application/json",
+        "accept": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+    );
+    print("Http file!!!! ${response.body}");
+    print(response.statusCode);
+
+    var jsonResponse = await jsonDecode(response.body);
+
+    return jsonResponse;
+  }
+
+  static Future updateData({
+    required Map<String, dynamic> map,
+    required String endpoint,
+    String? token,
+  }) async {
+    print(map);
+    String body = json.encode(map);
+    print(body);
+    var url = Uri.parse(endpoint);
+    var response = await http.patch(
+      url,
+      body: body,
+      headers: {
+        'Authorization': 'Bearer $token',
         "Content-Type": "application/json",
         "accept": "application/json",
         "Access-Control-Allow-Origin": "*"
@@ -275,16 +173,30 @@ class Http {
     var jsonResponse = await jsonDecode(response.body);
 
     return jsonResponse;
-    //Or put here your next screen using Navigator.push() method
-    print('success');
   }
 
-    static Future getData({  String? token, required String url}) async {
+  static Future getData({String? token, required String url}) async {
     final headers = {'Authorization': 'Bearer $token'};
-    // final queryParams = {'id': id};
-    // final uri = Uri.parse(url).replace(queryParameters: queryParams);
+
     final uri = Uri.parse(url);
     final response = await http.get(uri, headers: headers);
+    if (response.statusCode == 200) {
+      print('success!!!!');
+      print('body = ${response.body}');
+      return await jsonDecode(response.body);
+    } else {
+      print('error');
+      print('body = ${response.body}');
+      return await jsonDecode(response.body);
+      // Handle error
+    }
+  }
+
+  static Future delete({required String? token, required String url}) async {
+    final headers = {'Authorization': 'Bearer $token'};
+
+    final uri = Uri.parse(url);
+    final response = await http.delete(uri, headers: headers);
     if (response.statusCode == 200) {
       // Handle success
       print('success!!!!');
@@ -293,6 +205,9 @@ class Http {
     } else {
       print('error');
       print('body = ${response.body}');
+      print('body = ${jsonDecode(response.body)}');
+
+      return await jsonDecode(response.body);
       // Handle error
     }
   }

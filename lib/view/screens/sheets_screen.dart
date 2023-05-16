@@ -1,5 +1,7 @@
-import 'package:budget_planner_app/constants/appcolor.dart';
+import 'package:budget_planner_app/constants/app_color.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/controller/sheets_controller.dart';
+import 'package:budget_planner_app/view/screens/sheet_info.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,67 +26,77 @@ class SheetsScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Sheets',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: Color(0xff000000),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        const Text(
+                          'Sheets',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w100,
+                            fontSize: 30,
+                          ),
+                        ),
+                        const Spacer(),
+                        Container(
+                          margin: const EdgeInsets.only(left: 8, right: 8),
+                          child: CustomButton(
+                            paddingLeft: 5,
+                            paddingRight: 5,
+                            textButton: 'Add import',
+                            onPressed: () {
+                              Get.toNamed(
+                                AppRoutes.exportScreen,
+                                arguments: "import",
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Container(
+                          margin: const EdgeInsets.only(left: 8, right: 8),
+                          child: CustomButton(
+                            paddingLeft: 5,
+                            paddingRight: 5,
+                            textButton: 'Add Export',
+                            onPressed: () {
+                              Get.toNamed(
+                                AppRoutes.exportScreen,
+                                arguments: "export",
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    width: 100,
-                    // function
-                    child: CustomButton(textButton: 'Add sheet'),
                   ),
                 ],
               ),
               Expanded(
-                child: GetBuilder<sheetsController>(builder: (c) {
-                  return ConditionalBuilder(
-                    condition: controller.state == 3,
-                    fallback: (context) => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    builder: (context) {
-                      print("eeeeeeeeeeeeeeeeeeeee");
-                      return ListView.separated(
-                          itemBuilder: (context, index) => CustomContainer(
-                              
-                              date: '${controller.model.data[index].updatedAt}',
-                              money: '${controller.model.data[index].value}'),
-                          separatorBuilder: (context, index) =>
-                              SizedBox(height: 10),
-                          itemCount: controller.model.data.length);
-                      // Container(
-                      //   child: ConditionalBuilder(
-                      //     condition: controller.state == 3,
-                      //     fallback: (context) => Center(
-                      //       child: Text(
-                      //         'no data found',
-                      //         style: TextStyle(
-                      //             fontSize: 40,
-                      //             fontWeight: FontWeight.w500,
-                      //             color: Colors.grey),
-                      //       ),
-                      //     ),
-                      //     builder: (context) => ListView.separated(
-                      //         itemBuilder: (context, index) => CustomContainer(
-                      //             label:
-                      //                 '${controller.model.data[index].sheetType}',
-                      //             date:
-                      //                 '${controller.model.data[index].sheetType}',
-                      //             money:
-                      //                 '${controller.model.data[index].value}'),
-                      //         separatorBuilder: (context, index) =>
-                      //             SizedBox(height: 10),
-                      //         itemCount: controller.model.data.length),
-                      //   ),
-                      // );
-                    },
-                  );
-                }),
+                child: SizedBox(
+                  height: double.infinity,
+                  child: GetBuilder<sheetsController>(builder: (c) {
+                    return ConditionalBuilder(
+                      condition: controller.state,
+                      fallback: (context) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      builder: (context) {
+                        print("eeeeeeeeeeeeeeeeeeeee");
+                        return ListView.separated(
+                            itemBuilder: (context, index) => CustomContainer(
+                                sheetId:
+                                    '${controller.model.data![index].sheetId}',
+                                date:
+                                    '${controller.model.data![index].updatedAt}',
+                                money:
+                                    '${controller.model.data![index].value}'),
+                            separatorBuilder: (context, index) =>
+                                SizedBox(height: 10),
+                            itemCount: controller.model.data!.length);
+                      },
+                    );
+                  }),
+                ),
               ),
             ],
           ),
@@ -96,14 +108,15 @@ class SheetsScreen extends StatelessWidget {
 
 class CustomContainer extends StatelessWidget {
   CustomContainer({
-    
     required this.date,
+    required this.sheetId,
     this.money,
     super.key,
   });
-  
+
   String date;
   String? money;
+  String sheetId;
 
   @override
   Widget build(BuildContext context) {
@@ -116,30 +129,33 @@ class CustomContainer extends StatelessWidget {
         color: const Color(0xffffffff),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          
-         
-          Text(
-            '${date}',
-            style: const TextStyle(
-              fontSize: 19,
-              fontWeight: FontWeight.w300,
-              height: 1,
-              color: Color(0xff000000),
+      child: InkWell(
+        onTap: () {
+          Get.toNamed(AppRoutes.sheetInfo, arguments: sheetId);
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              '${date}',
+              style: const TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.w300,
+                height: 1,
+                color: Color(0xff000000),
+              ),
             ),
-          ),
-          Text(
-            '${money} EGP',
-            style: const TextStyle(
-              fontSize: 19,
-              fontWeight: FontWeight.w300,
-              height: 1,
-              color: Color(0xff000000),
+            Text(
+              '${money} EGP',
+              style: const TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.w300,
+                height: 1,
+                color: Color(0xff000000),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

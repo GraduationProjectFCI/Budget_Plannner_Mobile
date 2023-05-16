@@ -1,6 +1,7 @@
-import 'package:budget_planner_app/constants/appcolor.dart';
+import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/controller/register_controller.dart';
 import 'package:budget_planner_app/functions/valid_input.dart';
+import 'package:budget_planner_app/view/widgets/date_time.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,10 +30,8 @@ class RegisterScreen extends StatelessWidget {
                   child: const Text(
                     'Register',
                     style: TextStyle(
-                      fontSize: 46,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: Color(0xff000000),
+                      fontWeight: FontWeight.w100,
+                      fontSize: 30,
                     ),
                   ),
                 ),
@@ -112,6 +111,7 @@ class RegisterScreen extends StatelessWidget {
                 CustomTextFormField(
                     hintText: 'birthdate',
                     textController: controller.birthdateTextController),
+                // picker(dateTimeController: controller.birthdateTextController),
                 Container(
                   margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
                   child: GetBuilder<RegisterController>(

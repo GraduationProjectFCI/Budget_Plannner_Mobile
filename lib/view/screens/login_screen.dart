@@ -10,8 +10,8 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constants/appcolor.dart';
-import '../../constants/approutes.dart';
+import '../../constants/app_color.dart';
+import '../../constants/app_routes.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textformfield.dart';
 import 'home_screen.dart';
@@ -41,10 +41,8 @@ class LoginScreen extends StatelessWidget {
                   child: const Text(
                     'Log-in',
                     style: TextStyle(
-                      fontSize: 46,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: Color(0xff000000),
+                      fontWeight: FontWeight.w100,
+                      fontSize: 30,
                     ),
                   ),
                 ),

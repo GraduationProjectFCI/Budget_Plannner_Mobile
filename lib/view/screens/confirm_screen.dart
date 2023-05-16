@@ -3,7 +3,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constants/appcolor.dart';
+import '../../constants/app_color.dart';
 import '../../constants/constant.dart';
 
 import '../../functions/valid_input.dart';
@@ -34,10 +34,8 @@ class ConfirmScreen extends StatelessWidget {
                   child: const Text(
                     'Confirmation',
                     style: TextStyle(
-                      fontSize: 42,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: Color(0xff000000),
+                      fontWeight: FontWeight.w100,
+                      fontSize: 30,
                     ),
                   ),
                 ),

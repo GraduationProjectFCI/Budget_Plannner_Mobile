@@ -7,7 +7,7 @@ class StatisticsContainer extends StatelessWidget {
     required this.money,
     super.key,
   });
-  String label;
+  String? label;
   String percentage;
   String money;
 
@@ -27,7 +27,7 @@ class StatisticsContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            '${label}',
+            label!,
             style: const TextStyle(
               fontSize: 19,
               fontWeight: FontWeight.w300,

@@ -28,22 +28,29 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  conditional_builder_null_safety: ^0.0.6
   cupertino_icons: ^1.0.2
+  date_format: ^2.0.7
+  date_time_picker: ^2.1.0
   flutter:
     sdk: flutter
+  fluttertoast: ^8.2.1
   get: ^4.6.5
   http: ^0.13.5
-  fluttertoast: ^8.2.1
-  conditional_builder_null_safety: ^0.0.6
-  shared_preferences: ^2.1.0
   percent_indicator: ^4.0.1
-  intl: ^0.18.1
+  shared_preferences: ^2.1.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
 
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/Wallet.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.

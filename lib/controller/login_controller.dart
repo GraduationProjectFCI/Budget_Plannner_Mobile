@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
-import '../constants/approutes.dart';
+import '../constants/app_routes.dart';
 import '../helper/http_helper.dart';
 
 class LoginController extends GetxController {

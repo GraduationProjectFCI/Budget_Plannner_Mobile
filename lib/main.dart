@@ -1,4 +1,5 @@
-import 'package:budget_planner_app/constants/approutes.dart';
+import 'package:budget_planner_app/constants/app_color.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/controller/confirmation_controller.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
 import 'package:budget_planner_app/view/screens/bottom_navigation_bar_screen.dart';
@@ -31,18 +32,29 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'budget planner',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: AppColor.primaryColor,
       ),
+<<<<<<< HEAD
       // initialRoute: AppRoutes.bottomNavigationBar,
       initialRoute:
           token != null ? AppRoutes.bottomNavigationBar : AppRoutes.login,
+=======
+      initialRoute: AppRoutes.register,
+      // initialRoute:
+      //     token != null ? AppRoutes.bottomNavigationBar : AppRoutes.login,
+>>>>>>> main
       routes: routes,
     );
   }
 }
+//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDVjYjcwN2ZiMzEyMzlmMjA3YTYwMTgiLCJuYW1lIjoiYWxpIiwiaWF0IjoxNjg0MTE4NDMzLCJleHAiOjE2ODQyMDQ4MzN9.gCz_6u17Jj1Ma0bEXpJcIJmkGdeJZNMWxAPqxvfhODk
 
+// sinajul.mudige@rungel.net
 
+// sinajul.mudige@rungel.net
 
+// mohassen011@gmail.com
+// 123456@Aa
 // kikew92415@in2reach.com
 // 123456789@Aa
 // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU0M2VmNmFlNzlmZTY0YTRhMDEwOTQiLCJuYW1lIjoiQWJkYWxsYWgiLCJpYXQiOjE2ODM4Mjg0NzYsImV4cCI6MTY4MzkxNDg3Nn0.YtrD2P11Lz6IsUA8MOC2Wr6neiZgqUBinxoof9fLMa0
