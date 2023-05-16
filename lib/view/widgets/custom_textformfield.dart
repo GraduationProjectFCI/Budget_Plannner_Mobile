@@ -9,7 +9,7 @@ class CustomTextFormField extends StatelessWidget {
   IconButton? suffix;
   TextInputType? fieldType;
   TextEditingController? textController;
-  bool? ispassword ;
+  bool? ispassword = false;
   CustomTextFormField(
       {super.key,
       required this.hintText,
@@ -39,10 +39,9 @@ class CustomTextFormField extends StatelessWidget {
         keyboardType: fieldType,
         validator: validator,
         onChanged: onChange,
-        obscureText: ispassword ?? false ,
+        obscureText: ispassword ?? false,
         controller: textController,
         decoration: InputDecoration(
-          
           suffix: suffix,
           fillColor: const Color(0xffffffff),
           filled: true,

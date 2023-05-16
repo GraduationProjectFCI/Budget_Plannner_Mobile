@@ -84,28 +84,29 @@ class RegisterScreen extends StatelessWidget {
                 Container(
                   width: double.infinity,
                   child: GetBuilder<RegisterController>(
-                    builder: (c) =>  Row(
+                    builder: (c) => Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
                           child: CustomTextFormField(
-                            ispassword: controller.posswrodstate1,
+                              ispassword: controller.isPassword,
                               suffix: IconButton(
                                 onPressed: () {
-                                  controller.showPassword1();
+                                  controller.showPassword();
                                 },
-                                icon: Icon(controller.icon1),
+                                icon: Icon(controller.icon),
                               ),
                               validator: (value) {
                                 return validInput(value!, 8, 100, 'password');
                               },
                               hintText: 'Enter Passwoed',
-                              textController: controller.passwordTextController),
+                              textController:
+                                  controller.passwordTextController),
                         ),
                         const SizedBox(width: 8),
                         Expanded(
                           child: CustomTextFormField(
-                            ispassword: controller.posswrodstate,
+                              ispassword: controller.isPassword,
                               suffix: IconButton(
                                 onPressed: () {
                                   controller.showPassword();

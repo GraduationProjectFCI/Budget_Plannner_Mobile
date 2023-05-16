@@ -53,25 +53,24 @@ class LoginScreen extends StatelessWidget {
                     return validInput(value!, 5, 100, 'email');
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
-                ),GetBuilder<LoginController>(
-                    builder: (c) =>
-                CustomTextFormField(
-                  hintText: 'Enter Password',
-                  ispassword: controller.posswrodstate,
-                  suffix: IconButton(
-                    onPressed: () {
-                    controller.showPassword();
-                  },
-                   icon:Icon( controller.icon),
-                  
-                  ),
-                  textController: passwordController,
-                  validator: (value) {
-                    return validInput(value!, 5, 100, 'password');
-                  },
-                )),
+                ),
+                GetBuilder<LoginController>(
+                    builder: (c) => CustomTextFormField(
+                          hintText: 'Enter Password',
+                          ispassword: controller.isPassword,
+                          suffix: IconButton(
+                            onPressed: () {
+                              controller.showPassword();
+                            },
+                            icon: Icon(controller.icon),
+                          ),
+                          textController: passwordController,
+                          validator: (value) {
+                            return validInput(value!, 5, 100, 'password');
+                          },
+                        )),
                 Container(
                   margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
                   child: GetBuilder<LoginController>(

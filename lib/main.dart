@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: AppColor.primaryColor,
       ),
 
-      initialRoute: AppRoutes.register,
+      initialRoute: AppRoutes.login,
       // initialRoute:
       //     token != null ? AppRoutes.bottomNavigationBar : AppRoutes.login,
 
