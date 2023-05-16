@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoutes.register,
       // initialRoute:
       //     token != null ? AppRoutes.bottomNavigationBar : AppRoutes.login,
+
       routes: routes,
     );
   }
