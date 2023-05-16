@@ -27,7 +27,6 @@ class AppRoutes {
   static const String sheetInfo = '/sheetInfo';
   static const String deadlineInfo = '/deadlineInfo';
   static const String bottomNavigationBar = '/bottom_navigationbarscreen';
-  // static const String importScreen = '/importscreen';
   static const String exportScreen = '/export_screen';
   static const String addDeadline = '/add_deadline';
   static const String AddDeleteLabelsScreen = '/labels_screen';

@@ -26,11 +26,14 @@ class UpdateExpenseController extends GetxController {
     Http.delete(url: '${Endpoint.sheetData}/$sheetId/$expenseId', token: token!)
         .then((value) {
       toast(msg: "${value['msg']}", color: Color.fromARGB(255, 3, 216, 244));
-        
+
       conttrollrerSheet.getSheetData().then((value) {
-        conttrollrerExpense.getSheetExpense(sheetId: sheetId!);
+        conttrollrerExpense.getSheetExpense(sheetId: sheetId!).then((value) {
+          Get.offAllNamed(AppRoutes.bottomNavigationBar);
+          Get.toNamed(AppRoutes.sheetInfo, arguments: sheetId);
+
+        });
       });
-      Get.offAllNamed(AppRoutes.bottomNavigationBar);
     });
   }
 
@@ -55,13 +58,12 @@ class UpdateExpenseController extends GetxController {
               token: token,
               map: data)
           .then((value) {
-
         toast(msg: value['msg'], color: Colors.green);
         state = true;
         valueController.clear();
         labelController.clear();
         descrpionController.clear();
-        
+
         conttrollrerSheet.getSheetData().then((value) {
           conttrollrerExpense.getSheetExpense(sheetId: sheetId!);
         });

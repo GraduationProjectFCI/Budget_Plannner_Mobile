@@ -110,7 +110,7 @@ class ExportUdateScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 30,
                   ),
                   TextFormField(
                     keyboardType: TextInputType.text,
@@ -130,7 +130,7 @@ class ExportUdateScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 30,
                   ),
                   Container(
                     // margin: const EdgeInsets.only(left: 8, right: 8),
@@ -147,7 +147,7 @@ class ExportUdateScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 30,
                   ),
                   // list
 
