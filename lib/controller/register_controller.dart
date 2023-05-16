@@ -102,4 +102,37 @@ class RegisterController extends GetxController {
     birthdateTextController.dispose();
     super.dispose();
   }
+
+
+
+
+  bool posswrodstate = true;
+  bool isPassword = true;
+  IconData icon = Icons.remove_red_eye;
+      void showPassword() {
+    if (isPassword) {
+      isPassword = false;
+      icon = Icons.visibility_off_outlined;
+    } else {
+      isPassword = true;
+      icon = Icons.remove_red_eye;
+    }
+    update();
+  }
+
+
+  
+  bool posswrodstate1 = true;
+  bool isPassword1 = true;
+  IconData icon1 = Icons.remove_red_eye;
+  void showPassword1() {
+    if (isPassword) {
+      isPassword = false;
+      icon = Icons.visibility_off_outlined;
+    } else {
+      isPassword = true;
+      icon = Icons.remove_red_eye;
+    }
+    update();
+  }
 }

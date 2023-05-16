@@ -83,28 +83,44 @@ class RegisterScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 Container(
                   width: double.infinity,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: CustomTextFormField(
-                            validator: (value) {
-                              return validInput(value!, 8, 100, 'password');
-                            },
-                            hintText: 'Enter Passwoed',
-                            textController: controller.passwordTextController),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: CustomTextFormField(
-                            validator: (value) {
-                              return validInput(value!, 8, 100, 'password');
-                            },
-                            hintText: 'Re-enter Password',
-                            textController:
-                                controller.rePasswordTextController),
-                      ),
-                    ],
+                  child: GetBuilder<RegisterController>(
+                    builder: (c) =>  Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: CustomTextFormField(
+                            ispassword: controller.posswrodstate1,
+                              suffix: IconButton(
+                                onPressed: () {
+                                  controller.showPassword1();
+                                },
+                                icon: Icon(controller.icon1),
+                              ),
+                              validator: (value) {
+                                return validInput(value!, 8, 100, 'password');
+                              },
+                              hintText: 'Enter Passwoed',
+                              textController: controller.passwordTextController),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: CustomTextFormField(
+                            ispassword: controller.posswrodstate,
+                              suffix: IconButton(
+                                onPressed: () {
+                                  controller.showPassword();
+                                },
+                                icon: Icon(controller.icon),
+                              ),
+                              validator: (value) {
+                                return validInput(value!, 8, 100, 'password');
+                              },
+                              hintText: 'Re-enter Password',
+                              textController:
+                                  controller.rePasswordTextController),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10),

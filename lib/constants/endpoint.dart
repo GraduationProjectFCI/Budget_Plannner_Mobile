@@ -13,5 +13,5 @@ class Endpoint {
   static const String labelData = "${url}app/labels/";
   static const String labelDataPost = "${url}app/labels/";
   static const String labelDataDelete = "${url}app/labels/";
-  static const String profile = "${url}app/profile/";
+  static const String profile = "${url}app/profile";
 }

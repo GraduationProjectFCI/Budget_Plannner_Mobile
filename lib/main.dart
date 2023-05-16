@@ -35,9 +35,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: AppColor.primaryColor,
       ),
 
-      initialRoute: AppRoutes.bottomNavigationBar,
-      // initialRoute:
-      //     token != null ? AppRoutes.bottomNavigationBar : AppRoutes.login,
+      // initialRoute: AppRoutes.bottomNavigationBar,
+      initialRoute:
+          token != null ? AppRoutes.bottomNavigationBar : AppRoutes.login,
       routes: routes,
     );
   }

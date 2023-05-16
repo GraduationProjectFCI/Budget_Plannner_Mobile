@@ -12,7 +12,9 @@ import '../helper/http_helper.dart';
 class LoginController extends GetxController {
   LoginInfo? loginModel;
   RxBool state = true.obs;
-
+    bool posswrodstate = true;
+  bool isPassword = true;
+  IconData icon = Icons.remove_red_eye;
   Future onSubmit({
     required String email,
     required String password,
@@ -41,6 +43,19 @@ class LoginController extends GetxController {
       print(error.toString());
     });
 
+    update();
+  }
+
+
+
+    void showPassword() {
+    if (isPassword) {
+      isPassword = false;
+      icon = Icons.visibility_off_outlined;
+    } else {
+      isPassword = true;
+      icon = Icons.remove_red_eye;
+    }
     update();
   }
 }
