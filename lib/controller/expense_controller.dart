@@ -3,7 +3,6 @@ import 'package:budget_planner_app/constants/endpoint.dart';
 import 'package:budget_planner_app/controller/sheets_controller.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
 import 'package:budget_planner_app/helper/http_helper.dart';
-import 'package:budget_planner_app/model/deadline_model.dart';
 import 'package:budget_planner_app/view/widgets/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +23,7 @@ class ExpenseController extends GetxController {
         "description": descrController.text,
         "value": int.parse(valueController.text),
       };
-      expenses!.add(data);
+      expenses.add(data);
       print(expenses);
       total += int.parse(valueController.text);
       valueController.clear();
