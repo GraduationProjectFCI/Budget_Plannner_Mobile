@@ -82,7 +82,9 @@ class ExpenseController extends GetxController {
       required List<Map<String, dynamic>> expense,
       required String toke}) async {
     for (int i = 0; i < expense.length; i++) {
-      await addLabel(data: expenses[i], sheetId: id!, token: toke);
+      await addLabel(data: expenses[i], sheetId: id!, token: toke).then((value) {
+        refesh.getSheetData();
+      });
     }
   }
 }
