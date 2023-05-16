@@ -3,7 +3,7 @@ class Endpoint {
   static const String login = "${url}auth/login";
   static const String register = "${url}auth/register";
   static const String confirmation = "${url}auth/confirmation";
-  static const String homeData = "${url}user-data/";
+  static const String homeData = "${url}app/user-data/";
   static const String sheetData = "${url}app/sheets";
   static const String sheetDelete = "${url}app/sheets/";
   static const String deadlineData = "${url}app/deadlines";
@@ -13,4 +13,5 @@ class Endpoint {
   static const String labelData = "${url}app/labels/";
   static const String labelDataPost = "${url}app/labels/";
   static const String labelDataDelete = "${url}app/labels/";
+  static const String profile = "${url}app/profile/";
 }

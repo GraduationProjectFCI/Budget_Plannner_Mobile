@@ -102,11 +102,9 @@ class Http {
     }
   }
 
-  static Future getHomeData({required String id, required String token}) async {
-    final url = '${Endpoint.homeData}$id';
+  static Future getHomeData({required String token}) async {
+    final url = '${Endpoint.homeData}';
     final headers = {'Authorization': 'Bearer $token'};
-    // final queryParams = {'id': id};
-    // final uri = Uri.parse(url).replace(queryParameters: queryParams);
     final uri = Uri.parse(url);
     final response = await http.get(uri, headers: headers);
     if (response.statusCode == 200) {
@@ -116,7 +114,7 @@ class Http {
       return await jsonDecode(response.body);
     } else {
       print('error');
-      print('body = ${response.body}');
+      print('body = ${jsonDecode(response.body)}');
       // Handle error
     }
   }
