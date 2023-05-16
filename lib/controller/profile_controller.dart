@@ -25,9 +25,9 @@ class ProfileController extends GetxController {
         print(value);
 
         if (value['userData'] != null) {
-          print('success!!');
+          // print('success!!');
           profileModel = await ProfileModel.fromJson(value);
-          toast(msg: '${profileModel?.msg}', color: AppColor.buttonColor);
+          // toast(msg: '${profileModel?.msg}', color: AppColor.buttonColor);
           print(profileModel?.userData.name);
           state = true.obs;
           WidgetsFlutterBinding.ensureInitialized();

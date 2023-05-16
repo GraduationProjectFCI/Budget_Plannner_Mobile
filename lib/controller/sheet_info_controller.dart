@@ -15,7 +15,7 @@ class sheetInfoController extends GetxController {
 
   late ExpensesModel model;
   bool state = true;
-
+  bool deletestate = true;
   Future<void> getSheetExpense({
     required String sheetId,
   }) async {
@@ -33,14 +33,13 @@ class sheetInfoController extends GetxController {
   void deleteSheet({
     required String sheetId,
   }) {
+    deletestate = false;
     String? token = CacheHelper.prefs!.getString('token');
     Http.delete(url: '${Endpoint.sheetData}/$sheetId', token: token!)
         .then((value) {
+      deletestate = true;
       toast(msg: "${value['msg']}", color: Color.fromARGB(255, 3, 216, 244));
-      conttrollrerSheet.getSheetData();
-      Get.offAllNamed(AppRoutes.bottomNavigationBar);
+      Get.back();
     });
   }
-
- 
 }

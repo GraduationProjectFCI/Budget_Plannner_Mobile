@@ -134,32 +134,50 @@ class ExportUdateScreen extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  Container(
-                    // margin: const EdgeInsets.only(left: 8, right: 8),
-                    child: CustomButton(
-                      textButton: 'Update',
-                      onPressed: () {
-                        if (controller.formkey.currentState!.validate())
-                          controller.updatExpense(
-                            expenseId: expenseId,
-                            label: controller.labelController.text,
-                            value: int.parse(controller.valueController.text),
-                            description: controller.descrpionController.text,
-                          );
-                      },
+
+                  GetBuilder<UpdateExpenseController>(
+                    builder: (c) => ConditionalBuilder(
+                      condition: controller.updatestate,
+                      builder: (context) => Container(
+                        // margin: const EdgeInsets.only(left: 8, right: 8),
+                        child: CustomButton(
+                          textButton: 'Update',
+                          onPressed: () {
+                            if (controller.formkey.currentState!.validate()) {
+                              controller.updatExpense(
+                                expenseId: expenseId,
+                                label: controller.labelController.text,
+                                value:
+                                    int.parse(controller.valueController.text),
+                                description:
+                                    controller.descrpionController.text,
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                      fallback: (context) =>
+                          const Center(child: CircularProgressIndicator()),
                     ),
                   ),
+
                   const SizedBox(
                     height: 30,
                   ),
                   // list
-
-                  CustomButton(
-                    textButton: "Delete",
-                    onPressed: () {
-                      controller.deleteExpense(expenseId: expenseId);
-                    },
-                  )
+                  GetBuilder<UpdateExpenseController>(
+                    builder: (c) => ConditionalBuilder(
+                      condition: controller.deleteestate,
+                      builder: (context) => CustomButton(
+                        textButton: "Delete",
+                        onPressed: () {
+                          controller.deleteExpense(expenseId: expenseId);
+                        },
+                      ),
+                      fallback: (context) =>
+                          const Center(child: CircularProgressIndicator()),
+                    ),
+                  ),
                 ]),
                 // )
               ],

@@ -15,6 +15,7 @@ import '../view/screens/login_screen.dart';
 import '../view/screens/profile_screen.dart';
 import '../view/screens/register_screen.dart';
 import '../view/screens/sheets_screen.dart';
+import '../view/screens/update_profile.dart';
 
 class AppRoutes {
   static const String login = '/login';
@@ -31,6 +32,7 @@ class AppRoutes {
   static const String addDeadline = '/add_deadline';
   static const String AddDeleteLabelsScreen = '/labels_screen';
   static const String exportUdateScreen = '/export_update_screen';
+  static const String updateProfile = '/update_profile';
 }
 
 Map<String, Widget Function(BuildContext)> routes = {
@@ -48,4 +50,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   AppRoutes.addDeadline: (context) => AddDeadlineScreen(),
   AppRoutes.AddDeleteLabelsScreen: (context) => AddDeleteLabelsScreen(),
   AppRoutes.exportUdateScreen: (context) => ExportUdateScreen(),
+  AppRoutes.updateProfile: (context) => UpdateProfileScreen(),
 };
