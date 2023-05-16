@@ -47,7 +47,7 @@ class UpdateDeadlineController extends GetxController {
             token: token,
             map: data)
         .then((value) {
-      toast(msg: value['msg']);
+      toast(msg: value['msg'], color: Colors.green);
       state = true;
       valueController.clear();
       deadlineController.clear();

@@ -20,6 +20,8 @@ class ExportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.expenses.clear();
+    controller.total = 0;
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       body: SafeArea(
