@@ -28,7 +28,7 @@ class ExpenseController extends GetxController {
       total += int.parse(valueController.text);
       valueController.clear();
       descrController.clear();
-      labelController.clear();
+      // labelController.clear();
       update();
     }
   }
@@ -65,14 +65,14 @@ class ExpenseController extends GetxController {
         sheetId = value['data']['_id'];
         await test(expense: expenses, toke: token!, id: sheetId);
 
-        await refesh.getSheetData();
-        state = true;
-        update();
+        await refesh.getSheetData().then((value) {
         Get.back();
+        state = true;
 
-        // Get.offAllNamed(
-        //   AppRoutes.bottomNavigationBar,
-        // );
+
+        });
+
+       
         toast(msg: value['msg'], color: Colors.green);
         valueController.clear();
         descrController.clear();
@@ -90,7 +90,6 @@ class ExpenseController extends GetxController {
     for (int i = 0; i < expense.length; i++) {
       await addLabel(data: expenses[i], sheetId: id!, token: toke)
           .then((value) {
-        expenses.removeAt(i);
         total = 0;
         update();
       });

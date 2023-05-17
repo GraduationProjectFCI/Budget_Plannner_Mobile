@@ -56,32 +56,38 @@ class ExportUdateScreen extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          DropdownButton(
-                            isExpanded: true,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            dropdownColor: AppColor.buttonColor,
-                            borderRadius: BorderRadius.circular(10),
-                            iconSize: 50,
-                            items: [
-                              ...List.generate(
-                                Constant.labelsList.length,
-                                (index) => DropdownMenuItem(
-                                  child: Text(Constant.labelsList[index].label
-                                      .toString()),
-                                  value: Constant.labelsList[index].label,
+                          GetBuilder<UpdateExpenseController>(
+                            builder: (controller) => DropdownButton(
+                              value: label,
+                              onChanged: (value) {
+                                controller.labelController.text =
+                                    value.toString();
+                                controller.refresh();
+                                label = value;
+
+                                // print(value);
+                              },
+                              items: [
+                                ...List.generate(
+                                  Constant.labelsList.length,
+                                  (index) => DropdownMenuItem(
+                                    value: Constant.labelsList[index].label,
+                                    child:
+                                        Text(Constant.labelsList[index].label!),
+                                  ),
                                 ),
+                              ],
+                              hint: const Text('Select label'),
+                              isExpanded: true,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
                               ),
-                            ],
-                            onChanged: (value) {
-                              controller.labelController.text =
-                                  value.toString();
-                              print(value);
-                            },
-                            hint: const Text('Select Label'),
+                              dropdownColor: AppColor.buttonColor,
+                              borderRadius: BorderRadius.circular(10),
+                              iconSize: 45,
+                            ),
                           ),
                         ],
                       ),
@@ -175,7 +181,7 @@ class ExportUdateScreen extends StatelessWidget {
                 // list
                 GetBuilder<UpdateExpenseController>(
                   builder: (c) => ConditionalBuilder(
-                    condition: controller.deleteestate,
+                    condition: controller.deleteestate  ,
                     builder: (context) => CustomButton(
                       textButton: "Delete",
                       onPressed: () {

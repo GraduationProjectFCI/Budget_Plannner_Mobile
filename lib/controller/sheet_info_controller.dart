@@ -39,7 +39,9 @@ class sheetInfoController extends GetxController {
         .then((value) {
       deletestate = true;
       toast(msg: "${value['msg']}", color: Color.fromARGB(255, 3, 216, 244));
-      Get.back();
+      conttrollrerSheet.getSheetData().then((value) {
+        Get.back();
+      });
     });
   }
 }

@@ -45,7 +45,7 @@ class UpdateProfileScreen extends StatelessWidget {
                   fieldType: TextInputType.name,
                   textController: controller.nameTextController,
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 CustomTextFormField(
                     validator: (value) {
                       return validInput(value!, 5, 100, 'email');
@@ -54,7 +54,7 @@ class UpdateProfileScreen extends StatelessWidget {
                     labelText: 'E-mail',
                     hintText: 'Enter Your  E-mail',
                     textController: controller.emailTextController),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 SizedBox(
                   width: double.infinity,
                   child: Row(
@@ -80,19 +80,19 @@ class UpdateProfileScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 CustomTextFormField(
                     prefixIcon: Icon(Icons.attach_money_outlined),
                     labelText: 'Budget',
                     hintText: 'Enter Monthly Budget Average',
                     fieldType: TextInputType.number,
                     textController: controller.budgetAverageTextController),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 CustomTextFormField(
                     labelText: 'Currency',
                     hintText: 'Enter Preferred currency',
                     textController: controller.currencyTextController),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 // Container(
                 //   width: double.infinity,
                 //   child: Row(
@@ -132,7 +132,7 @@ class UpdateProfileScreen extends StatelessWidget {
                     },
                     hintText: 'Select birthdate',
                     textController: controller.birthdateTextController),
-                const SizedBox(height: 20),
+                const SizedBox(height: 25),
                 // picker(dateTimeController: controller.birthdateTextController),
                 Container(
                   margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
