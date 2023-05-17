@@ -23,7 +23,7 @@ class ExportUdateScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: AppColor.backgroundColor,
         title: const Text(
-          'Deadlines',
+          'Update Expenes',
           style: TextStyle(
             fontWeight: FontWeight.w100,
             fontSize: 30,
