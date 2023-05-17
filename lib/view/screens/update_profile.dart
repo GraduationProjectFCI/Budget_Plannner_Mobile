@@ -37,7 +37,9 @@ class UpdateProfileScreen extends StatelessWidget {
                   ),
                 ),
                 CustomTextFormField(
-                  hintText: 'Name',
+                  prefixIcon: Icon(Icons.person_outline),
+                  labelText: 'Name',
+                  hintText: 'Enter Your Name',
                   fieldType: TextInputType.name,
                   textController: controller.nameTextController,
                 ),
@@ -46,7 +48,9 @@ class UpdateProfileScreen extends StatelessWidget {
                     validator: (value) {
                       return validInput(value!, 5, 100, 'email');
                     },
-                    hintText: 'E-mail',
+                    prefixIcon: Icon(Icons.email_outlined),
+                    labelText: 'E-mail',
+                    hintText: 'Enter Your  E-mail',
                     textController: controller.emailTextController),
                 const SizedBox(height: 10),
                 SizedBox(
@@ -56,7 +60,8 @@ class UpdateProfileScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: CustomTextFormField(
-                            hintText: 'Gender',
+                            labelText: 'Gender',
+                            hintText: 'Enter Your Gender',
                             fieldType: TextInputType.text,
                             textController: controller.genderTextController),
                       ),
@@ -65,8 +70,9 @@ class UpdateProfileScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: CustomTextFormField(
+                            labelText: 'Age',
                             fieldType: TextInputType.number,
-                            hintText: 'Age',
+                            hintText: 'Enter Your Age',
                             textController: controller.ageTextController),
                       ),
                     ],
@@ -74,12 +80,15 @@ class UpdateProfileScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 CustomTextFormField(
-                    hintText: 'Monthly Budget Average',
+                    prefixIcon: Icon(Icons.attach_money_outlined),
+                    labelText: 'Budget',
+                    hintText: 'Enter Monthly Budget Average',
                     fieldType: TextInputType.number,
                     textController: controller.budgetAverageTextController),
                 const SizedBox(height: 10),
                 CustomTextFormField(
-                    hintText: 'Preferred currency',
+                    labelText: 'Currency',
+                    hintText: 'Enter Preferred currency',
                     textController: controller.currencyTextController),
                 const SizedBox(height: 10),
                 // Container(
@@ -110,9 +119,10 @@ class UpdateProfileScreen extends StatelessWidget {
                 // ),
                 // const SizedBox(height: 10),
                 CustomTextFormField(
-                    hintText: 'birthdate',
+                    labelText: 'birthdate',
+                    hintText: 'Select your birthdate',
                     textController: controller.birthdateTextController),
-                    const SizedBox(height: 20),
+                const SizedBox(height: 20),
                 // picker(dateTimeController: controller.birthdateTextController),
                 Container(
                   margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
@@ -124,7 +134,6 @@ class UpdateProfileScreen extends StatelessWidget {
                           textButton: 'Update',
                           onPressed: () async {
                             var res2 = await controller.updateprofile();
-
                           },
                         );
                       },
@@ -133,8 +142,6 @@ class UpdateProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                
-                
               ],
             ),
           ),

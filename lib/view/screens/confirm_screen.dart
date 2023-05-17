@@ -52,6 +52,7 @@ class ConfirmScreen extends StatelessWidget {
                   ),
                 ),
                 CustomTextFormField(
+                  labelText: 'confirmation',
                   validator: (value) {
                     return validInput(value!, 6, 10, 'code');
                   },

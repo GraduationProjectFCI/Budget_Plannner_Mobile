@@ -47,7 +47,9 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 CustomTextFormField(
-                  hintText: 'E-mail',
+                  prefixIcon: Icon(Icons.email_outlined),
+                  labelText: 'E-mail',
+                  hintText: 'Enter E-mail',
                   textController: emailController,
                   validator: (value) {
                     return validInput(value!, 5, 100, 'email');
@@ -58,6 +60,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 GetBuilder<LoginController>(
                     builder: (c) => CustomTextFormField(
+                          labelText: 'Password',
                           hintText: 'Enter Password',
                           ispassword: controller.isPassword,
                           suffix: IconButton(

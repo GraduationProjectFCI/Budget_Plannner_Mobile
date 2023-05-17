@@ -4,21 +4,30 @@ import '../../constants/app_color.dart';
 
 class CustomTextFormField extends StatelessWidget {
   String hintText;
+  String labelText;
+  Icon? prefixIcon;
   String? Function(String?)? validator;
   void Function(String)? onChange;
   IconButton? suffix;
   TextInputType? fieldType;
   TextEditingController? textController;
   bool? ispassword = false;
-  CustomTextFormField(
-      {super.key,
-      required this.hintText,
-      this.textController,
-      this.onChange,
-      this.suffix,
-      this.validator,
-      this.ispassword,
-      this.fieldType});
+  void Function()? onTap;
+  bool? readOnly = false;
+  CustomTextFormField({
+    super.key,
+    required this.hintText,
+    this.textController,
+    this.onChange,
+    this.suffix,
+    this.validator,
+    this.ispassword,
+    this.fieldType,
+    this.onTap,
+    required this.labelText,
+    this.prefixIcon,
+    this.readOnly,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +45,22 @@ class CustomTextFormField extends StatelessWidget {
       // ),
 
       child: TextFormField(
+        onTap: onTap,
         keyboardType: fieldType,
         validator: validator,
         onChanged: onChange,
         obscureText: ispassword ?? false,
         controller: textController,
+        readOnly: readOnly ?? false,
         decoration: InputDecoration(
-          suffix: suffix,
+          // suffix: suffix,
+          suffixIcon: suffix,
           fillColor: const Color(0xffffffff),
           filled: true,
           contentPadding: const EdgeInsets.only(left: 10),
           // border: InputBorder.none,
+          labelText: labelText,
+          prefixIcon: prefixIcon,
           hintText: '$hintText',
           hintStyle: const TextStyle(
             fontWeight: FontWeight.w400,

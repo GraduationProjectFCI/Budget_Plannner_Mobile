@@ -11,13 +11,34 @@ import '../widgets/custom_textformfield.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
+
+  DateTime? selectedDate;
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    print(selectedDate);
+
+    if (picked != null && picked != selectedDate) {
+      selectedDate = picked;
+      controller.refresh();
+    }
+    print('uijuiiji$selectedDate');
+
+    controller.refresh();
+  }
+
   RegisterController controller = Get.put(RegisterController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.fromLTRB(10, 150, 10, 195),
+          padding: const EdgeInsets.fromLTRB(15, 150, 15, 195),
           width: double.infinity,
           color: AppColor.backgroundColor,
           child: Form(
@@ -36,16 +57,20 @@ class RegisterScreen extends StatelessWidget {
                   ),
                 ),
                 CustomTextFormField(
-                  hintText: 'Name',
+                  prefixIcon: Icon(Icons.person_outline),
+                  labelText: 'Name',
+                  hintText: 'Enter Name',
                   fieldType: TextInputType.name,
                   textController: controller.nameTextController,
                 ),
                 const SizedBox(height: 10),
                 CustomTextFormField(
+                    prefixIcon: Icon(Icons.email_outlined),
+                    labelText: 'E-mail',
                     validator: (value) {
                       return validInput(value!, 5, 100, 'email');
                     },
-                    hintText: 'E-mail',
+                    hintText: 'Enter E-mail',
                     textController: controller.emailTextController),
                 const SizedBox(height: 10),
                 SizedBox(
@@ -55,7 +80,8 @@ class RegisterScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: CustomTextFormField(
-                            hintText: 'Gender',
+                            labelText: 'Gender',
+                            hintText: 'Enter Gender',
                             fieldType: TextInputType.text,
                             textController: controller.genderTextController),
                       ),
@@ -64,8 +90,9 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: CustomTextFormField(
+                            labelText: 'Age',
                             fieldType: TextInputType.number,
-                            hintText: 'Age',
+                            hintText: 'Enter Age',
                             textController: controller.ageTextController),
                       ),
                     ],
@@ -73,62 +100,84 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 CustomTextFormField(
-                    hintText: 'Monthly Budget Average',
+                    prefixIcon: Icon(Icons.attach_money_outlined),
+                    labelText: 'Budget',
+                    hintText: 'Enter Monthly Budget Average',
                     fieldType: TextInputType.number,
                     textController: controller.budgetAverageTextController),
                 const SizedBox(height: 10),
                 CustomTextFormField(
-                    hintText: 'Preferred currency',
+                    labelText: 'Currency',
+                    hintText: 'Enter Preferred currency',
                     textController: controller.currencyTextController),
                 const SizedBox(height: 10),
                 Container(
                   width: double.infinity,
                   child: GetBuilder<RegisterController>(
-                    builder: (c) => Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: CustomTextFormField(
-                              ispassword: controller.isPassword,
-                              suffix: IconButton(
-                                onPressed: () {
-                                  controller.showPassword();
+                    builder: (c) => SizedBox(
+                      height: 55,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: CustomTextFormField(
+                                labelText: 'Passwoed',
+                                ispassword: controller.isPassword,
+                                suffix: IconButton(
+                                  onPressed: () {
+                                    controller.showPassword();
+                                  },
+                                  icon: Icon(controller.icon),
+                                ),
+                                validator: (value) {
+                                  return validInput(value!, 8, 100, 'password');
                                 },
-                                icon: Icon(controller.icon),
-                              ),
-                              validator: (value) {
-                                return validInput(value!, 8, 100, 'password');
-                              },
-                              hintText: 'Enter Passwoed',
-                              textController:
-                                  controller.passwordTextController),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: CustomTextFormField(
-                              ispassword: controller.isPassword,
-                              suffix: IconButton(
-                                onPressed: () {
-                                  controller.showPassword();
+                                hintText: 'Enter Passwoed',
+                                textController:
+                                    controller.passwordTextController),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: CustomTextFormField(
+                                labelText: 'Passwoed',
+                                ispassword: controller.isPassword,
+                                suffix: IconButton(
+                                  onPressed: () {
+                                    controller.showPassword();
+                                  },
+                                  icon: Icon(controller.icon),
+                                ),
+                                validator: (value) {
+                                  return validInput(value!, 8, 100, 'password');
                                 },
-                                icon: Icon(controller.icon),
-                              ),
-                              validator: (value) {
-                                return validInput(value!, 8, 100, 'password');
-                              },
-                              hintText: 'Re-enter Password',
-                              textController:
-                                  controller.rePasswordTextController),
-                        ),
-                      ],
+                                hintText: 'Re-enter Password',
+                                textController:
+                                    controller.rePasswordTextController),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 10),
                 CustomTextFormField(
-                    hintText: 'birthdate',
+                    readOnly: true,
+                    validator: (val) {
+                      return validInput(val!, 6, 20, 'birthdate');
+                    },
+                    labelText: 'birthdate',
+                    prefixIcon: Icon(Icons.calendar_today),
+
+                    // onTap: () {
+                    //   showDatePicker(
+                    //     context: context,
+                    //     initialDate: DateTime.now(),
+                    //     firstDate: DateTime(1900),
+                    //     lastDate: DateTime.now(),
+                    //   );
+                    // },
+                    hintText: 'Select birthdate',
                     textController: controller.birthdateTextController),
-                // picker(dateTimeController: controller.birthdateTextController),
                 Container(
                   margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
                   child: GetBuilder<RegisterController>(

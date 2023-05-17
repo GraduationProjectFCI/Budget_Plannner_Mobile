@@ -55,6 +55,7 @@ class AddDeleteLabelsScreen extends StatelessWidget {
                   height: 60,
                 ),
                 CustomTextFormField(
+                  labelText: 'Label',
                   hintText: 'Enter label',
                   fieldType: TextInputType.name,
                   textController: controller.labelTextController,
