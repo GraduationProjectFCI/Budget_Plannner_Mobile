@@ -88,13 +88,13 @@ class RegisterScreen extends StatelessWidget {
                       const SizedBox(
                         width: 8,
                       ),
-                      Expanded(
-                        child: CustomTextFormField(
-                            labelText: 'Age',
-                            fieldType: TextInputType.number,
-                            hintText: 'Enter Age',
-                            textController: controller.ageTextController),
-                      ),
+                      // Expanded(
+                      //   child: CustomTextFormField(
+                      //       labelText: 'Age',
+                      //       fieldType: TextInputType.number,
+                      //       hintText: 'Enter Age',
+                      //       textController: controller.ageTextController),
+                      // ),
                     ],
                   ),
                 ),

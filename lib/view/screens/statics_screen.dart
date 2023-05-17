@@ -71,7 +71,6 @@ class StaticsScreen extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     ),
                     builder: (context) {
-                      print("eeeeeeeeeeeeeeeeeeeee");
                       return ListView.separated(
                         itemBuilder: (context, index) => StatisticsContainer(
                           label: controller.model.data?[index].label,
@@ -82,7 +81,7 @@ class StaticsScreen extends StatelessWidget {
                               '${controller.model.data?[index].totalExpenses}',
                         ),
                         separatorBuilder: (context, index) =>
-                            SizedBox(height: 10),
+                            SizedBox(height: 1),
                         itemCount: controller.model.data!.length,
                       );
                     },

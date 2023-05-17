@@ -47,7 +47,7 @@ class Http {
     required String email,
     required String password,
     required String gender,
-    required String age,
+    // required String age,
     required String budget,
     required String currency,
     required String birthdate,
@@ -57,7 +57,7 @@ class Http {
       "password": password,
       "email": email,
       "gender": gender,
-      "age": age,
+      // "age": age,
       "budget": budget,
       "currency": currency,
       "birthdate": birthdate

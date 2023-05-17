@@ -15,8 +15,8 @@ class StatisticsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 48,
-      margin: const EdgeInsets.symmetric(vertical: 15),
+      height: 35,
+      margin: const EdgeInsets.symmetric(vertical: 5),
       padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
       decoration: BoxDecoration(
         

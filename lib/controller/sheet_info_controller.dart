@@ -24,6 +24,7 @@ class sheetInfoController extends GetxController {
     Http.getData(token: token, url: '${Endpoint.sheetData}/$sheetId')
         .then((value) {
       model = ExpensesModel.fromJson(value);
+      
       state = true;
       update();
     });

@@ -30,7 +30,7 @@ class AddDeadlineController extends GetxController {
 
     String? token = CacheHelper.prefs!.getString('token');
     Http.postData(endpoint: Endpoint.deadlinePost, token: token,map: data).then((value) {
-      toast(msg: value['msg']);
+      toast(msg: value['msg'],color: Colors.green);
       state = true;
       valueController.clear();
       deadlineController.clear();
