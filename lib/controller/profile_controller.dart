@@ -15,11 +15,11 @@ class ProfileController extends GetxController {
   Future<ProfileModel?> getProfileData() async {
     print('helllllo get getProfileData');
     state = false.obs;
-
+    String? token = CacheHelper.prefs?.getString('token');
     WidgetsFlutterBinding.ensureInitialized();
     update();
     Http.getData(
-            url: Endpoint.profile, token: CacheHelper.prefs?.getString('token'))
+            url: Endpoint.profile, token: token)
         .then(
       (value) async {
         print(value);
@@ -28,7 +28,7 @@ class ProfileController extends GetxController {
           // print('success!!');
           profileModel = await ProfileModel.fromJson(value);
           // toast(msg: '${profileModel?.msg}', color: AppColor.buttonColor);
-          print(profileModel?.userData.name);
+          // print(profileModel?.userData.name);
           state = true.obs;
           WidgetsFlutterBinding.ensureInitialized();
           update();

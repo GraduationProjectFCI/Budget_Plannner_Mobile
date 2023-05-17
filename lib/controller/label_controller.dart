@@ -73,7 +73,7 @@ class LabelController extends GetxController {
           Constant.labelsList = [];
 
           LabelModel labelModel = await LabelModel.fromJson(value);
-          toast(msg: '${value['msg']}', color: AppColor.buttonColor);
+          // toast(msg: '${value['msg']}', color: AppColor.buttonColor);
           for (var i = 0; i < labelModel.data!.length; i++) {
             Constant.labelsList.add(labelModel.data![i]);
           }

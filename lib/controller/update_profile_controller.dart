@@ -27,13 +27,7 @@ class UpdateProfileController extends GetxController {
 
   @override
   updateprofile() async {
-    print('helllllo sign up');
-
-    // if (passwordTextController.text != rePasswordTextController.text) {
-    //   toast(msg: 'the password not the same');
-
-    //   return;
-    // }
+   
 
     if (formKey.currentState!.validate()) {
       state = false.obs;
@@ -57,15 +51,12 @@ class UpdateProfileController extends GetxController {
       ).then((value) async {
         state = true.obs;
 
-        if (value['user_id'] != null) {
+        
           toast(msg: value['msg'].toString(), color: Colors.green);
           con.getProfileData().then((value) {
             Get.back();
           });
-        } else {
-          state = true.obs;
-          toast(msg: value['msg'].toString());
-        }
+        
         update();
       });
     }
