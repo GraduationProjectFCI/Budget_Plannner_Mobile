@@ -8,6 +8,7 @@ import 'package:budget_planner_app/view/screens/deadlines_screen.dart';
 import 'package:budget_planner_app/view/screens/profile_screen.dart';
 import 'package:budget_planner_app/view/screens/register_screen.dart';
 import 'package:budget_planner_app/view/screens/statics_screen.dart';
+import 'package:budget_planner_app/view/widgets/test.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: AppColor.primaryColor,
       ),
+
       // initialRoute: AppRoutes.register,
       initialRoute:
           token != null ? AppRoutes.bottomNavigationBar : AppRoutes.login,

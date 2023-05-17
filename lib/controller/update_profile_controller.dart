@@ -21,6 +21,7 @@ class UpdateProfileController extends GetxController {
   late TextEditingController passwordTextController;
   late TextEditingController birthdateTextController;
   late TextEditingController rePasswordTextController;
+  DateTime? selectedDate;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   RxBool state = true.obs;
 
@@ -68,6 +69,23 @@ class UpdateProfileController extends GetxController {
         update();
       });
     }
+  }
+
+  Future<void> selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+
+    if (picked != null && picked != selectedDate) {
+      selectedDate = picked;
+      birthdateTextController.text = selectedDate.toString().substring(0, 10);
+      update();
+    }
+    print(birthdateTextController.text);
+    update();
   }
 
   @override

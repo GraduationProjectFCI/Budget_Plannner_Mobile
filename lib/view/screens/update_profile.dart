@@ -119,8 +119,16 @@ class UpdateProfileScreen extends StatelessWidget {
                 // ),
                 // const SizedBox(height: 10),
                 CustomTextFormField(
+                    readOnly: true,
+                    validator: (val) {
+                      return validInput(val!, 6, 20, '');
+                    },
                     labelText: 'birthdate',
-                    hintText: 'Select your birthdate',
+                    prefixIcon: const Icon(Icons.calendar_today),
+                    onTap: () {
+                      controller.selectDate(context);
+                    },
+                    hintText: 'Select birthdate',
                     textController: controller.birthdateTextController),
                 const SizedBox(height: 20),
                 // picker(dateTimeController: controller.birthdateTextController),

@@ -57,7 +57,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                 ),
                 CustomTextFormField(
-                  prefixIcon: Icon(Icons.person_outline),
+                  prefixIcon: const Icon(Icons.person_outline),
                   labelText: 'Name',
                   hintText: 'Enter Name',
                   fieldType: TextInputType.name,
@@ -65,7 +65,7 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 CustomTextFormField(
-                    prefixIcon: Icon(Icons.email_outlined),
+                    prefixIcon: const Icon(Icons.email_outlined),
                     labelText: 'E-mail',
                     validator: (value) {
                       return validInput(value!, 5, 100, 'email');
@@ -100,7 +100,7 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 CustomTextFormField(
-                    prefixIcon: Icon(Icons.attach_money_outlined),
+                    prefixIcon: const Icon(Icons.attach_money_outlined),
                     labelText: 'Budget',
                     hintText: 'Enter Monthly Budget Average',
                     fieldType: TextInputType.number,
@@ -163,19 +163,13 @@ class RegisterScreen extends StatelessWidget {
                 CustomTextFormField(
                     readOnly: true,
                     validator: (val) {
-                      return validInput(val!, 6, 20, 'birthdate');
+                      return validInput(val!, 6, 20, '');
                     },
                     labelText: 'birthdate',
-                    prefixIcon: Icon(Icons.calendar_today),
-
-                    // onTap: () {
-                    //   showDatePicker(
-                    //     context: context,
-                    //     initialDate: DateTime.now(),
-                    //     firstDate: DateTime(1900),
-                    //     lastDate: DateTime.now(),
-                    //   );
-                    // },
+                    prefixIcon: const Icon(Icons.calendar_today),
+                    onTap: () {
+                      controller.selectDate(context);
+                    },
                     hintText: 'Select birthdate',
                     textController: controller.birthdateTextController),
                 Container(

@@ -43,7 +43,6 @@ class CustomTextFormField extends StatelessWidget {
       // color: const Color(0xffffffff),
       // borderRadius: BorderRadius.circular(10),
       // ),
-
       child: TextFormField(
         onTap: onTap,
         keyboardType: fieldType,
@@ -55,7 +54,7 @@ class CustomTextFormField extends StatelessWidget {
         decoration: InputDecoration(
           // suffix: suffix,
           suffixIcon: suffix,
-          fillColor: const Color(0xffffffff),
+          fillColor: Colors.white,
           filled: true,
           contentPadding: const EdgeInsets.only(left: 10),
           // border: InputBorder.none,
