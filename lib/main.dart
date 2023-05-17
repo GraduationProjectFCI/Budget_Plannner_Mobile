@@ -1,18 +1,8 @@
 import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/app_routes.dart';
-import 'package:budget_planner_app/controller/confirmation_controller.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
-import 'package:budget_planner_app/view/screens/bottom_navigation_bar_screen.dart';
-import 'package:budget_planner_app/view/screens/confirm_screen.dart';
-import 'package:budget_planner_app/view/screens/deadlines_screen.dart';
-import 'package:budget_planner_app/view/screens/profile_screen.dart';
-import 'package:budget_planner_app/view/screens/register_screen.dart';
-import 'package:budget_planner_app/view/screens/statics_screen.dart';
-import 'package:budget_planner_app/view/widgets/test.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'view/screens/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

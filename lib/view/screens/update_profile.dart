@@ -16,9 +16,21 @@ class UpdateProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: AppColor.backgroundColor,
+        title: const Text(
+          'Update Profile',
+          style: TextStyle(
+            fontWeight: FontWeight.w100,
+            fontSize: 30,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.fromLTRB(10, 150, 10, 195),
+          padding: const EdgeInsets.all(20.0),
           width: double.infinity,
           color: AppColor.backgroundColor,
           child: Form(
@@ -26,16 +38,6 @@ class UpdateProfileScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 0, 1, 17),
-                  child: const Text(
-                    'Update Profile',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w100,
-                      fontSize: 30,
-                    ),
-                  ),
-                ),
                 CustomTextFormField(
                   prefixIcon: Icon(Icons.person_outline),
                   labelText: 'Name',

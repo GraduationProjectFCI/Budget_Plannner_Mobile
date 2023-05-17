@@ -21,90 +21,79 @@ class SheetsScreen extends StatelessWidget {
     cont.expenses.clear();
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
-      body: SafeArea(
-        child: Container(
-          margin:
-              const EdgeInsets.only(left: 10, right: 10, top: 16, bottom: 16),
-          width: double.infinity,
-          child: Column(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: AppColor.backgroundColor,
+        title: const Text(
+          'Sheets',
+          style: TextStyle(
+            fontWeight: FontWeight.w100,
+            fontSize: 30,
+          ),
+        ),
+        actions: [
+          Row(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        const Text(
-                          'Sheets',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w100,
-                            fontSize: 30,
-                          ),
-                        ),
-                        const Spacer(),
-                        Container(
-                          margin: const EdgeInsets.only(left: 8, right: 8),
-                          child: CustomButton(
-                            paddingLeft: 5,
-                            paddingRight: 5,
-                            textButton: 'Add import',
-                            onPressed: () {
-                              Get.toNamed(
-                                AppRoutes.exportScreen,
-                                arguments: "import",
-                              );
-                            },
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Container(
-                          margin: const EdgeInsets.only(left: 8, right: 8),
-                          child: CustomButton(
-                            paddingLeft: 5,
-                            paddingRight: 5,
-                            textButton: 'Add Export',
-                            onPressed: () {
-                              Get.toNamed(
-                                AppRoutes.exportScreen,
-                                arguments: "export",
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+              CustomButton(
+                paddingLeft: 5,
+                paddingRight: 5,
+                textButton: 'Add import',
+                onPressed: () {
+                  Get.toNamed(
+                    AppRoutes.exportScreen,
+                    arguments: "import",
+                  );
+                },
               ),
-              Expanded(
-                child: SizedBox(
-                  height: double.infinity,
-                  child: GetBuilder<sheetsController>(builder: (c) {
-                    return ConditionalBuilder(
-                      condition: controller.state,
-                      fallback: (context) => const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                      builder: (context) {
-                        print("eeeeeeeeeeeeeeeeeeeee");
-                        return ListView.separated(
-                            itemBuilder: (context, index) => CustomContainer(
-                                sheetId:
-                                    '${controller.model.data![index].sheetId}',
-                                date:
-                                    '${controller.model.data![index].updatedAt}',
-                                money:
-                                    '${controller.model.data![index].value}'),
-                            separatorBuilder: (context, index) =>
-                                SizedBox(height: 10),
-                            itemCount: controller.model.data!.length);
-                      },
-                    );
-                  }),
-                ),
+              const SizedBox(width: 10),
+              CustomButton(
+                paddingLeft: 5,
+                paddingRight: 5,
+                textButton: 'Add Export',
+                onPressed: () {
+                  Get.toNamed(
+                    AppRoutes.exportScreen,
+                    arguments: "export",
+                  );
+                },
               ),
+              const SizedBox(width: 10),
             ],
           ),
+        ],
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(16.0),
+        width: double.infinity,
+        child: Column(
+          children: [
+            Expanded(
+              child: SizedBox(
+                height: double.infinity,
+                child: GetBuilder<sheetsController>(builder: (c) {
+                  return ConditionalBuilder(
+                    condition: controller.state,
+                    fallback: (context) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    builder: (context) {
+                      print("eeeeeeeeeeeeeeeeeeeee");
+                      return ListView.separated(
+                          itemBuilder: (context, index) => CustomContainer(
+                              sheetId:
+                                  '${controller.model.data![index].sheetId}',
+                              date:
+                                  '${controller.model.data![index].updatedAt}',
+                              money: '${controller.model.data![index].value}'),
+                          separatorBuilder: (context, index) =>
+                              SizedBox(height: 10),
+                          itemCount: controller.model.data!.length);
+                    },
+                  );
+                }),
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -35,104 +35,105 @@ class AddDeleteLabelsScreen extends StatelessWidget {
           style: TextStyle(fontSize: 26),
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(25.0),
-          child: Form(
-            key: controller.formKey,
-            child: Column(
-              children: [
-                Row(
-                  children: const [
-                    Text(
-                      'Add Label',
-                      style:
-                          TextStyle(fontSize: 26, fontWeight: FontWeight.w100),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 60,
-                ),
-                CustomTextFormField(
-                  labelText: 'Label',
-                  hintText: 'Enter label',
-                  fieldType: TextInputType.name,
-                  textController: controller.labelTextController,
-                  validator: (value) {
-                    return validInput(value!, 1, 20, '');
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                GetBuilder<LabelController>(
-                  builder: (controller) => ConditionalBuilder(
-                    condition: controller.state.isTrue,
-                    fallback: (context) => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    builder: (context) => CustomButton(
-                      textButton: 'Add',
-                      onPressed: () async {
-                        await controller.addLabel();
-                      },
-                    ),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: AppColor.backgroundColor,
+        title: const Text(
+          'Add Labels',
+          style: TextStyle(
+            fontWeight: FontWeight.w100,
+            fontSize: 30,
+          ),
+        ),
+      ),
+      body: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(20.0),
+        child: Form(
+          key: controller.formKey,
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 60,
+              ),
+              CustomTextFormField(
+                labelText: 'Label',
+                hintText: 'Enter label',
+                fieldType: TextInputType.name,
+                textController: controller.labelTextController,
+                validator: (value) {
+                  return validInput(value!, 1, 20, '');
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              GetBuilder<LabelController>(
+                builder: (controller) => ConditionalBuilder(
+                  condition: controller.state.isTrue,
+                  fallback: (context) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  builder: (context) => CustomButton(
+                    textButton: 'Add',
+                    onPressed: () async {
+                      await controller.addLabel();
+                    },
                   ),
                 ),
-                GetBuilder<LabelController>(
-                  builder: (controller) {
-                    return Expanded(
-                      child: SizedBox(
-                        child: ListView.builder(
-                          itemCount: Constant.labelsList.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Card(
-                                  elevation: 10,
-                                  color: Colors.white,
-                                  shadowColor: AppColor.buttonColor,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          '   ${Constant.labelsList[index].label}',
-                                          style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w200,
-                                          ),
+              ),
+              GetBuilder<LabelController>(
+                builder: (controller) {
+                  return Expanded(
+                    child: SizedBox(
+                      child: ListView.builder(
+                        itemCount: Constant.labelsList.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Card(
+                                elevation: 10,
+                                color: Colors.white,
+                                shadowColor: AppColor.buttonColor,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        '   ${Constant.labelsList[index].label}',
+                                        style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w200,
                                         ),
                                       ),
-                                      IconButton(
-                                          // delete
-                                          onPressed: () async {
-                                            String labelId = Constant
-                                                .labelsList[index].LabelId
-                                                .toString();
-                                            await controller.deleteLabel(
-                                                labelUrl: labelId);
-                                          },
-                                          icon: const Icon(
-                                            Icons.delete,
-                                            color: Colors.red,
-                                          )),
-                                    ],
-                                  ),
+                                    ),
+                                    IconButton(
+                                        // delete
+                                        onPressed: () async {
+                                          String labelId = Constant
+                                              .labelsList[index].LabelId
+                                              .toString();
+                                          await controller.deleteLabel(
+                                              labelUrl: labelId);
+                                        },
+                                        icon: const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        )),
+                                  ],
                                 ),
                               ),
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                )
-              ],
-            ),
+                    ),
+                  );
+                },
+              )
+            ],
           ),
         ),
       ),

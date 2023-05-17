@@ -1,3 +1,4 @@
+import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/controller/sheet_info_controller.dart';
 
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
@@ -16,66 +17,71 @@ class SheetInfo extends StatelessWidget {
   String sheetId = Get.arguments;
   @override
   Widget build(BuildContext context) {
-  CacheHelper.prefs?.setString('sheetId', sheetId);
+    CacheHelper.prefs?.setString('sheetId', sheetId);
 
     return Scaffold(
-      appBar: AppBar(),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(children: [
-            Expanded(
-              child: SizedBox(
-                height: double.infinity,
-                child: GetBuilder<sheetInfoController>(builder: (c) {
-                  return ConditionalBuilder(
-                    condition: controller.state,
-                    fallback: (context) => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    builder: (context) {
-                      
-                      print("!!!!!!!!!!!! ${controller.model.expenses}");
-                      return Container(
-                        height: 380,
-                        child: ListView.separated(
-                          separatorBuilder: (context, index) => const Divider(
-                            height: 5,
-                            thickness: 1,
-                          ),
-                          itemCount: controller.model.expenses!.length,
-                          itemBuilder: (context, index) {
-                            return CustomContainer(
-                              date: controller.model.expenses![index].label,
-                              sheetId:
-                                  controller.model.expenses![index].labelId,
-                              money:
-                                  '${controller.model.expenses![index].value}',
-                            );
-                          },
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
+        backgroundColor: AppColor.backgroundColor,
+        // title: const Text(
+        //   'Update Sheet',
+        //   style: TextStyle(
+        //     fontWeight: FontWeight.w100,
+        //     fontSize: 30,
+        //   ),
+        // ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(children: [
+          Expanded(
+            child: SizedBox(
+              height: double.infinity,
+              child: GetBuilder<sheetInfoController>(builder: (c) {
+                return ConditionalBuilder(
+                  condition: controller.state,
+                  fallback: (context) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  builder: (context) {
+                    print("!!!!!!!!!!!! ${controller.model.expenses}");
+                    return Container(
+                      height: 380,
+                      child: ListView.separated(
+                        separatorBuilder: (context, index) => const Divider(
+                          height: 5,
+                          thickness: 1,
                         ),
-                      );
-                    },
-                  );
-                }),
-              ),
-            ),
-             GetBuilder<sheetInfoController>(
-              builder: (c) => ConditionalBuilder(
-                condition: controller.deletestate,
-                builder: (context) => CustomButton(
-                  textButton: "Delete All",
-                  onPressed: () {
-                    controller.deleteSheet(sheetId: sheetId);
+                        itemCount: controller.model.expenses!.length,
+                        itemBuilder: (context, index) {
+                          return CustomContainer(
+                            date: controller.model.expenses![index].label,
+                            sheetId: controller.model.expenses![index].labelId,
+                            money: '${controller.model.expenses![index].value}',
+                          );
+                        },
+                      ),
+                    );
                   },
-                ),
-                fallback: (context) =>
-                    const Center(child: CircularProgressIndicator()),
-              ),
+                );
+              }),
             ),
-            
-          ]),
-        ),
+          ),
+          GetBuilder<sheetInfoController>(
+            builder: (c) => ConditionalBuilder(
+              condition: controller.deletestate,
+              builder: (context) => CustomButton(
+                textButton: "Delete All",
+                onPressed: () {
+                  controller.deleteSheet(sheetId: sheetId);
+                },
+              ),
+              fallback: (context) =>
+                  const Center(child: CircularProgressIndicator()),
+            ),
+          ),
+        ]),
       ),
     );
   }
@@ -107,9 +113,7 @@ class CustomContainer extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          
-            Get.toNamed(AppRoutes.exportUdateScreen, arguments: sheetId);
-         
+          Get.toNamed(AppRoutes.exportUdateScreen, arguments: sheetId);
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

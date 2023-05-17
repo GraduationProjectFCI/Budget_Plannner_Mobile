@@ -14,36 +14,39 @@ class DeadlinesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
-      body: Container(
-        margin: const EdgeInsets.only(left: 10, right: 10, top: 16, bottom: 16),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: AppColor.backgroundColor,
+        title: const Text(
+          'Deadlines',
+          style: TextStyle(
+            fontWeight: FontWeight.w100,
+            fontSize: 30,
+          ),
+        ),
+        actions: [
+          Row(
+            children: [
+              CustomButton(
+                  paddingLeft: 5,
+                  paddingRight: 5,
+                  textButton: 'Add deadline',
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.addDeadline);
+                  }),
+              const SizedBox(
+                width: 15,
+              )
+            ],
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  Text(
-                    'Deadlines',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w100,
-                      fontSize: 30,
-                    ),
-                  ),
-                  const Spacer(),
-                  SizedBox(
-                      child: CustomButton(
-                          paddingLeft: 5,
-                          paddingRight: 5,
-                          textButton: 'Add deadline',
-                          onPressed: () {
-                            Get.toNamed(AppRoutes.addDeadline);
-                          })),
-                  const SizedBox(width: 10),
-                ],
-              ),
-            ),
             Expanded(
               child: GetBuilder<DeadlineController>(builder: (c) {
                 return ConditionalBuilder(

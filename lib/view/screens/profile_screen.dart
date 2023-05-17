@@ -17,9 +17,19 @@ class ProfileScreen extends StatelessWidget {
     ProfileController controller = Get.put(ProfileController());
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
-      body: SafeArea(
-          child: Container(
-        margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: AppColor.backgroundColor,
+        title: const Text(
+          'Profile',
+          style: TextStyle(
+            fontWeight: FontWeight.w100,
+            fontSize: 30,
+          ),
+        ),
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: GetBuilder<ProfileController>(
             builder: (controller) => ConditionalBuilder(
@@ -29,19 +39,8 @@ class ProfileScreen extends StatelessWidget {
               builder: (context) => Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    children: const [
-                      Text(
-                        'Profile',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w100,
-                          fontSize: 30,
-                        ),
-                      ),
-                    ],
-                  ),
                   const SizedBox(
-                    height: 26,
+                    height: 5,
                   ),
                   const CircleAvatar(
                     radius: 80,
@@ -66,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
                       label: 'Currency',
                       text: '${controller.profileModel?.userData.currency}'),
                   // CustomContainer(label: 'Address', text: '${controller.profileModel?.userData.}'),
-                    const SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   CustomButton(
@@ -76,7 +75,7 @@ class ProfileScreen extends StatelessWidget {
                       Get.toNamed(AppRoutes.updateProfile);
                     },
                   ),
-                  
+
                   const SizedBox(
                     height: 10,
                   ),
@@ -93,7 +92,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ),
-      )),
+      ),
     );
   }
 }
