@@ -5,6 +5,7 @@ import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants/constant.dart';
 import '../../helper/cashe_helper.dart';
@@ -99,8 +100,10 @@ class ProfileScreen extends StatelessWidget {
                     colorButton: Colors.red,
                     textButton: 'Log out',
                     onPressed: () async {
-                      await CacheHelper.prefs?.clear;
-                      Get.offAllNamed(AppRoutes.login);
+                      CacheHelper.prefs?.clear().then((value) async {
+                        await Get.offAllNamed(AppRoutes.login);
+                        controller.onClose();
+                      });
                     },
                   ),
                   const SizedBox(

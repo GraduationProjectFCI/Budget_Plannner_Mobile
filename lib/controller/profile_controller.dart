@@ -18,9 +18,7 @@ class ProfileController extends GetxController {
     String? token = CacheHelper.prefs?.getString('token');
     WidgetsFlutterBinding.ensureInitialized();
     update();
-    Http.getData(
-            url: Endpoint.profile, token: token)
-        .then(
+    Http.getData(url: Endpoint.profile, token: token).then(
       (value) async {
         print(value);
 
@@ -50,5 +48,11 @@ class ProfileController extends GetxController {
   void onInit() {
     getProfileData();
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    Get.deleteAll();
+    super.onClose();
   }
 }
