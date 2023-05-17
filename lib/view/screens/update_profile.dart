@@ -16,6 +16,7 @@ class UpdateProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
@@ -29,6 +30,7 @@ class UpdateProfileScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Container(
           padding: const EdgeInsets.all(20.0),
           width: double.infinity,
@@ -36,10 +38,13 @@ class UpdateProfileScreen extends StatelessWidget {
           child: Form(
             key: controller.formKey,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const SizedBox(
+                  height: 50,
+                ),
                 CustomTextFormField(
-                  prefixIcon: Icon(Icons.person_outline),
+                  prefixIcon: const Icon(Icons.person_outline),
                   labelText: 'Name',
                   hintText: 'Enter Your Name',
                   fieldType: TextInputType.name,
@@ -50,7 +55,7 @@ class UpdateProfileScreen extends StatelessWidget {
                     validator: (value) {
                       return validInput(value!, 5, 100, 'email');
                     },
-                    prefixIcon: Icon(Icons.email_outlined),
+                    prefixIcon: const Icon(Icons.email_outlined),
                     labelText: 'E-mail',
                     hintText: 'Enter Your  E-mail',
                     textController: controller.emailTextController),
@@ -82,7 +87,7 @@ class UpdateProfileScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 CustomTextFormField(
-                    prefixIcon: Icon(Icons.attach_money_outlined),
+                    prefixIcon: const Icon(Icons.attach_money_outlined),
                     labelText: 'Budget',
                     hintText: 'Enter Monthly Budget Average',
                     fieldType: TextInputType.number,
@@ -151,6 +156,9 @@ class UpdateProfileScreen extends StatelessWidget {
                           const Center(child: CircularProgressIndicator()),
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 150,
                 ),
               ],
             ),

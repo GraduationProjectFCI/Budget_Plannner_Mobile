@@ -37,6 +37,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Container(
           padding: const EdgeInsets.fromLTRB(15, 150, 15, 195),
           width: double.infinity,

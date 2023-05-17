@@ -73,6 +73,7 @@ class StaticsScreen extends StatelessWidget {
                     builder: (context) {
                       print("eeeeeeeeeeeeeeeeeeeee");
                       return ListView.separated(
+                        physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) => StatisticsContainer(
                           label: controller.model.data?[index].label,
                           // label: "hello ",
@@ -82,7 +83,7 @@ class StaticsScreen extends StatelessWidget {
                               '${controller.model.data?[index].totalExpenses}',
                         ),
                         separatorBuilder: (context, index) =>
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                         itemCount: controller.model.data!.length,
                       );
                     },

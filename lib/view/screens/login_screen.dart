@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
     LoginController controller = Get.put(LoginController());
     return Scaffold(
       body: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Container(
           padding: const EdgeInsets.fromLTRB(10, 263, 10, 269),
           width: double.infinity,
@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 CustomTextFormField(
-                  prefixIcon: Icon(Icons.email_outlined),
+                  prefixIcon: const Icon(Icons.email_outlined),
                   labelText: 'E-mail',
                   hintText: 'Enter E-mail',
                   textController: emailController,

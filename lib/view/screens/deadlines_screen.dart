@@ -56,6 +56,7 @@ class DeadlinesScreen extends StatelessWidget {
                   ),
                   builder: (context) {
                     return ListView.separated(
+                        physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) => CustomContainer(
                             deadlineId:
                                 '${controller.model.data![index].sheetId}',
@@ -64,7 +65,7 @@ class DeadlinesScreen extends StatelessWidget {
                             date: '${controller.model.data![index].updatedAt}',
                             money: '${controller.model.data![index].value}'),
                         separatorBuilder: (context, index) =>
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                         itemCount: controller.model.data!.length);
                   },
                 );
