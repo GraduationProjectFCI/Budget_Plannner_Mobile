@@ -5,6 +5,7 @@ import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants/constant.dart';
 import '../../helper/cashe_helper.dart';
@@ -31,6 +32,7 @@ class ProfileScreen extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: GetBuilder<ProfileController>(
             builder: (controller) => ConditionalBuilder(
               condition: controller.state.isTrue,
@@ -49,24 +51,39 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     height: 32,
                   ),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   CustomContainer(
                       label: 'Name',
                       text: '${controller.profileModel?.userData.name}'),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   CustomContainer(
                       label: 'E-mail',
                       text: '${controller.profileModel?.userData.email}'),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   CustomContainer(
                       label: 'Gender',
                       text: '${controller.profileModel?.userData.gender}'),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   CustomContainer(
                       label: 'Budget',
                       text: '${controller.profileModel?.userData.budget}'),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   CustomContainer(
                       label: 'Currency',
                       text: '${controller.profileModel?.userData.currency}'),
                   // CustomContainer(label: 'Address', text: '${controller.profileModel?.userData.}'),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   CustomButton(
                     colorButton: AppColor.buttonColor,
@@ -83,9 +100,14 @@ class ProfileScreen extends StatelessWidget {
                     colorButton: Colors.red,
                     textButton: 'Log out',
                     onPressed: () async {
-                      await CacheHelper.prefs?.clear;
-                      Get.offAllNamed(AppRoutes.login);
+                      CacheHelper.prefs?.clear().then((value) async {
+                        await Get.offAllNamed(AppRoutes.login);
+                        controller.onClose();
+                      });
                     },
+                  ),
+                  const SizedBox(
+                    height: 50,
                   ),
                 ],
               ),

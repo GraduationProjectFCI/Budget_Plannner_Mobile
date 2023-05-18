@@ -20,17 +20,18 @@ class SheetInfo extends StatelessWidget {
     CacheHelper.prefs?.setString('sheetId', sheetId);
 
     return Scaffold(
+      backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
         backgroundColor: AppColor.backgroundColor,
-        // title: const Text(
-        //   'Update Sheet',
-        //   style: TextStyle(
-        //     fontWeight: FontWeight.w100,
-        //     fontSize: 30,
-        //   ),
-        // ),
+        title: const Text(
+          'Sheet Details',
+          style: TextStyle(
+            fontWeight: FontWeight.w100,
+            fontSize: 30,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -49,6 +50,7 @@ class SheetInfo extends StatelessWidget {
                     return Container(
                       height: 380,
                       child: ListView.separated(
+                        physics: const BouncingScrollPhysics(),
                         separatorBuilder: (context, index) => const Divider(
                           height: 5,
                           thickness: 1,

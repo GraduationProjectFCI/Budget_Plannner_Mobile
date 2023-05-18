@@ -1,8 +1,8 @@
 class LoginInfo {
   // late int status;
   var message;
-  late String? token;
-  late UserData? data;
+  String? token;
+  UserData? data;
 
   LoginInfo.fromjson(Map<String, dynamic> json) {
     // this.status = json['status'];

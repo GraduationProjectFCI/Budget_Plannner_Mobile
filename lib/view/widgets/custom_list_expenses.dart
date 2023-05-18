@@ -13,13 +13,14 @@ class BuildCustomListExpenses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
+      height: 380,
       child: ListView.separated(
+        physics: const BouncingScrollPhysics(),
         separatorBuilder: (context, index) => const Divider(
           height: 5,
           thickness: 1,
         ),
-        itemCount: expenses!.length ,
+        itemCount: expenses!.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),

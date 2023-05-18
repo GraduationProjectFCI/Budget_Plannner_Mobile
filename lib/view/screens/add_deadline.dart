@@ -36,7 +36,7 @@ class AddDeadlineScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               picker(dateTimeController: controller.dateTimeController),
@@ -111,7 +111,7 @@ class AddDeadlineScreen extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Container(

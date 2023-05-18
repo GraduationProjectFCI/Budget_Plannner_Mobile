@@ -77,8 +77,8 @@ class SheetsScreen extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     ),
                     builder: (context) {
-                      
                       return ListView.separated(
+                          physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) => CustomContainer(
                               sheetId:
                                   '${controller.model.data![index].sheetId}',
@@ -86,7 +86,7 @@ class SheetsScreen extends StatelessWidget {
                                   '${controller.model.data![index].updatedAt}',
                               money: '${controller.model.data![index].value}'),
                           separatorBuilder: (context, index) =>
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                           itemCount: controller.model.data!.length);
                     },
                   );

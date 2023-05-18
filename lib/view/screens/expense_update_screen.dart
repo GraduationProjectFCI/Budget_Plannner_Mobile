@@ -34,167 +34,176 @@ class ExportUdateScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: controller.formkey,
-          child: ListView(
-            children: [
-              const SizedBox(
-                height: 30,
-              ),
-              // SingleChildScrollView(
-              // child:
-              Column(children: [
-                Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 160,
-                      child: Column(
-                        children: [
-                          const Text(
-                            'Labels',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          GetBuilder<UpdateExpenseController>(
-                            builder: (controller) => DropdownButton(
-                              value: label,
-                              onChanged: (value) {
-                                controller.labelController.text =
-                                    value.toString();
-                                controller.refresh();
-                                label = value;
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                // SingleChildScrollView(
+                // child:
+                Column(children: [
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 160,
+                        child: Column(
+                          children: [
+                            const Text(
+                              'Labels',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            GetBuilder<UpdateExpenseController>(
+                              builder: (controller) => DropdownButton(
+                                value: label,
+                                onChanged: (value) {
+                                  controller.labelController.text =
+                                      value.toString();
+                                  controller.refresh();
+                                  label = value;
 
-                                // print(value);
-                              },
-                              items: [
-                                ...List.generate(
-                                  Constant.labelsList.length,
-                                  (index) => DropdownMenuItem(
-                                    value: Constant.labelsList[index].label,
-                                    child:
-                                        Text(Constant.labelsList[index].label!),
+                                  // print(value);
+                                },
+                                items: [
+                                  ...List.generate(
+                                    Constant.labelsList.length,
+                                    (index) => DropdownMenuItem(
+                                      value: Constant.labelsList[index].label,
+                                      child: Text(
+                                          Constant.labelsList[index].label!),
+                                    ),
                                   ),
+                                ],
+                                hint: const Text('Select label'),
+                                isExpanded: true,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
                                 ),
-                              ],
-                              hint: const Text('Select label'),
-                              isExpanded: true,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
+                                dropdownColor: AppColor.buttonColor,
+                                borderRadius: BorderRadius.circular(10),
+                                iconSize: 45,
                               ),
-                              dropdownColor: AppColor.buttonColor,
-                              borderRadius: BorderRadius.circular(10),
-                              iconSize: 45,
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    const Spacer(),
-                    SizedBox(
-                      width: 80,
-                      child: Column(
-                        children: [
-                          const Text(
-                            'Values',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
-                            keyboardType: TextInputType.number,
-                            controller: controller.valueController,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "enter value";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              // suffix: const Text('EGP'),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15),
+                      const Spacer(),
+                      SizedBox(
+                        width: 80,
+                        child: Column(
+                          children: [
+                            const Text(
+                              'Values',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: controller.valueController,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "enter value";
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                // suffix: const Text('EGP'),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                fillColor: AppColor.hintTextColor,
                               ),
-                              fillColor: AppColor.hintTextColor,
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.text,
-                  controller: controller.descrpionController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "enter descrpition";
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    // suffix: const Text('EGP'),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    hintText: "add descrtpiton",
-                    fillColor: AppColor.hintTextColor,
+                    ],
                   ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.text,
+                    controller: controller.descrpionController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "enter descrpition";
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      // suffix: const Text('EGP'),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      hintText: "add descrtpiton",
+                      fillColor: AppColor.hintTextColor,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
 
-                GetBuilder<UpdateExpenseController>(
-                  builder: (c) => ConditionalBuilder(
-                    condition: controller.updatestate,
-                    builder: (context) => Container(
-                      // margin: const EdgeInsets.only(left: 8, right: 8),
-                      child: CustomButton(
-                        textButton: 'Update',
+                  GetBuilder<UpdateExpenseController>(
+                    builder: (c) => ConditionalBuilder(
+                      condition: controller.updatestate,
+                      builder: (context) => Container(
+                        // margin: const EdgeInsets.only(left: 8, right: 8),
+                        child: CustomButton(
+                          textButton: 'Update',
+                          onPressed: () {
+                            if (controller.formkey.currentState!.validate()) {
+                              controller.updatExpense(
+                                expenseId: expenseId,
+                                label: controller.labelController.text,
+                                value:
+                                    int.parse(controller.valueController.text),
+                                description:
+                                    controller.descrpionController.text,
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                      fallback: (context) =>
+                          const Center(child: CircularProgressIndicator()),
+                    ),
+                  ),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  // list
+                  GetBuilder<UpdateExpenseController>(
+                    builder: (c) => ConditionalBuilder(
+                      condition: controller.deleteestate,
+                      builder: (context) => CustomButton(
+                        colorButton: Colors.red,
+                        textButton: "Delete",
                         onPressed: () {
-                          if (controller.formkey.currentState!.validate()) {
-                            controller.updatExpense(
-                              expenseId: expenseId,
-                              label: controller.labelController.text,
-                              value: int.parse(controller.valueController.text),
-                              description: controller.descrpionController.text,
-                            );
-                          }
+                          controller.deleteExpense(expenseId: expenseId);
                         },
                       ),
+                      fallback: (context) =>
+                          const Center(child: CircularProgressIndicator()),
                     ),
-                    fallback: (context) =>
-                        const Center(child: CircularProgressIndicator()),
                   ),
-                ),
-
-                const SizedBox(
-                  height: 30,
-                ),
-                // list
-                GetBuilder<UpdateExpenseController>(
-                  builder: (c) => ConditionalBuilder(
-                    condition: controller.deleteestate  ,
-                    builder: (context) => CustomButton(
-                      textButton: "Delete",
-                      onPressed: () {
-                        controller.deleteExpense(expenseId: expenseId);
-                      },
-                    ),
-                    fallback: (context) =>
-                        const Center(child: CircularProgressIndicator()),
+                  const SizedBox(
+                    height: 300,
                   ),
-                ),
-              ]),
-              // )
-            ],
+                ]),
+                // )
+              ],
+            ),
           ),
         ),
       ),

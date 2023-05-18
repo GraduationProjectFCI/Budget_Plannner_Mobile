@@ -64,177 +64,178 @@ class ExportScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Form(
           key: controller.formkey,
-          child: ListView(
-            children: [
-              const SizedBox(
-                height: 30,
-              ),
-              // SingleChildScrollView(
-              // child:
-              Column(
-                children: [
-                  Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                // const SizedBox(
+                //   height: 30,
+                // ),
+                SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
                     children: [
-                      SizedBox(
-                        width: 160,
-                        child: Column(
-                          children: [
-                            const Text(
-                              'Labels',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            GetBuilder<ExpenseController>(
-                              builder: (controller) => DropdownButton(
-                                value: label,
-                                onChanged: (value) {
-                                  controller.labelController.text =
-                                      value.toString();
-                                  controller.refresh();
-                                  label = value;
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 160,
+                            child: Column(
+                              children: [
+                                const Text(
+                                  'Labels',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                GetBuilder<ExpenseController>(
+                                  builder: (controller) => DropdownButton(
+                                    value: label,
+                                    onChanged: (value) {
+                                      controller.labelController.text =
+                                          value.toString();
+                                      controller.refresh();
+                                      label = value;
 
-                                  // print(value);
-                                },
-                                items: [
-                                  ...List.generate(
-                                    Constant.labelsList.length,
-                                    (index) => DropdownMenuItem(
-                                      value: Constant.labelsList[index].label,
-                                      child: Text(
-                                          Constant.labelsList[index].label!),
+                                      // print(value);
+                                    },
+                                    items: [
+                                      ...List.generate(
+                                        Constant.labelsList.length,
+                                        (index) => DropdownMenuItem(
+                                          value:
+                                              Constant.labelsList[index].label,
+                                          child: Text(Constant
+                                              .labelsList[index].label!),
+                                        ),
+                                      ),
+                                    ],
+                                    hint: const Text('Select label'),
+                                    isExpanded: true,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
                                     ),
+                                    dropdownColor: AppColor.buttonColor,
+                                    borderRadius: BorderRadius.circular(10),
+                                    iconSize: 45,
                                   ),
-                                ],
-                                hint: const Text('Select label'),
-                                isExpanded: true,
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
                                 ),
-                                dropdownColor: AppColor.buttonColor,
-                                borderRadius: BorderRadius.circular(10),
-                                iconSize: 45,
-                              ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                      Spacer(),
-                      SizedBox(
-                        width: 80,
-                        child: Column(
-                          children: [
-                            const Text(
-                              'Values',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              keyboardType: TextInputType.number,
-                              controller: controller.valueController,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "enter value";
-                                }
-                                return null;
-                              },
-                              decoration: InputDecoration(
-                                // suffix: const Text('EGP'),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                fillColor: AppColor.hintTextColor,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.text,
-                    controller: controller.descrController,
-                    decoration: InputDecoration(
-                      // suffix: const Text('EGP'),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      hintText: "add descrtpiton",
-                      fillColor: AppColor.hintTextColor,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 8, right: 8),
-                    child: CustomButton(
-                      textButton: 'add',
-                      onPressed: () {
-                        controller.addData();
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  // list
-                  GetBuilder<ExpenseController>(
-                    builder: (c) => BuildCustomListExpenses(
-                      expenses: controller.expenses,
-                    ),
-                  ),
-
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: AppColor.hintTextColor,
-                        ),
-                        child: const Text(
-                          'Total',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: AppColor.hintTextColor,
-                        ),
-                        child: GetBuilder<ExpenseController>(
-                          builder: (c) => Text(
-                            '${controller.total} EGP',
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
+                          const Spacer(),
+                          SizedBox(
+                            width: 80,
+                            child: Column(
+                              children: [
+                                const Text(
+                                  'Values',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                TextFormField(
+                                  keyboardType: TextInputType.number,
+                                  controller: controller.valueController,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "enter value";
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(
+                                    // suffix: const Text('EGP'),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    fillColor: AppColor.hintTextColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: controller.descrController,
+                        decoration: InputDecoration(
+                          // suffix: const Text('EGP'),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          hintText: "add descrtpiton",
+                          fillColor: AppColor.hintTextColor,
                         ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 8, right: 8),
+                        child: CustomButton(
+                          textButton: 'add',
+                          onPressed: () {
+                            controller.addData();
+                          },
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      // list
+                      GetBuilder<ExpenseController>(
+                        builder: (c) => BuildCustomListExpenses(
+                          expenses: controller.expenses,
+                        ),
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: AppColor.hintTextColor,
+                            ),
+                            child: const Text(
+                              'Total',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: AppColor.hintTextColor,
+                            ),
+                            child: GetBuilder<ExpenseController>(
+                              builder: (c) => Text(
+                                '${controller.total} EGP',
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 100,
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                ],
-              ),
-              // )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
