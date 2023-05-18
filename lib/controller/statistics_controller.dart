@@ -8,12 +8,11 @@ class StatisticsController extends GetxController {
   late StatisticsModel model;
   int spanBudget = 0;
   int state = 1;
-  void getDeadlineData() {
+  Future <void> getStatisticData() async {
     state = 1;
     var url;
     String? token = CacheHelper.prefs!.getString('token');
     Http.getData(token: token, url: Endpoint.statisticsData).then((value) {
-     
       model = StatisticsModel.fromJson(value);
 
       if (model.data == null) {
@@ -30,6 +29,6 @@ class StatisticsController extends GetxController {
 
   @override
   void onInit() {
-    getDeadlineData();
+    getStatisticData();
   }
 }

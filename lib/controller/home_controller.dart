@@ -8,7 +8,7 @@ import '../helper/http_helper.dart';
 class HomeController extends GetxController {
   RxBool state = true.obs;
   HomeModel? homeModel;
-  getHomeData() async {
+  Future <void> getHomeData() async {
     print('helllllo Home');
     state = false.obs;
     Http.getHomeData(token: CacheHelper.prefs!.getString('token').toString())

@@ -50,15 +50,7 @@ class UpdateProfileScreen extends StatelessWidget {
                   fieldType: TextInputType.name,
                   textController: controller.nameTextController,
                 ),
-                const SizedBox(height: 20),
-                CustomTextFormField(
-                    validator: (value) {
-                      return validInput(value!, 5, 100, 'email');
-                    },
-                    prefixIcon: const Icon(Icons.email_outlined),
-                    labelText: 'E-mail',
-                    hintText: 'Enter Your  E-mail',
-                    textController: controller.emailTextController),
+               
                 const SizedBox(height: 20),
                 SizedBox(
                   width: double.infinity,
@@ -75,13 +67,7 @@ class UpdateProfileScreen extends StatelessWidget {
                       const SizedBox(
                         width: 8,
                       ),
-                      Expanded(
-                        child: CustomTextFormField(
-                            labelText: 'Age',
-                            fieldType: TextInputType.number,
-                            hintText: 'Enter Your Age',
-                            textController: controller.ageTextController),
-                      ),
+                    
                     ],
                   ),
                 ),
@@ -98,38 +84,9 @@ class UpdateProfileScreen extends StatelessWidget {
                     hintText: 'Enter Preferred currency',
                     textController: controller.currencyTextController),
                 const SizedBox(height: 20),
-                // Container(
-                //   width: double.infinity,
-                //   child: Row(
-                //     crossAxisAlignment: CrossAxisAlignment.center,
-                //     children: [
-                //       Expanded(
-                //         child: CustomTextFormField(
-                //             validator: (value) {
-                //               return validInput(value!, 8, 100, 'password');
-                //             },
-                //             hintText: 'Enter Passwoed',
-                //             textController: controller.passwordTextController),
-                //       ),
-                //       const SizedBox(width: 8),
-                //       Expanded(
-                //         child: CustomTextFormField(
-                //             validator: (value) {
-                //               return validInput(value!, 8, 100, 'password');
-                //             },
-                //             hintText: 'Re-enter Password',
-                //             textController:
-                //                 controller.rePasswordTextController),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // const SizedBox(height: 10),
                 CustomTextFormField(
                     readOnly: true,
-                    validator: (val) {
-                      return validInput(val!, 6, 20, '');
-                    },
+                  
                     labelText: 'birthdate',
                     prefixIcon: const Icon(Icons.calendar_today),
                     onTap: () {
@@ -138,7 +95,6 @@ class UpdateProfileScreen extends StatelessWidget {
                     hintText: 'Select birthdate',
                     textController: controller.birthdateTextController),
                 const SizedBox(height: 25),
-                // picker(dateTimeController: controller.birthdateTextController),
                 Container(
                   margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
                   child: GetBuilder<UpdateProfileController>(

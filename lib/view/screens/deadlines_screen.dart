@@ -6,6 +6,8 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controller/deadline_info_controller.dart';
+
 class DeadlinesScreen extends StatelessWidget {
   DeadlinesScreen({super.key});
   DeadlineController controller = Get.put(DeadlineController());
@@ -58,6 +60,7 @@ class DeadlinesScreen extends StatelessWidget {
                     return ListView.separated(
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) => CustomContainer(
+                          index: index,
                             deadlineId:
                                 '${controller.model.data![index].sheetId}',
                             label:
@@ -81,6 +84,7 @@ class DeadlinesScreen extends StatelessWidget {
 class CustomContainer extends StatelessWidget {
   CustomContainer({
     required this.label,
+    required this.index,
     required this.date,
     required this.money,
     required this.deadlineId,
@@ -90,6 +94,10 @@ class CustomContainer extends StatelessWidget {
   String date;
   String money;
   String deadlineId;
+  int index;
+  DeadlineController deadlinecontroller = Get.put(DeadlineController());
+
+  UpdateDeadlineController controller = Get.put(UpdateDeadlineController());
 
   @override
   Widget build(BuildContext context) {
@@ -127,14 +135,29 @@ class CustomContainer extends StatelessWidget {
                 color: Color(0xff000000),
               ),
             ),
-            Text(
-              '${money} EGP',
-              style: const TextStyle(
-                fontSize: 19,
-                fontWeight: FontWeight.w300,
-                height: 1,
-                color: Color(0xff000000),
-              ),
+            Row(
+              children: [
+                Text(
+                  '${money} EGP',
+                  style: const TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.w300,
+                    height: 1,
+                    color: Color(0xff000000),
+                  ),
+                ),
+                  IconButton(
+                  onPressed: () {
+                    controller.deleteDeadline(
+                        deadlinId: deadlinecontroller.model.data![index].sheetId!
+                        );
+                  },
+                  icon: const Icon(
+                    Icons.delete_forever,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

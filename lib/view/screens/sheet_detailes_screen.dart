@@ -1,40 +1,43 @@
 import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/constant.dart';
+import 'package:budget_planner_app/view/screens/sheet_info.dart';
+// import 'package:budget_planner_app/view/screens/deadlines_screen.dart';
 
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:budget_planner_app/controller/sheet_info_controller.dart';
 
 import '../../controller/expense_controller.dart';
+import '../../helper/cashe_helper.dart';
 import '../widgets/custom_list_expenses.dart';
 
-class ExportScreen extends StatelessWidget {
-  ExportScreen({super.key});
-  ExpenseController controller = Get.put(ExpenseController());
+class SheetDetials extends StatelessWidget {
+  SheetDetials({super.key});
+  sheetInfoController controller = Get.put(sheetInfoController());
 
   String? label;
-  String sheetType = Get.arguments;
+  String sheetId = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
-    controller.expenses.clear();
-    controller.total = 0;
+
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
         backgroundColor: AppColor.backgroundColor,
-        title: Text(
-          sheetType,
-          style: const TextStyle(
+        title: const Text(
+          "Sheet detailes",
+          style: TextStyle(
             fontWeight: FontWeight.w100,
             fontSize: 30,
           ),
         ),
         // actions: [
-          
+
         //   const SizedBox(
         //     width: 15,
         //   )
@@ -69,7 +72,7 @@ class ExportScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                GetBuilder<ExpenseController>(
+                                GetBuilder<sheetInfoController>(
                                   builder: (controller) => DropdownButton(
                                     value: label,
                                     onChanged: (value) {
@@ -158,66 +161,71 @@ class ExportScreen extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 8, right: 8),
-                        child: GetBuilder<ExpenseController>(
-                          builder: (c) => ConditionalBuilder(
-                            condition: controller.addstate,
-                            builder: (context) => CustomButton(
-                              textButton: 'add',
-                              onPressed: () {
-                                controller.addLabel();
-                                controller.addData();
-                              },
+                        Container(
+                          margin: const EdgeInsets.only(left: 8, right: 8),
+                          child: GetBuilder<sheetInfoController>(
+                            builder: (c) => ConditionalBuilder(
+                              condition: controller.addstate,
+                              builder: (context) => CustomButton(
+                                textButton: 'add',
+                                onPressed: () {
+                                  controller.addLabel();
+                                  // controller.addData();
+                                },
+                              ),
+                              fallback: (context) => const Center(
+                                  child: CircularProgressIndicator()),
                             ),
-                            fallback: (context) => const Center(
-                                child: CircularProgressIndicator()),
                           ),
                         ),
-                      ),
+                       
                       const SizedBox(
                         height: 10,
                       ),
                       // list
-                      GetBuilder<ExpenseController>(
-                        builder: (c) => BuildCustomListExpenses(
-                          expenses: controller.expenses,
-                        ),
-                      ),
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: AppColor.hintTextColor,
-                            ),
-                            child: const Text(
-                              'Total',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
+                      Container(
+                        height: 380,
+                        child:   SizedBox(
+                            height: double.infinity,
+                            child:
+                                GetBuilder<sheetInfoController>(builder: (c) {
+                              return ConditionalBuilder(
+                                condition: controller.state,
+                                fallback: (context) => const Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                                builder: (context) {
+                                  print(
+                                      "!!!!!!!!!!!! ${controller.model.expenses}");
+                                  return Container(
+                                    height: 380,
+                                    child: ListView.separated(
+                                      physics: const BouncingScrollPhysics(),
+                                      separatorBuilder: (context, index) =>
+                                          const Divider(
+                                        height: 5,
+                                        thickness: 1,
+                                      ),
+                                      itemCount:
+                                          controller.model.expenses!.length,
+                                      itemBuilder: (context, index) {
+                                        return CustomContainer(
+                                          index: index,
+                                          date: controller
+                                              .model.expenses![index].label,
+                                          sheetId: controller
+                                              .model.expenses![index].labelId,
+                                          money:
+                                              '${controller.model.expenses![index].value}',
+                                        );
+                                      },
+                                    ),
+                                  );
+                                },
+                              );
+                            }),
                           ),
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: AppColor.hintTextColor,
-                            ),
-                            child: GetBuilder<ExpenseController>(
-                              builder: (c) => Text(
-                                '${controller.total} EGP',
-                                style: const TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 100,
+                         
                       ),
                     ],
                   ),

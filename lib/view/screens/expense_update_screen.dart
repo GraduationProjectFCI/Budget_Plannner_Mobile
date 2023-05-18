@@ -183,20 +183,20 @@ class ExportUdateScreen extends StatelessWidget {
                     height: 20,
                   ),
                   // list
-                  GetBuilder<UpdateExpenseController>(
-                    builder: (c) => ConditionalBuilder(
-                      condition: controller.deleteestate,
-                      builder: (context) => CustomButton(
-                        colorButton: Colors.red,
-                        textButton: "Delete",
-                        onPressed: () {
-                          controller.deleteExpense(expenseId: expenseId);
-                        },
-                      ),
-                      fallback: (context) =>
-                          const Center(child: CircularProgressIndicator()),
-                    ),
-                  ),
+                  // GetBuilder<UpdateExpenseController>(
+                  //   builder: (c) => ConditionalBuilder(
+                  //     condition: controller.deleteestate,
+                  //     builder: (context) => CustomButton(
+                  //       colorButton: Colors.red,
+                  //       textButton: "Delete",
+                  //       onPressed: () {
+                  //         controller.deleteExpense(expenseId: expenseId);
+                  //       },
+                  //     ),
+                  //     fallback: (context) =>
+                  //         const Center(child: CircularProgressIndicator()),
+                  //   ),
+                  // ),
                   const SizedBox(
                     height: 300,
                   ),

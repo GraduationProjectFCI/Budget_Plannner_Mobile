@@ -36,7 +36,7 @@ class AddDeadlineController extends GetxController {
       deadlineController.clear();
       dateTimeController.clear();
       conttrollrerDeadline.getDeadlineData();
-      Get.back();
+      // Get.back();
 
       update();
     });

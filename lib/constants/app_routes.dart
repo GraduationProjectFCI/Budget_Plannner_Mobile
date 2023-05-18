@@ -1,6 +1,7 @@
 import 'package:budget_planner_app/view/screens/add_deadline.dart';
 import 'package:budget_planner_app/view/screens/deadline_info.dart';
 import 'package:budget_planner_app/view/screens/add_labels_screen.dart';
+import 'package:budget_planner_app/view/screens/sheet_detailes_screen.dart';
 import 'package:budget_planner_app/view/screens/sheet_info.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,8 @@ Map<String, Widget Function(BuildContext)> routes = {
   AppRoutes.profile: (context) => ProfileScreen(),
   AppRoutes.deadlines: (context) => DeadlinesScreen(),
   AppRoutes.home: (context) => HomeScreen(),
-  AppRoutes.sheetInfo: (context) => SheetInfo(),
+  AppRoutes.sheetInfo: (context) => SheetDetials(),
+  // AppRoutes.sheetInfo: (context) => SheetInfo(),
   AppRoutes.deadlineInfo: (context) => DeadlineInfo(),
   AppRoutes.bottomNavigationBar: (context) => BottomNavigationBarScreen(),
   AppRoutes.exportScreen: (context) => ExportScreen(),

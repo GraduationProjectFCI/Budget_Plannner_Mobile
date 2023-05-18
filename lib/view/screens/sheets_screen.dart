@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../constants/constant.dart';
+import '../../helper/cashe_helper.dart';
 import '../widgets/custom_button.dart';
 
 class SheetsScreen extends StatelessWidget {
@@ -34,29 +35,52 @@ class SheetsScreen extends StatelessWidget {
         actions: [
           Row(
             children: [
-              CustomButton(
-                paddingLeft: 5,
-                paddingRight: 5,
-                textButton: 'Add import',
-                onPressed: () {
-                  Get.toNamed(
-                    AppRoutes.exportScreen,
-                    arguments: "import",
-                  );
-                },
-              ),
+              GetBuilder<sheetsController>(builder: (c) {
+                return ConditionalBuilder(
+                  condition: controller.importstate,
+                  fallback: (context) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  builder: (context) {
+                    return CustomButton(
+                      paddingLeft: 5,
+                      paddingRight: 5,
+                      textButton: 'Add import',
+                      onPressed: () {
+                        controller
+                            .createSheat(sheetType: "import")
+                            .then((value) {
+                         
+                          
+                        });
+                      },
+                    );
+                  },
+                );
+              }),
               const SizedBox(width: 10),
-              CustomButton(
-                paddingLeft: 5,
-                paddingRight: 5,
-                textButton: 'Add Export',
-                onPressed: () {
-                  Get.toNamed(
-                    AppRoutes.exportScreen,
-                    arguments: "export",
-                  );
-                },
-              ),
+              GetBuilder<sheetsController>(builder: (c) {
+                return ConditionalBuilder(
+                  condition: controller.exportstate,
+                  fallback: (context) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  builder: (context) {
+                    return CustomButton(
+                      paddingLeft: 5,
+                      paddingRight: 5,
+                      textButton: 'Add export',
+                      onPressed: () {
+                       controller
+                            .createSheat(sheetType: "export")
+                            .then((value) {
+                         
+                        });
+                      },
+                    );
+                  },
+                );
+              }),
               const SizedBox(width: 10),
             ],
           ),
@@ -80,6 +104,7 @@ class SheetsScreen extends StatelessWidget {
                       return ListView.separated(
                           physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) => CustomContainer(
+                            index: index,
                               sheetId:
                                   '${controller.model.data![index].sheetId}',
                               date:
@@ -105,13 +130,16 @@ class CustomContainer extends StatelessWidget {
     required this.date,
     required this.sheetId,
     this.money,
+    this.index,
     super.key,
   });
 
   String date;
   String? money;
   String sheetId;
+  int? index;
   sheetInfoController controller = Get.put(sheetInfoController());
+  sheetsController sheetcontroller = Get.put(sheetsController());
   Function()? onTap;
   @override
   Widget build(BuildContext context) {
@@ -127,11 +155,13 @@ class CustomContainer extends StatelessWidget {
       child: InkWell(
         onTap: () {
           controller.getSheetExpense(sheetId: sheetId).then((value) {
+          CacheHelper.prefs?.setString('sheetId', sheetId);
+
             Get.toNamed(AppRoutes.sheetInfo, arguments: sheetId);
           });
         },
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               '${date}',
@@ -142,6 +172,7 @@ class CustomContainer extends StatelessWidget {
                 color: Color(0xff000000),
               ),
             ),
+            Spacer(),
             Text(
               '${money} EGP',
               style: const TextStyle(
@@ -151,6 +182,15 @@ class CustomContainer extends StatelessWidget {
                 color: Color(0xff000000),
               ),
             ),
+             IconButton(
+              onPressed: () {
+                controller.deleteSheet(
+                    sheetId: sheetcontroller.model.data![index!].sheetId);
+              },
+              icon: const Icon(
+                Icons.delete_forever,
+                color: Colors.red,
+              ),),
           ],
         ),
       ),

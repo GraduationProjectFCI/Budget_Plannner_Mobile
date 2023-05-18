@@ -147,13 +147,13 @@ class DeadlineInfo extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                CustomButton(
-                  colorButton: Colors.red,
-                  textButton: "Delete",
-                  onPressed: () {
-                    controller.deleteDeadline(deadlinId: deadlinId);
-                  },
-                ),
+                // CustomButton(
+                //   colorButton: Colors.red,
+                //   textButton: "Delete",
+                //   onPressed: () {
+                //     controller.deleteDeadline(deadlinId: deadlinId);
+                //   },
+                // ),
                 const SizedBox(
                   height: 300,
                 ),

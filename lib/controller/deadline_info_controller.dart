@@ -22,9 +22,10 @@ class UpdateDeadlineController extends GetxController {
     String? token = CacheHelper.prefs!.getString('token');
     Http.delete(url: '${Endpoint.deadlineDelete}$deadlinId', token: token!)
         .then((value) {
+      conttrollrerDeadline.getDeadlineData();
       toast(msg: "${value['msg']}", color: Color.fromARGB(255, 3, 216, 244));
 
-      Get.offAllNamed(AppRoutes.bottomNavigationBar);
+      // Get.offAllNamed(AppRoutes.bottomNavigationBar);
     });
   }
 
