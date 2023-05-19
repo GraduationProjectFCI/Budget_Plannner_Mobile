@@ -26,14 +26,24 @@ class MyApp extends StatelessWidget {
         primarySwatch: AppColor.primaryColor,
       ),
 
-      // initialRoute: AppRoutes.register,
+      // initialRoute: AppRoutes.login,
       initialRoute:
           token != null ? AppRoutes.bottomNavigationBar : AppRoutes.login,
       routes: routes,
     );
   }
 }
+
+
+// expense_screen edit
+// 
+
 //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDVjYjcwN2ZiMzEyMzlmMjA3YTYwMTgiLCJuYW1lIjoiYWxpIiwiaWF0IjoxNjg0MTE4NDMzLCJleHAiOjE2ODQyMDQ4MzN9.gCz_6u17Jj1Ma0bEXpJcIJmkGdeJZNMWxAPqxvfhODk
+
+
+
+//mohassen011@gmail.com
+//123456@Aa
 
 // sinajul.mudige@rungel.net
 

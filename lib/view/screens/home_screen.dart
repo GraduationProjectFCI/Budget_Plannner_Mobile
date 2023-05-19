@@ -78,6 +78,19 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        const Divider(thickness: 2),
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        _buildSlider(
+                            "Custom Colors",
+                            SimpleSlider(
+                                thumbColor: Colors.green,
+                                activeColor: Colors.lightGreen,
+                                inactiveColor: Colors.lightGreenAccent)),
                       ],
                     ),
                   ),
@@ -87,6 +100,55 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+Widget _buildSlider(String title, Widget child) {
+  return SizedBox(
+    width: double.infinity,
+    child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[Text(title), child, Divider()]),
+  );
+}
+
+class SimpleSlider extends StatefulWidget {
+  final Color? thumbColor, activeColor, inactiveColor;
+  final int? divisions;
+
+  const SimpleSlider(
+      {Key? key,
+      this.thumbColor,
+      this.activeColor,
+      this.inactiveColor,
+      this.divisions})
+      : super(key: key);
+
+  @override
+  _SimpleSliderState createState() => _SimpleSliderState();
+}
+
+class _SimpleSliderState extends State<SimpleSlider> {
+  double _currentSliderValue = 20;
+
+  @override
+  Widget build(BuildContext context) {
+    return Slider(
+      value: _currentSliderValue,
+      min: 0,
+      max: 100,
+      label: _currentSliderValue.toInt().toString(),
+      thumbColor: widget.thumbColor,
+      activeColor: widget.activeColor,
+      inactiveColor: widget.inactiveColor,
+      divisions: widget.divisions,
+      onChanged: (double value) {
+        setState(() {
+          _currentSliderValue = value;
+        });
+      },
     );
   }
 }
