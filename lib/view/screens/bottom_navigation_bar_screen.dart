@@ -21,7 +21,9 @@ class BottomNavigationBarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Scaffold(
+        backgroundColor: AppColor.backgroundColor,
         body: PageView(
+          physics: BouncingScrollPhysics(),
           onPageChanged: (value) {
             controller.animateToPage(value);
           },

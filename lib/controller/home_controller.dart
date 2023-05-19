@@ -1,5 +1,7 @@
+import 'package:budget_planner_app/constants/endpoint.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
 import 'package:budget_planner_app/models/home_model.dart';
+import 'package:budget_planner_app/models/limits.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,10 +10,12 @@ import '../helper/http_helper.dart';
 class HomeController extends GetxController {
   RxBool state = true.obs;
   HomeModel? homeModel;
-  Future <void> getHomeData() async {
+  Future<void> getHomeData() async {
     print('helllllo Home');
     state = false.obs;
-    Http.getHomeData(token: CacheHelper.prefs!.getString('token').toString())
+    Http.getHomeData(
+            endPoints: Endpoint.homeData,
+            token: CacheHelper.prefs!.getString('token').toString())
         .then((value) {
       print('sucess');
       print('Home controllrer = $value');
@@ -24,9 +28,31 @@ class HomeController extends GetxController {
     update();
   }
 
+  RxBool state2 = true.obs;
+  LimitsModel? limitsModel;
+  Future<void> getLimitsData() async {
+    print('helllllo getLimitsData');
+    state2 = false.obs;
+    Http.getHomeData(
+            endPoints: Endpoint.limits,
+            token: CacheHelper.prefs!.getString('token').toString())
+        .then((value) {
+      print('sucess');
+      print('limits controllrer = $value');
+      limitsModel = LimitsModel.fromJson(value);
+      state2 = true.obs;
+      WidgetsFlutterBinding.ensureInitialized();
+      update();
+    });
+
+    update();
+  }
+
   @override
   void onInit() {
+    getLimitsData();
     getHomeData();
+
     super.onInit();
   }
 }

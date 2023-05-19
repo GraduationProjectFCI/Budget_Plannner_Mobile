@@ -102,8 +102,9 @@ class Http {
     }
   }
 
-  static Future getHomeData({required String token}) async {
-    final url = '${Endpoint.homeData}';
+  static Future getHomeData(
+      {required String token, required String endPoints}) async {
+    final url = '${endPoints}';
     final headers = {'Authorization': 'Bearer $token'};
     final uri = Uri.parse(url);
     final response = await http.get(uri, headers: headers);
