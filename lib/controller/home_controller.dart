@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../helper/http_helper.dart';
+import '../view/widgets/toast.dart';
 
 class HomeController extends GetxController {
   RxBool state = true.obs;
@@ -54,5 +55,70 @@ class HomeController extends GetxController {
     getHomeData();
 
     super.onInit();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  bool addstate = true;
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  TextEditingController limitController = TextEditingController();
+  TextEditingController valueController = TextEditingController();
+  addLimit() async {
+    if (formKey.currentState!.validate()) {
+      addstate = false;
+      WidgetsFlutterBinding.ensureInitialized();
+      update();
+      Map<String, dynamic> map = {
+        "label": limitController.text,
+        "limit": valueController.text,
+      };
+      String? token = CacheHelper.prefs!.getString('token');
+      Http.postData(
+        endpoint: Endpoint.limits,
+        map: map,
+        token: token,
+      ).then((value) async {
+        addstate = true;
+        toast(msg: value['msg'].toString(), color: Colors.green);
+
+        update();
+      });
+    }
   }
 }

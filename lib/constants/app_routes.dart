@@ -12,6 +12,7 @@ import '../view/screens/expense_screen.dart';
 import '../view/screens/expense_update_screen.dart';
 import '../view/screens/home_screen.dart';
 // import '../view/screens/import_screen.dart';
+import '../view/screens/limit_add.dart';
 import '../view/screens/login_screen.dart';
 import '../view/screens/profile_screen.dart';
 import '../view/screens/register_screen.dart';
@@ -34,6 +35,7 @@ class AppRoutes {
   static const String AddDeleteLabelsScreen = '/labels_screen';
   static const String exportUdateScreen = '/export_update_screen';
   static const String updateProfile = '/update_profile';
+  static const String limitAdd = '/limit_add';
 }
 
 Map<String, Widget Function(BuildContext)> routes = {
@@ -53,4 +55,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   AppRoutes.AddDeleteLabelsScreen: (context) => AddDeleteLabelsScreen(),
   AppRoutes.exportUdateScreen: (context) => ExportUdateScreen(),
   AppRoutes.updateProfile: (context) => UpdateProfileScreen(),
+  AppRoutes.limitAdd: (context) => LimitAdd(),
 };

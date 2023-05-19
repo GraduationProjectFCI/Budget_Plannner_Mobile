@@ -55,8 +55,8 @@ class DeadlineInfo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      width: 300,
+                    Expanded(
+                      flex: 3,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -70,8 +70,8 @@ class DeadlineInfo extends StatelessWidget {
                            CustomTextFormField(
                             hintText: "add deadline",
                             labelText: 'add deadline',
-                          
-
+                                                   
+                           
                             fieldType: TextInputType.text,
                             validator: (Value) {
                               if (Value!.isEmpty) {
@@ -80,27 +80,14 @@ class DeadlineInfo extends StatelessWidget {
                               return null;
                             },
                             textController: controller.deadlineController,
-                          ),
-                          // TextFormField(
-                          //   controller: controller.deadlineController,
-                          //   validator: (Value) {
-                          //     if (Value!.isEmpty) {
-                          //       return "please enter deadline name";
-                          //     }
-                          //     return null;
-                          //   },
-                          //   keyboardType: TextInputType.text,
-                          //   decoration: InputDecoration(
-                          //       border: OutlineInputBorder(
-                          //         borderRadius: BorderRadius.circular(15),
-                          //       ),
-                          //       fillColor: AppColor.hintTextColor),
-                          // ),
+                                                   ),
+                        
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: 100,
+                    SizedBox(width: 20,),
+                    Expanded(
+                      flex: 1,
                       child: Column(
                         children: [
                           const Text(
@@ -122,22 +109,7 @@ class DeadlineInfo extends StatelessWidget {
                             },
                             textController: controller.valueController,
                           ),
-                          // TextFormField(
-                          //   controller: controller.valueController,
-                          //   validator: (Value) {
-                          //     if (Value!.isEmpty) {
-                          //       return "please enter deadline name";
-                          //     }
-                          //     return null;
-                          //   },
-                          //   keyboardType: TextInputType.number,
-                          //   decoration: InputDecoration(
-                          //       suffix: const Text('EGP'),
-                          //       border: OutlineInputBorder(
-                          //         borderRadius: BorderRadius.circular(15),
-                          //       ),
-                          //       fillColor: AppColor.hintTextColor),
-                          // ),
+                         
                         ],
                       ),
                     ),
