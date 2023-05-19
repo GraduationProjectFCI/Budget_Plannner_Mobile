@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
     LoginController controller = Get.put(LoginController());
     return Scaffold(
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        // physics: const BouncingScrollPhysics(),
         child: Container(
           padding: const EdgeInsets.fromLTRB(10, 263, 10, 269),
           width: double.infinity,
@@ -49,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                 CustomTextFormField(
                   prefixIcon: const Icon(Icons.email_outlined),
                   labelText: 'E-mail',
-                  hintText: 'Enter E-mail',
+                  hintText: 'E-mail',
                   textController: emailController,
                   validator: (value) {
                     return validInput(value!, 5, 100, 'email');
@@ -61,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                 GetBuilder<LoginController>(
                     builder: (c) => CustomTextFormField(
                           labelText: 'Password',
-                          hintText: 'Enter Password',
+                          hintText: 'Password',
                           ispassword: controller.isPassword,
                           suffix: IconButton(
                             onPressed: () {
@@ -95,6 +95,27 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      // function
+                      onTap: () {},
+                      child: const Text(
+                        'Forget Password',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          height: 1,
+                          color: Color(0xff3356d2),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 Container(
                   // margin: const EdgeInsets.only(left: 53, right: 58),
                   child: SingleChildScrollView(
@@ -102,6 +123,7 @@ class LoginScreen extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         const Text(
                           'If you don’t have an account please',
