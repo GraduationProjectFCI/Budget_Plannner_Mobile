@@ -12,7 +12,7 @@ import '../functions/refresh_data.dart';
 import '../model/expenses_model.dart';
 
 class sheetInfoController extends GetxController {
-  sheetsController conttrollrerSheet = Get.put(sheetsController());
+  // sheetsController conttrollrerSheet = Get.put(sheetsController());
   TextEditingController valueController = TextEditingController();
   TextEditingController descrController = TextEditingController();
   TextEditingController labelController = TextEditingController();
@@ -80,7 +80,7 @@ class sheetInfoController extends GetxController {
     await Http.delete(url: '${Endpoint.sheetData}/$sheetId', token: token!)
         .then((value) {
       refrishData().then((value) {
-        conttrollrerSheet.getSheetData().then((value) {
+        sheetsController().getSheetData().then((value) {
           Get.back();
           deletestate = true;
           update();
@@ -100,7 +100,7 @@ class sheetInfoController extends GetxController {
     Http.delete(url: '${Endpoint.sheetData}/$sheetId/$expenseId', token: token!)
         .then((value) {
       toast(msg: "${value['msg']}", color: Color.fromARGB(255, 3, 216, 244));
-      conttrollrerSheet.getSheetData().then((value) {
+      sheetsController().getSheetData().then((value) {
         getSheetExpense(sheetId: sheetId!).then((value) {
           deleteestate = true;
         });

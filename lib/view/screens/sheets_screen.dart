@@ -101,6 +101,8 @@ class SheetsScreen extends StatelessWidget {
                           physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) => CustomContainer(
                               index: index,
+                              time:
+                                  '${controller.model.data![index].time}',
                               sheetId:
                                   '${controller.model.data![index].sheetId}',
                               sheetType:
@@ -128,6 +130,7 @@ class CustomContainer extends StatelessWidget {
     required this.date,
     required this.sheetType,
     required this.sheetId,
+    required this.time,
     this.money,
     this.index,
     super.key,
@@ -137,6 +140,7 @@ class CustomContainer extends StatelessWidget {
   String date;
   String? money;
   String sheetId;
+  String time;
   int? index;
   sheetInfoController controller = Get.put(sheetInfoController());
   sheetsController sheetcontroller = Get.put(sheetsController());
@@ -145,7 +149,7 @@ class CustomContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 70,
+      height: 55,
       // margin: const EdgeInsets.symmetric(vertical: 4),
       padding: const EdgeInsets.fromLTRB(11, 11, 11, 11),
       decoration: BoxDecoration(
@@ -156,47 +160,44 @@ class CustomContainer extends StatelessWidget {
         onTap: () {
           controller.getSheetExpense(sheetId: sheetId).then((value) {
             CacheHelper.prefs?.setString('sheetId', sheetId);
+            CacheHelper.prefs?.setInt('sheetIndex', index!);
 
             Get.toNamed(AppRoutes.sheetInfo, arguments: sheetId);
           });
         },
         child:
-            // Row(
-            //   children: [
-            // sheetType == 'export'
-            //     ? const Icon(
-            //         Icons.arrow_upward,
-            //         color: Colors.red,
-            //       )
-            //     : const Icon(
-            //         Icons.arrow_downward,
-            //         color: Colors.green,
-            //       ),
-            Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+           
             Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // const SizedBox(
-                //   width: 10,
-                // ),
+                
                 Column(
                   children: [
-                    Text(
-                      '${date}',
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        height: 1,
-                        color: Color(0xff000000),
-                      ),
+                    Row(
+                      children: [
+                        sheetType == 'export'
+                        ? const Icon(
+                            Icons.arrow_upward,
+                            color: Colors.red,
+                          )
+                        : const Icon(
+                            Icons.arrow_downward,
+                            color: Colors.green,
+                          ),
+                        Text(
+                          '${time}',
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w300,
+                            height: 1,
+                            color: Color(0xff000000),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+                
                 Text(
                   '${date}',
                   style: const TextStyle(
@@ -206,53 +207,37 @@ class CustomContainer extends StatelessWidget {
                     color: Color(0xff000000),
                   ),
                 ),
-                const Spacer(),
-                Text(
-                  '${money} EGP',
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w300,
-                    height: 1,
-                    color: Color(0xff000000),
-                  ),
+                // const Spacer(),
+                Row(
+                  children: [
+                    Text(
+                      '${money} EGP',
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                        height: 1,
+                        color: Color(0xff000000),
+                      ),
+                    ),
+                     InkWell(
+                      onTap: () async {
+                        await controller.deleteSheet(
+                            sheetId:
+                                sheetcontroller.model.data![index!].sheetId);
+                      },
+                      child: const Icon(
+                        Icons.delete,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
-                // IconButton(
-                //     onPressed: () async {
-                //       await controller.deleteSheet(
-                //           sheetId: sheetcontroller.model.data![index!].sheetId);
-                //     },
-                //     icon: Container(
-                //       margin: EdgeInsets.only(bottom: 20),
-                // child:
-                InkWell(
-                  onTap: () async {
-                    await controller.deleteSheet(
-                        sheetId: sheetcontroller.model.data![index!].sheetId);
-                  },
-                  child: const Icon(
-                    Icons.delete,
-                    color: Colors.grey,
-                  ),
-                ),
-                // ))
-                // ),
+               
+               
+                
               ],
             ),
-            const SizedBox(
-              height: 5,
-            ),
-            const Text(
-              'data dsajldk jasl asdo; kasdsadasdasd;',
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 14),
-            ),
-          ],
-        ),
-        //   ],
-        // ),
+        
       ),
     );
   }

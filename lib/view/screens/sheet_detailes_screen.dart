@@ -1,5 +1,6 @@
 import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/constant.dart';
+import 'package:budget_planner_app/controller/sheets_controller.dart';
 import 'package:budget_planner_app/view/screens/sheet_info.dart';
 // import 'package:budget_planner_app/view/screens/deadlines_screen.dart';
 
@@ -20,7 +21,7 @@ class SheetDetials extends StatelessWidget {
 
   String? label;
   String sheetId = Get.arguments;
-
+  int? index = CacheHelper.prefs!.getInt('sheetIndex');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -207,6 +208,8 @@ class SheetDetials extends StatelessWidget {
                                         controller.model.expenses!.length,
                                     itemBuilder: (context, index) {
                                       return CustomContainer(
+                                        decraption: controller
+                                            .model.expenses![index].description!,
                                         index: index,
                                         date: controller
                                             .model.expenses![index].label,
@@ -223,14 +226,44 @@ class SheetDetials extends StatelessWidget {
                           }),
                         ),
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              // color: AppColor.hintTextColor,
+                            ),
+                            child: const Text(
+                              'Total',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: AppColor.hintTextColor,
+                            ),
+                            child: GetBuilder<sheetsController>(
+                              
+                              builder: (c) => Text(
+                                '${c.model.data![index!].value} EGP',
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
                     ],
                   ),
-                )
-              ],
+                    ]
             ),
           ),
+              ]
         ),
       ),
-    );
+    )));
   }
 }

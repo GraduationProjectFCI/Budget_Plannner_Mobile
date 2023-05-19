@@ -1,5 +1,6 @@
 import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/constants/endpoint.dart';
+import 'package:budget_planner_app/controller/sheet_info_controller.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
 import 'package:budget_planner_app/helper/http_helper.dart';
 import 'package:budget_planner_app/model/sheet_model.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class sheetsController extends GetxController {
-  
+  sheetInfoController sheetInfoControll = Get.put(sheetInfoController());
   late SheetModel model;
   bool state = true;
   bool exportstate = true;
@@ -28,13 +29,16 @@ class sheetsController extends GetxController {
     print(token);
     Http.postData(endpoint: Endpoint.sheetData, token: token, map: data)
         .then((value) async {
-      CacheHelper.prefs?.setString("sheetId", value['data']['_id']) ;
+      CacheHelper.prefs?.setString("sheetId", value['data']['_id']);
 
       await getSheetData().then((value) {});
       importstate = true;
       exportstate = true;
-      
-          Get.toNamed(AppRoutes.exportScreen, arguments: sheetType);
+      sheetInfoControll
+          .getSheetExpense(sheetId: value['data']['_id'])
+          .then((value) {
+        Get.toNamed(AppRoutes.sheetInfo, arguments: sheetType);
+      });
 
       toast(msg: value['msg'], color: Colors.green);
     });
