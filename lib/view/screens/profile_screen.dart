@@ -28,6 +28,27 @@ class ProfileScreen extends StatelessWidget {
             fontSize: 30,
           ),
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.toNamed(AppRoutes.AddDeleteLabelsScreen);
+              },
+              icon: const Icon(
+                Icons.add,
+                color: AppColor.buttonColor,
+              )),
+          IconButton(
+              onPressed: () async {
+                CacheHelper.prefs?.clear().then((value) async {
+                  await Get.offAllNamed(AppRoutes.login);
+                  controller.onClose();
+                });
+              },
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.red,
+              ))
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
@@ -91,23 +112,6 @@ class ProfileScreen extends StatelessWidget {
                     onPressed: () async {
                       Get.toNamed(AppRoutes.updateProfile);
                     },
-                  ),
-
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  CustomButton(
-                    colorButton: Colors.red,
-                    textButton: 'Log out',
-                    onPressed: () async {
-                      CacheHelper.prefs?.clear().then((value) async {
-                        await Get.offAllNamed(AppRoutes.login);
-                        controller.onClose();
-                      });
-                    },
-                  ),
-                  const SizedBox(
-                    height: 50,
                   ),
                 ],
               ),
