@@ -1,7 +1,7 @@
 import 'package:budget_planner_app/constants/endpoint.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
 import 'package:budget_planner_app/models/home_model.dart';
-import 'package:budget_planner_app/models/limits.dart';
+import 'package:budget_planner_app/models/limits_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,6 +40,7 @@ class HomeController extends GetxController {
       print('sucess');
       print('limits controllrer = $value');
       limitsModel = LimitsModel.fromJson(value);
+      print(' @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n\n${limitsModel}');
       state2 = true.obs;
       WidgetsFlutterBinding.ensureInitialized();
       update();

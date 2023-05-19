@@ -104,19 +104,18 @@ class HomeScreen extends StatelessWidget {
                   condition: controller.state.isTrue,
                   builder: (context) => ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: controller.limitsModel?.limits?.length,
+                    itemCount: controller.limitsModel?.limits.length,
                     itemBuilder: (context, index) => Column(
                       children: [
                         Text(
-                          '${controller.limitsModel?.limits?[index].label}',
+                          '${controller.limitsModel?.limits[index].label}',
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w300),
                         ),
                         CustomSlider(
-                          max:
-                              controller.limitsModel?.limits?[index].limit ?? 0,
+                          max: controller.limitsModel?.limits[index].limit ?? 0,
                           value:
-                              controller.limitsModel?.limits?[index].value ?? 0,
+                              controller.limitsModel?.limits[index].value ?? 0,
                         ),
                       ],
                     ),
