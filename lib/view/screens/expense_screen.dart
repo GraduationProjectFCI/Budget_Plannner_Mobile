@@ -127,24 +127,14 @@ class ExportScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                // TextFormField(
-                                //   keyboardType: TextInputType.number,
-                                //   controller: controller.valueController,
-                                //   validator: (value) {
-                                //     if (value!.isEmpty) {
-                                //       return "enter value";
-                                //     }
-                                //     return null;
-                                //   },
-                                //   decoration: InputDecoration(
-                                //     // suffix: const Text('EGP'),
-                                //     border: OutlineInputBorder(
-                                //       borderRadius: BorderRadius.circular(15),
-                                //     ),
-                                //     fillColor: AppColor.hintTextColor,
-                                //   ),
-                                // ),
                                 CustomTextFormField(
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return "enter value";
+                                      }
+                                      return null;
+                                    },
+                                    textController: controller.valueController,
                                     fieldType: TextInputType.number,
                                     hintText: 'value',
                                     labelText: 'label'),
@@ -157,21 +147,11 @@ class ExportScreen extends StatelessWidget {
                       const SizedBox(
                         height: 15,
                       ),
-                      // TextFormField(
-                      //   keyboardType: TextInputType.text,
-                      //   controller: controller.descrController,
-                      //   decoration: InputDecoration(
-                      //     // suffix: const Text('EGP'),
-                      //     border: OutlineInputBorder(
-                      //       borderRadius: BorderRadius.circular(15),
-                      //     ),
-                      //     hintText: "add descrtpiton",
-                      //     fillColor: AppColor.hintTextColor,
-                      //   ),
-                      // ),
+
                       CustomTextFormField(
-                          fieldType: TextInputType.number,
-                          hintText: 'value',
+                          textController: controller.descrController,
+                          fieldType: TextInputType.text,
+                          hintText: "add descrtpiton",
                           labelText: 'label'),
                       const SizedBox(
                         height: 10,

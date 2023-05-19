@@ -2,6 +2,7 @@ import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/constant.dart';
 
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
+import 'package:budget_planner_app/view/widgets/custom_textformfield.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,8 +48,11 @@ class ExportUdateScreen extends StatelessWidget {
                   Row(
                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        width: 160,
+                      // SizedBox(
+                      // width: 160,
+                      // child:
+                      Expanded(
+                        flex: 3,
                         child: Column(
                           children: [
                             const Text(
@@ -94,36 +98,33 @@ class ExportUdateScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Spacer(),
-                      SizedBox(
-                        width: 80,
-                        child: Column(
-                          children: [
-                            const Text(
-                              'Values',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              keyboardType: TextInputType.number,
-                              controller: controller.valueController,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "enter value";
-                                }
-                                return null;
-                              },
-                              decoration: InputDecoration(
-                                // suffix: const Text('EGP'),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                fillColor: AppColor.hintTextColor,
+                      // ),
+                      Expanded(
+                        flex: 1,
+                        child: SizedBox(
+                          width: 80,
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Values',
+                                style: TextStyle(fontSize: 20),
                               ),
-                            ),
-                          ],
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              CustomTextFormField(
+                                  fieldType: TextInputType.number,
+                                  textController: controller.valueController,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "enter value";
+                                    }
+                                    return null;
+                                  },
+                                  hintText: 'value',
+                                  labelText: 'value'),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -131,24 +132,19 @@ class ExportUdateScreen extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  TextFormField(
-                    keyboardType: TextInputType.text,
-                    controller: controller.descrpionController,
+                  CustomTextFormField(
+                    hintText: "add descrtpiton",
+                    labelText: 'add descrtpiton',
+                    fieldType: TextInputType.text,
+                    textController: controller.descrpionController,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "enter descrpition";
                       }
                       return null;
                     },
-                    decoration: InputDecoration(
-                      // suffix: const Text('EGP'),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      hintText: "add descrtpiton",
-                      fillColor: AppColor.hintTextColor,
-                    ),
                   ),
+
                   const SizedBox(
                     height: 30,
                   ),

@@ -4,6 +4,7 @@ import 'package:budget_planner_app/view/screens/sheet_info.dart';
 // import 'package:budget_planner_app/view/screens/deadlines_screen.dart';
 
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
+import 'package:budget_planner_app/view/widgets/custom_textformfield.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,6 @@ class SheetDetials extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
@@ -61,8 +61,11 @@ class SheetDetials extends StatelessWidget {
                       Row(
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(
-                            width: 160,
+                          // SizedBox(
+                          //   width: 160,
+                          // child:
+                          Expanded(
+                            flex: 3,
                             child: Column(
                               children: [
                                 const Text(
@@ -109,9 +112,13 @@ class SheetDetials extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const Spacer(),
-                          SizedBox(
-                            width: 80,
+                          // ),
+                          // const Spacer(),
+                          // SizedBox(
+                          // width: 80,
+                          // child:
+                          Expanded(
+                            flex: 1,
                             child: Column(
                               children: [
                                 const Text(
@@ -121,111 +128,100 @@ class SheetDetials extends StatelessWidget {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                TextFormField(
-                                  keyboardType: TextInputType.number,
-                                  controller: controller.valueController,
+                                CustomTextFormField(
+                                  hintText: 'value',
+                                  labelText: 'value',
+                                  fieldType: TextInputType.number,
+                                  textController: controller.valueController,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return "enter value";
                                     }
                                     return null;
                                   },
-                                  decoration: InputDecoration(
-                                    // suffix: const Text('EGP'),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    fillColor: AppColor.hintTextColor,
-                                  ),
                                 ),
                               ],
                             ),
                           ),
+                          // ),
                         ],
                       ),
                       const SizedBox(
                         height: 15,
                       ),
-                      TextFormField(
-                        keyboardType: TextInputType.text,
-                        controller: controller.descrController,
-                        decoration: InputDecoration(
-                          // suffix: const Text('EGP'),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          hintText: "add descrtpiton",
-                          fillColor: AppColor.hintTextColor,
-                        ),
+                      CustomTextFormField(
+                        hintText: "add descrtpiton",
+                        labelText: 'add descrtpiton',
+                        fieldType: TextInputType.text,
+                        textController: controller.descrController,
                       ),
+
                       const SizedBox(
                         height: 10,
                       ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 8, right: 8),
-                          child: GetBuilder<sheetInfoController>(
-                            builder: (c) => ConditionalBuilder(
-                              condition: controller.addstate,
-                              builder: (context) => CustomButton(
-                                textButton: 'add',
-                                onPressed: () {
-                                  controller.addLabel();
-                                  // controller.addData();
-                                },
-                              ),
-                              fallback: (context) => const Center(
-                                  child: CircularProgressIndicator()),
+                      Container(
+                        margin: const EdgeInsets.only(left: 8, right: 8),
+                        child: GetBuilder<sheetInfoController>(
+                          builder: (c) => ConditionalBuilder(
+                            condition: controller.addstate,
+                            builder: (context) => CustomButton(
+                              textButton: 'add',
+                              onPressed: () {
+                                controller.addLabel();
+                                // controller.addData();
+                              },
                             ),
+                            fallback: (context) => const Center(
+                                child: CircularProgressIndicator()),
                           ),
                         ),
-                       
+                      ),
+
                       const SizedBox(
                         height: 10,
                       ),
                       // list
                       Container(
                         height: 380,
-                        child:   SizedBox(
-                            height: double.infinity,
-                            child:
-                                GetBuilder<sheetInfoController>(builder: (c) {
-                              return ConditionalBuilder(
-                                condition: controller.state,
-                                fallback: (context) => const Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                                builder: (context) {
-                                  print(
-                                      "!!!!!!!!!!!! ${controller.model.expenses}");
-                                  return Container(
-                                    height: 380,
-                                    child: ListView.separated(
-                                      physics: const BouncingScrollPhysics(),
-                                      separatorBuilder: (context, index) =>
-                                          const Divider(
-                                        height: 5,
-                                        thickness: 1,
-                                      ),
-                                      itemCount:
-                                          controller.model.expenses!.length,
-                                      itemBuilder: (context, index) {
-                                        return CustomContainer(
-                                          index: index,
-                                          date: controller
-                                              .model.expenses![index].label,
-                                          sheetId: controller
-                                              .model.expenses![index].labelId,
-                                          money:
-                                              '${controller.model.expenses![index].value}',
-                                        );
-                                      },
+                        child: SizedBox(
+                          height: double.infinity,
+                          child: GetBuilder<sheetInfoController>(builder: (c) {
+                            return ConditionalBuilder(
+                              condition: controller.state,
+                              fallback: (context) => const Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                              builder: (context) {
+                                print(
+                                    "!!!!!!!!!!!! ${controller.model.expenses}");
+                                return Container(
+                                  height: 380,
+                                  child: ListView.separated(
+                                    physics: const BouncingScrollPhysics(),
+                                    separatorBuilder: (context, index) =>
+                                        const Divider(
+                                      height: 5,
+                                      thickness: 1,
                                     ),
-                                  );
-                                },
-                              );
-                            }),
-                          ),
-                         
+                                    itemCount:
+                                        controller.model.expenses!.length,
+                                    itemBuilder: (context, index) {
+                                      return CustomContainer(
+                                        index: index,
+                                        date: controller
+                                            .model.expenses![index].label,
+                                        sheetId: controller
+                                            .model.expenses![index].labelId,
+                                        money:
+                                            '${controller.model.expenses![index].value}',
+                                      );
+                                    },
+                                  ),
+                                );
+                              },
+                            );
+                          }),
+                        ),
                       ),
                     ],
                   ),
