@@ -1,51 +1,59 @@
 import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/app_routes.dart';
-import 'package:budget_planner_app/controller/add_deadlin_controller.dart';
-import 'package:budget_planner_app/controller/deadline_controller.dart';
+import 'package:budget_planner_app/constants/constant.dart';
+import 'package:budget_planner_app/controller/home_controller.dart';
+import 'package:budget_planner_app/controller/label_controller.dart';
+import 'package:budget_planner_app/functions/valid_input.dart';
+import 'package:budget_planner_app/helper/cashe_helper.dart';
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
-import 'package:budget_planner_app/view/widgets/date_time.dart';
+import 'package:budget_planner_app/view/widgets/custom_textformfield.dart';
+import 'package:budget_planner_app/view/widgets/toast.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../widgets/custom_textformfield.dart';
-
-class AddDeadlineScreen extends StatelessWidget {
-  AddDeadlineScreen({super.key});
-  AddDeadlineController controller = Get.put(AddDeadlineController());
-  var formkey = GlobalKey<FormState>();
-
+class LimitAdd extends StatelessWidget {
+  LimitAdd({super.key});
+  HomeController controller = Get.put(HomeController());
+  late MediaQueryData queryData;
   @override
   Widget build(BuildContext context) {
+    CacheHelper.testSharedPreferences();
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.offNamed(AppRoutes.bottomNavigationBar);
+        },
+        backgroundColor: AppColor.buttonColor,
+        child: const Text(
+          '>',
+          style: TextStyle(fontSize: 26),
+        ),
+      ),
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
         backgroundColor: AppColor.backgroundColor,
         title: const Text(
-          'Deadline',
+          'Add Limit',
           style: TextStyle(
             fontWeight: FontWeight.w100,
             fontSize: 30,
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
+      body: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(20.0),
         child: Form(
-          key: formkey,
+          key: controller.formKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 30,
+                height: 60,
               ),
-              picker(dateTimeController: controller.dateTimeController),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
+             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
@@ -54,28 +62,28 @@ class AddDeadlineScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Deadline Name',
+                          'Limit Name',
                           style: TextStyle(fontSize: 20),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
                         CustomTextFormField(
-                          hintText: "add deadline",
-                          labelText: 'add deadline',
+                          hintText: "add limit",
+                          labelText: 'add limit',
                           fieldType: TextInputType.text,
                           validator: (Value) {
                             if (Value!.isEmpty) {
-                              return "please enter deadline name";
+                              return "please enter limit name";
                             }
                             return null;
                           },
-                          textController: controller.deadlineController,
+                          textController: controller.limitController,
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(
+                 const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -106,38 +114,24 @@ class AddDeadlineScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              
               const SizedBox(
-                height: 15,
+                height: 20,
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 6, left: 134, right: 134),
-                child: GetBuilder<AddDeadlineController>(
-                  builder: (c) => ConditionalBuilder(
-                    condition: controller.state,
-                    builder: (context) => CustomButton(
-                      textButton: 'add',
-                      onPressed: () {
-                        if (formkey.currentState!.validate()) {
-                          controller
-                              .sendData(
-                                date: controller.dateTimeController.text,
-                                name: controller.deadlineController.text,
-                                value:
-                                    int.parse(controller.valueController.text),
-                              )
-                              .then((value) {});
-                        }
-                      },
-                    ),
-                    fallback: (context) =>
-                        const Center(child: CircularProgressIndicator()),
+              GetBuilder<HomeController>(
+                builder: (co) => ConditionalBuilder(
+                  condition: controller.addstate,
+                  fallback: (context) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  builder: (context) => CustomButton(
+                    textButton: 'Add',
+                    onPressed: () async {
+                      await controller.addLimit();
+                    },
                   ),
                 ),
               ),
+              
             ],
           ),
         ),

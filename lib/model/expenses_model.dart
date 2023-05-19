@@ -21,7 +21,7 @@ class Expenses {
   late String labelId;
   late String userId;
   late String label;
-  late String description;
+  late String? description;
   late int value;
   late String createdAt;
   late String updatedAt;

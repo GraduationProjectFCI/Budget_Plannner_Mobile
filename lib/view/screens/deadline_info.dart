@@ -11,6 +11,8 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../widgets/custom_textformfield.dart';
+
 class DeadlineInfo extends StatelessWidget {
   UpdateDeadlineController controller = Get.put(UpdateDeadlineController());
   DeadlineInfo({
@@ -53,8 +55,8 @@ class DeadlineInfo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      width: 200,
+                    Expanded(
+                      flex: 3,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -65,26 +67,27 @@ class DeadlineInfo extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          TextFormField(
-                            controller: controller.deadlineController,
+                           CustomTextFormField(
+                            hintText: "add deadline",
+                            labelText: 'add deadline',
+                                                   
+                           
+                            fieldType: TextInputType.text,
                             validator: (Value) {
                               if (Value!.isEmpty) {
                                 return "please enter deadline name";
                               }
                               return null;
                             },
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                fillColor: AppColor.hintTextColor),
-                          ),
+                            textController: controller.deadlineController,
+                                                   ),
+                        
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: 100,
+                    SizedBox(width: 20,),
+                    Expanded(
+                      flex: 1,
                       child: Column(
                         children: [
                           const Text(
@@ -94,22 +97,19 @@ class DeadlineInfo extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          TextFormField(
-                            controller: controller.valueController,
+                           CustomTextFormField(
+                            hintText: "add value",
+                            labelText: 'add value',
+                            fieldType: TextInputType.number,
                             validator: (Value) {
                               if (Value!.isEmpty) {
-                                return "please enter deadline name";
+                                return "please enter value";
                               }
                               return null;
                             },
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                                suffix: const Text('EGP'),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                fillColor: AppColor.hintTextColor),
+                            textController: controller.valueController,
                           ),
+                         
                         ],
                       ),
                     ),
