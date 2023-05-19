@@ -37,7 +37,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        // physics: const BouncingScrollPhysics(),
         child: Container(
           padding: const EdgeInsets.fromLTRB(15, 150, 15, 195),
           width: double.infinity,
@@ -122,7 +122,7 @@ class RegisterScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: CustomTextFormField(
-                                labelText: 'Passwoed',
+                                labelText: 'Password',
                                 ispassword: controller.isPassword,
                                 suffix: IconButton(
                                   onPressed: () {
@@ -131,9 +131,9 @@ class RegisterScreen extends StatelessWidget {
                                   icon: Icon(controller.icon),
                                 ),
                                 validator: (value) {
-                                  return validInput(value!, 8, 100, 'password');
+                                  return validInput(value!, 8, 100, 'Password');
                                 },
-                                hintText: 'Enter Passwoed',
+                                hintText: 'Enter Password',
                                 textController:
                                     controller.passwordTextController),
                           ),

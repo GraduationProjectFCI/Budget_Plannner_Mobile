@@ -2,6 +2,7 @@ import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/constant.dart';
 
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
+import 'package:budget_planner_app/view/widgets/custom_textformfield.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,7 +35,7 @@ class ExportScreen extends StatelessWidget {
           ),
         ),
         // actions: [
-          
+
         //   const SizedBox(
         //     width: 15,
         //   )
@@ -58,8 +59,11 @@ class ExportScreen extends StatelessWidget {
                       Row(
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(
-                            width: 160,
+                          // SizedBox(
+                          // width: 100,
+                          // child:
+                          Expanded(
+                            flex: 3,
                             child: Column(
                               children: [
                                 const Text(
@@ -106,9 +110,14 @@ class ExportScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const Spacer(),
-                          SizedBox(
-                            width: 80,
+                          // ),
+                          // const SizedBox(
+                          //   width: 20,
+                          // ),
+                          Expanded(
+                            flex: 1,
+                            // child: SizedBox(
+                            // width: 80,
                             child: Column(
                               children: [
                                 const Text(
@@ -118,43 +127,52 @@ class ExportScreen extends StatelessWidget {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                TextFormField(
-                                  keyboardType: TextInputType.number,
-                                  controller: controller.valueController,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "enter value";
-                                    }
-                                    return null;
-                                  },
-                                  decoration: InputDecoration(
-                                    // suffix: const Text('EGP'),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    fillColor: AppColor.hintTextColor,
-                                  ),
-                                ),
+                                // TextFormField(
+                                //   keyboardType: TextInputType.number,
+                                //   controller: controller.valueController,
+                                //   validator: (value) {
+                                //     if (value!.isEmpty) {
+                                //       return "enter value";
+                                //     }
+                                //     return null;
+                                //   },
+                                //   decoration: InputDecoration(
+                                //     // suffix: const Text('EGP'),
+                                //     border: OutlineInputBorder(
+                                //       borderRadius: BorderRadius.circular(15),
+                                //     ),
+                                //     fillColor: AppColor.hintTextColor,
+                                //   ),
+                                // ),
+                                CustomTextFormField(
+                                    fieldType: TextInputType.number,
+                                    hintText: 'value',
+                                    labelText: 'label'),
                               ],
                             ),
+                            // ),
                           ),
                         ],
                       ),
                       const SizedBox(
                         height: 15,
                       ),
-                      TextFormField(
-                        keyboardType: TextInputType.text,
-                        controller: controller.descrController,
-                        decoration: InputDecoration(
-                          // suffix: const Text('EGP'),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          hintText: "add descrtpiton",
-                          fillColor: AppColor.hintTextColor,
-                        ),
-                      ),
+                      // TextFormField(
+                      //   keyboardType: TextInputType.text,
+                      //   controller: controller.descrController,
+                      //   decoration: InputDecoration(
+                      //     // suffix: const Text('EGP'),
+                      //     border: OutlineInputBorder(
+                      //       borderRadius: BorderRadius.circular(15),
+                      //     ),
+                      //     hintText: "add descrtpiton",
+                      //     fillColor: AppColor.hintTextColor,
+                      //   ),
+                      // ),
+                      CustomTextFormField(
+                          fieldType: TextInputType.number,
+                          hintText: 'value',
+                          labelText: 'label'),
                       const SizedBox(
                         height: 10,
                       ),
@@ -192,7 +210,7 @@ class ExportScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: AppColor.hintTextColor,
+                              // color: AppColor.hintTextColor,
                             ),
                             child: const Text(
                               'Total',

@@ -19,6 +19,7 @@ class AddDeleteLabelsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     CacheHelper.testSharedPreferences();
     return Scaffold(
+      backgroundColor: AppColor.backgroundColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (Constant.labelsList.length > 0 &&
@@ -37,6 +38,7 @@ class AddDeleteLabelsScreen extends StatelessWidget {
       ),
       appBar: AppBar(
         elevation: 0,
+        centerTitle: true,
         backgroundColor: AppColor.backgroundColor,
         title: const Text(
           'Add Labels',
@@ -87,6 +89,7 @@ class AddDeleteLabelsScreen extends StatelessWidget {
                   return Expanded(
                     child: SizedBox(
                       child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
                         itemCount: Constant.labelsList.length,
                         itemBuilder: (context, index) {
                           return Padding(

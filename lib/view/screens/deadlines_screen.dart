@@ -60,7 +60,7 @@ class DeadlinesScreen extends StatelessWidget {
                     return ListView.separated(
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) => CustomContainer(
-                          index: index,
+                            index: index,
                             deadlineId:
                                 '${controller.model.data![index].sheetId}',
                             label:
@@ -146,15 +146,15 @@ class CustomContainer extends StatelessWidget {
                     color: Color(0xff000000),
                   ),
                 ),
-                  IconButton(
-                  onPressed: () {
+                InkWell(
+                  onTap: () {
                     controller.deleteDeadline(
-                        deadlinId: deadlinecontroller.model.data![index].sheetId!
-                        );
+                        deadlinId:
+                            deadlinecontroller.model.data![index].sheetId!);
                   },
-                  icon: const Icon(
+                  child: const Icon(
                     Icons.delete_forever,
-                    color: Colors.red,
+                    color: Colors.grey,
                   ),
                 ),
               ],
