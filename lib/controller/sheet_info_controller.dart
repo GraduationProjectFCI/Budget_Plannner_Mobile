@@ -70,32 +70,28 @@ class sheetInfoController extends GetxController {
     }
   }
 
-  void deleteSheet({
+  Future deleteSheet({
     required String? sheetId,
-  }) {
+  }) async {
     deletestate = false;
     update();
 
     String? token = CacheHelper.prefs!.getString('token');
-    Http.delete(url: '${Endpoint.sheetData}/$sheetId', token: token!)
+    await Http.delete(url: '${Endpoint.sheetData}/$sheetId', token: token!)
         .then((value) {
       refrishData().then((value) {
-         conttrollrerSheet.getSheetData().then((value) {
+        conttrollrerSheet.getSheetData().then((value) {
           Get.back();
-           deletestate = true;
+          deletestate = true;
           update();
         });
       });
-     
 
       toast(msg: "${value['msg']}", color: Color.fromARGB(255, 3, 216, 244));
-     
     });
   }
 
-
-
-    void deleteExpense({
+  void deleteExpense({
     required String expenseId,
   }) {
     deleteestate = false;
@@ -107,7 +103,6 @@ class sheetInfoController extends GetxController {
       conttrollrerSheet.getSheetData().then((value) {
         getSheetExpense(sheetId: sheetId!).then((value) {
           deleteestate = true;
-
         });
       });
     });

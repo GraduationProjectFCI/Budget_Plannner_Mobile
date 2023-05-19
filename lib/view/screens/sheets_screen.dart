@@ -4,6 +4,7 @@ import 'package:budget_planner_app/controller/expense_controller.dart';
 import 'package:budget_planner_app/controller/sheet_info_controller.dart';
 import 'package:budget_planner_app/controller/sheets_controller.dart';
 import 'package:budget_planner_app/view/screens/sheet_info.dart';
+import 'package:budget_planner_app/view/widgets/toast.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,10 +50,7 @@ class SheetsScreen extends StatelessWidget {
                       onPressed: () {
                         controller
                             .createSheat(sheetType: "import")
-                            .then((value) {
-                         
-                          
-                        });
+                            .then((value) {});
                       },
                     );
                   },
@@ -71,11 +69,9 @@ class SheetsScreen extends StatelessWidget {
                       paddingRight: 5,
                       textButton: 'Add export',
                       onPressed: () {
-                       controller
+                        controller
                             .createSheat(sheetType: "export")
-                            .then((value) {
-                         
-                        });
+                            .then((value) {});
                       },
                     );
                   },
@@ -104,11 +100,13 @@ class SheetsScreen extends StatelessWidget {
                       return ListView.separated(
                           physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) => CustomContainer(
-                            index: index,
+                              index: index,
                               sheetId:
                                   '${controller.model.data![index].sheetId}',
+                              sheetType:
+                                  '${controller.model.data![index].sheetType}',
                               date:
-                                  '${controller.model.data![index].updatedAt}',
+                                  '${controller.model.data![index].createdAt}',
                               money: '${controller.model.data![index].value}'),
                           separatorBuilder: (context, index) =>
                               const SizedBox(height: 10),
@@ -128,12 +126,14 @@ class SheetsScreen extends StatelessWidget {
 class CustomContainer extends StatelessWidget {
   CustomContainer({
     required this.date,
+    required this.sheetType,
     required this.sheetId,
     this.money,
     this.index,
     super.key,
   });
 
+  String sheetType;
   String date;
   String? money;
   String sheetId;
@@ -145,8 +145,8 @@ class CustomContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 48,
-      margin: const EdgeInsets.symmetric(vertical: 4),
+      height: 70,
+      // margin: const EdgeInsets.symmetric(vertical: 4),
       padding: const EdgeInsets.fromLTRB(11, 11, 11, 11),
       decoration: BoxDecoration(
         color: const Color(0xffffffff),
@@ -155,44 +155,104 @@ class CustomContainer extends StatelessWidget {
       child: InkWell(
         onTap: () {
           controller.getSheetExpense(sheetId: sheetId).then((value) {
-          CacheHelper.prefs?.setString('sheetId', sheetId);
+            CacheHelper.prefs?.setString('sheetId', sheetId);
 
             Get.toNamed(AppRoutes.sheetInfo, arguments: sheetId);
           });
         },
-        child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child:
+            // Row(
+            //   children: [
+            // sheetType == 'export'
+            //     ? const Icon(
+            //         Icons.arrow_upward,
+            //         color: Colors.red,
+            //       )
+            //     : const Icon(
+            //         Icons.arrow_downward,
+            //         color: Colors.green,
+            //       ),
+            Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              '${date}',
-              style: const TextStyle(
-                fontSize: 19,
-                fontWeight: FontWeight.w300,
-                height: 1,
-                color: Color(0xff000000),
-              ),
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // const SizedBox(
+                //   width: 10,
+                // ),
+                Column(
+                  children: [
+                    Text(
+                      '${date}',
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                        height: 1,
+                        color: Color(0xff000000),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  '${date}',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300,
+                    height: 1,
+                    color: Color(0xff000000),
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  '${money} EGP',
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w300,
+                    height: 1,
+                    color: Color(0xff000000),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                // IconButton(
+                //     onPressed: () async {
+                //       await controller.deleteSheet(
+                //           sheetId: sheetcontroller.model.data![index!].sheetId);
+                //     },
+                //     icon: Container(
+                //       margin: EdgeInsets.only(bottom: 20),
+                // child:
+                InkWell(
+                  onTap: () async {
+                    await controller.deleteSheet(
+                        sheetId: sheetcontroller.model.data![index!].sheetId);
+                  },
+                  child: const Icon(
+                    Icons.delete,
+                    color: Colors.grey,
+                  ),
+                ),
+                // ))
+                // ),
+              ],
             ),
-            Spacer(),
-            Text(
-              '${money} EGP',
-              style: const TextStyle(
-                fontSize: 19,
-                fontWeight: FontWeight.w300,
-                height: 1,
-                color: Color(0xff000000),
-              ),
+            SizedBox(
+              height: 5,
             ),
-             IconButton(
-              onPressed: () {
-                controller.deleteSheet(
-                    sheetId: sheetcontroller.model.data![index!].sheetId);
-              },
-              icon: const Icon(
-                Icons.delete_forever,
-                color: Colors.red,
-              ),),
+            const Text(
+              'data dsajldk jasl asdo; kasdsadasdasd;',
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 14),
+            ),
           ],
         ),
+        //   ],
+        // ),
       ),
     );
   }
