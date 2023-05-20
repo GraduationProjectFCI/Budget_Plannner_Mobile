@@ -9,9 +9,10 @@ Future<void> refrishData() async {
   sheetsController c1 = Get.put(sheetsController());
   StatisticsController c2 = Get.put(StatisticsController());
   HomeController c3 = Get.put(HomeController());
-      WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   c1.getSheetData();
   c2.getStatisticData();
   c3.getHomeData();
+  c3.getLimitsData();
 }

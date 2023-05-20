@@ -1,3 +1,4 @@
+import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/endpoint.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
 import 'package:budget_planner_app/models/home_model.dart';
@@ -50,6 +51,68 @@ class HomeController extends GetxController {
     update();
   }
 
+  RxBool deleteState = true.obs;
+  Future<void> deleteLimit({required String limitUrl}) async {
+    print('helllllo deleteLimit');
+    WidgetsFlutterBinding.ensureInitialized();
+    update();
+    Http.delete(
+            url: '${Endpoint.limitsDelete}/$limitUrl',
+            token: CacheHelper.prefs?.getString('token'))
+        .then(
+      (value) {
+        print(value);
+        if (value['msg'] == 'Limit Deleted Successfully') {
+          toast(msg: '${value['msg']}', color: AppColor.buttonColor);
+          getLimitsData();
+
+          deleteState = true.obs;
+          WidgetsFlutterBinding.ensureInitialized();
+          update();
+        } else {
+          toast(msg: '${value['msg']}');
+          deleteState = true.obs;
+          WidgetsFlutterBinding.ensureInitialized();
+          update();
+        }
+      },
+    );
+    update();
+  }
+
+  RxBool updateState = true.obs;
+  Future<void> updateLimit({
+    required String limitLabel,
+    required String limitUrl,
+  }) async {
+    print('helllllo updateLimit');
+    WidgetsFlutterBinding.ensureInitialized();
+    update();
+    Http.updateData(
+            endpoint: '${Endpoint.limitsDelete}/$limitUrl',
+            map: {"limit": limitLabel},
+            token: CacheHelper.prefs?.getString('token'))
+        .then(
+      (value) {
+        print(value);
+        if (value['msg'] == 'Limit Updated Successfully') {
+          toast(msg: '${value['msg']}', color: AppColor.buttonColor);
+          getLimitsData();
+
+          updateState = true.obs;
+          WidgetsFlutterBinding.ensureInitialized();
+          update();
+        } else {
+          toast(msg: '${value['msg']}');
+          updateState = true.obs;
+          WidgetsFlutterBinding.ensureInitialized();
+          update();
+        }
+      },
+    );
+    update();
+  }
+
   @override
   void onInit() {
     getLimitsData();
@@ -57,42 +120,6 @@ class HomeController extends GetxController {
 
     super.onInit();
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   bool addstate = true;
 
