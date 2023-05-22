@@ -60,6 +60,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 GetBuilder<LoginController>(
                     builder: (c) => CustomTextFormField(
+                          prefixIcon: const Icon(Icons.lock_outline_rounded),
                           labelText: 'Password',
                           hintText: 'Password',
                           ispassword: controller.isPassword,
@@ -95,29 +96,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      // function
-                      onTap: () {},
-                      child: const Text(
-                        'Forget Password',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          height: 1,
-                          color: Color(0xff3356d2),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 Container(
-                  // margin: const EdgeInsets.only(left: 53, right: 58),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     physics: const NeverScrollableScrollPhysics(),
@@ -152,6 +131,24 @@ class LoginScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      // function
+                      onTap: () {},
+                      child: const Text(
+                        'Forget Password',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          height: 1,
+                          color: Color(0xff3356d2),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
