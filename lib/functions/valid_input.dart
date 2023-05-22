@@ -12,6 +12,11 @@ validInput(String val, int min, int max, String type) {
       return "not valid email";
     }
   }
+
+  // if (type == "password") {
+  //   return "not valid password";
+  // }
+
   if (type == "date") {
     if (!GetUtils.isDateTime(val)) {
       return "not valid date and time";

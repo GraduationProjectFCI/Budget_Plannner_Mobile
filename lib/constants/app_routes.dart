@@ -1,6 +1,7 @@
 import 'package:budget_planner_app/view/screens/add_deadline.dart';
 import 'package:budget_planner_app/view/screens/deadline_info.dart';
 import 'package:budget_planner_app/view/screens/add_labels_screen.dart';
+import 'package:budget_planner_app/view/screens/edit_limit_screen.dart';
 import 'package:budget_planner_app/view/screens/sheet_detailes_screen.dart';
 import 'package:budget_planner_app/view/screens/sheet_info.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ class AppRoutes {
   static const String exportUdateScreen = '/export_update_screen';
   static const String updateProfile = '/update_profile';
   static const String limitAdd = '/limit_add';
+  static const String editLimit = '/edit_limit';
 }
 
 Map<String, Widget Function(BuildContext)> routes = {
@@ -56,4 +58,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   AppRoutes.exportUdateScreen: (context) => ExportUdateScreen(),
   AppRoutes.updateProfile: (context) => UpdateProfileScreen(),
   AppRoutes.limitAdd: (context) => LimitAdd(),
+  AppRoutes.editLimit: (context) => EditLimit(),
 };

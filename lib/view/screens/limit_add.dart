@@ -15,22 +15,14 @@ import 'package:get/get.dart';
 class LimitAdd extends StatelessWidget {
   LimitAdd({super.key});
   HomeController controller = Get.put(HomeController());
+  String? label;
+
   late MediaQueryData queryData;
   @override
   Widget build(BuildContext context) {
     CacheHelper.testSharedPreferences();
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.offNamed(AppRoutes.bottomNavigationBar);
-        },
-        backgroundColor: AppColor.buttonColor,
-        child: const Text(
-          '>',
-          style: TextStyle(fontSize: 26),
-        ),
-      ),
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
@@ -53,37 +45,56 @@ class LimitAdd extends StatelessWidget {
               const SizedBox(
                 height: 60,
               ),
-             Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
                     flex: 3,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Limit Name',
+                          'Add limit',
                           style: TextStyle(fontSize: 20),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
-                        CustomTextFormField(
-                          hintText: "add limit",
-                          labelText: 'add limit',
-                          fieldType: TextInputType.text,
-                          validator: (Value) {
-                            if (Value!.isEmpty) {
-                              return "please enter limit name";
-                            }
-                            return null;
-                          },
-                          textController: controller.limitController,
+                        GetBuilder<HomeController>(
+                          builder: (controller) => DropdownButton(
+                            value: label,
+                            onChanged: (value) {
+                              controller.limitController.text =
+                                  value.toString();
+                              label = value;
+
+                              // print(value);
+                            },
+                            items: [
+                              ...List.generate(
+                                Constant.labelsList.length,
+                                (index) => DropdownMenuItem(
+                                  value: Constant.labelsList[index].label,
+                                  child:
+                                      Text(Constant.labelsList[index].label!),
+                                ),
+                              ),
+                            ],
+                            hint: const Text('Select label'),
+                            isExpanded: true,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            dropdownColor: AppColor.buttonColor,
+                            borderRadius: BorderRadius.circular(10),
+                            iconSize: 45,
+                          ),
                         ),
                       ],
                     ),
                   ),
-                 const SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -98,8 +109,8 @@ class LimitAdd extends StatelessWidget {
                           height: 10,
                         ),
                         CustomTextFormField(
-                          hintText: "add value",
-                          labelText: 'add value',
+                          hintText: "value",
+                          labelText: 'value',
                           fieldType: TextInputType.number,
                           validator: (Value) {
                             if (Value!.isEmpty) {
@@ -131,7 +142,6 @@ class LimitAdd extends StatelessWidget {
                   ),
                 ),
               ),
-              
             ],
           ),
         ),

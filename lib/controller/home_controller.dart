@@ -30,6 +30,7 @@ class HomeController extends GetxController {
     update();
   }
 
+  bool flagGetLimit = true;
   RxBool state2 = true.obs;
   LimitsModel? limitsModel;
   Future<void> getLimitsData() async {
@@ -43,6 +44,7 @@ class HomeController extends GetxController {
       print('limits controllrer = $value');
       limitsModel = LimitsModel.fromJson(value);
       print(' @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n\n${limitsModel}');
+      flagGetLimit = true;
       state2 = true.obs;
       WidgetsFlutterBinding.ensureInitialized();
       update();
@@ -51,7 +53,7 @@ class HomeController extends GetxController {
     update();
   }
 
-  RxBool deleteState = true.obs;
+  bool deleteState = true;
   Future<void> deleteLimit({required String limitUrl}) async {
     print('helllllo deleteLimit');
     WidgetsFlutterBinding.ensureInitialized();
@@ -66,12 +68,12 @@ class HomeController extends GetxController {
           toast(msg: '${value['msg']}', color: AppColor.buttonColor);
           getLimitsData();
 
-          deleteState = true.obs;
+          deleteState = true;
           WidgetsFlutterBinding.ensureInitialized();
           update();
         } else {
           toast(msg: '${value['msg']}');
-          deleteState = true.obs;
+          deleteState = true;
           WidgetsFlutterBinding.ensureInitialized();
           update();
         }
@@ -80,9 +82,10 @@ class HomeController extends GetxController {
     update();
   }
 
-  RxBool updateState = true.obs;
+  bool updateState = true;
+  TextEditingController limitUpdateController = TextEditingController();
   Future<void> updateLimit({
-    required String limitLabel,
+    required String limit,
     required String limitUrl,
   }) async {
     print('helllllo updateLimit');
@@ -90,7 +93,7 @@ class HomeController extends GetxController {
     update();
     Http.updateData(
             endpoint: '${Endpoint.limitsDelete}/$limitUrl',
-            map: {"limit": limitLabel},
+            map: {"limit": limit},
             token: CacheHelper.prefs?.getString('token'))
         .then(
       (value) {
@@ -99,12 +102,12 @@ class HomeController extends GetxController {
           toast(msg: '${value['msg']}', color: AppColor.buttonColor);
           getLimitsData();
 
-          updateState = true.obs;
+          updateState = true;
           WidgetsFlutterBinding.ensureInitialized();
           update();
         } else {
           toast(msg: '${value['msg']}');
-          updateState = true.obs;
+          updateState = true;
           WidgetsFlutterBinding.ensureInitialized();
           update();
         }
@@ -144,7 +147,7 @@ class HomeController extends GetxController {
       ).then((value) async {
         addstate = true;
         toast(msg: value['msg'].toString(), color: Colors.green);
-
+        // getHomeData();
         update();
       });
     }

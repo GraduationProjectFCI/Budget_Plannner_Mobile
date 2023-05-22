@@ -12,7 +12,7 @@ class RegisterController extends GetxController {
   late TextEditingController nameTextController;
   late TextEditingController emailTextController;
   late TextEditingController genderTextController;
-  // late TextEditingController ageTextController;
+  late TextEditingController ageTextController;
   late TextEditingController budgetAverageTextController;
   late TextEditingController currencyTextController;
   late TextEditingController passwordTextController;
@@ -113,7 +113,7 @@ class RegisterController extends GetxController {
     nameTextController = TextEditingController();
     emailTextController = TextEditingController();
     genderTextController = TextEditingController();
-    // ageTextController = TextEditingController();
+    ageTextController = TextEditingController();
     budgetAverageTextController = TextEditingController();
     currencyTextController = TextEditingController();
     passwordTextController = TextEditingController();
@@ -127,7 +127,7 @@ class RegisterController extends GetxController {
     nameTextController.dispose();
     emailTextController.dispose();
     genderTextController.dispose();
-    // ageTextController.dispose();
+    ageTextController.dispose();
     budgetAverageTextController.dispose();
     currencyTextController.dispose();
     passwordTextController.dispose();
