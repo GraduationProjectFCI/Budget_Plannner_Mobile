@@ -39,11 +39,12 @@ dependencies:
   http: ^0.13.5
   percent_indicator: ^4.0.1
   shared_preferences: ^2.1.0
+  url_launcher: ^6.1.11
 
 dev_dependencies:
-  flutter_native_splash: ^2.2.10
   flutter_launcher_icons: ^0.13.1
   flutter_lints: ^2.0.0
+  flutter_native_splash: ^2.2.10
   flutter_test:
     sdk: flutter
 
@@ -54,7 +55,6 @@ flutter_native_splash:
   android: true
   ios: true
 
-
 flutter_launcher_icons:
   android: true
   ios: true
@@ -64,7 +64,6 @@ flutter_launcher_icons:
 # For information on the generic Dart part of this file, sege the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
-
 flutter:
 
   # The following line ensures that the Material Icons font is

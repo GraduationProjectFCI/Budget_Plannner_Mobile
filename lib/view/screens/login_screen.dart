@@ -9,6 +9,7 @@ import 'package:budget_planner_app/view/widgets/toast.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../constants/app_color.dart';
 import '../../constants/app_routes.dart';
@@ -137,7 +138,15 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     InkWell(
                       // function
-                      onTap: () {},
+                      onTap: () async {
+                        const url =
+                            'https://budget-planner-web.vercel.app/forgot-password';
+                        if (await canLaunch(url)) {
+                          await launch(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
                       child: const Text(
                         'Forget Password',
                         style: TextStyle(
