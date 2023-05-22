@@ -141,7 +141,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                               GetBuilder<HomeController>(
                                 builder: (co) => ConditionalBuilder(
-                                  condition: controller.deleteState,
+                                  condition: controller.deleteState.isTrue,
                                   fallback: (context) => const Center(
                                     child: CircularProgressIndicator(),
                                   ),
@@ -194,22 +194,16 @@ class HomeScreen extends StatelessWidget {
                               ),
 
                               GetBuilder<HomeController>(
-                                builder: (co) => ConditionalBuilder(
-                                  condition: controller.deleteState,
-                                  fallback: (context) => const Center(
-                                    child: CircularProgressIndicator(),
-                                  ),
-                                  builder: (context) => InkWell(
-                                      onTap: () async {
-                                        await controller.deleteLimit(
-                                            limitUrl: controller
-                                                .limitsModel!.limits[index].id);
-                                      },
-                                      child: const Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
-                                      )),
-                                ),
+                                builder: (co) => InkWell(
+                                    onTap: () async {
+                                      await controller.deleteLimit(
+                                          limitUrl: controller
+                                              .limitsModel!.limits[index].id);
+                                    },
+                                    child: const Icon(
+                                      Icons.delete,
+                                      color: Colors.red,
+                                    )),
                               )
                             ],
                           ),

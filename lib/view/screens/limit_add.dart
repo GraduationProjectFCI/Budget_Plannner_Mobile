@@ -17,10 +17,8 @@ class LimitAdd extends StatelessWidget {
   HomeController controller = Get.put(HomeController());
   String? label;
 
-  late MediaQueryData queryData;
   @override
   Widget build(BuildContext context) {
-    CacheHelper.testSharedPreferences();
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
@@ -65,6 +63,7 @@ class LimitAdd extends StatelessWidget {
                             onChanged: (value) {
                               controller.limitController.text =
                                   value.toString();
+                              controller.refresh();
                               label = value;
 
                               // print(value);

@@ -39,10 +39,10 @@ class HomeController extends GetxController {
     Http.getHomeData(
             endPoints: Endpoint.limits,
             token: CacheHelper.prefs!.getString('token').toString())
-        .then((value) {
+        .then((value) async {
       print('sucess');
       print('limits controllrer = $value');
-      limitsModel = LimitsModel.fromJson(value);
+      limitsModel = await LimitsModel.fromJson(value);
       print(' @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n\n${limitsModel}');
       flagGetLimit = true;
       state2 = true.obs;
@@ -53,27 +53,29 @@ class HomeController extends GetxController {
     update();
   }
 
-  bool deleteState = true;
+//delete
+
+  RxBool deleteState = true.obs;
   Future<void> deleteLimit({required String limitUrl}) async {
     print('helllllo deleteLimit');
+    deleteState = false.obs;
     WidgetsFlutterBinding.ensureInitialized();
     update();
-    Http.delete(
-            url: '${Endpoint.limitsDelete}/$limitUrl',
+    await Http.delete(
+            url: '${Endpoint.limitsDelete}$limitUrl',
             token: CacheHelper.prefs?.getString('token'))
         .then(
-      (value) {
+      (value) async {
         print(value);
         if (value['msg'] == 'Limit Deleted Successfully') {
+          await getLimitsData();
           toast(msg: '${value['msg']}', color: AppColor.buttonColor);
-          getLimitsData();
-
-          deleteState = true;
+          deleteState = true.obs;
           WidgetsFlutterBinding.ensureInitialized();
           update();
         } else {
           toast(msg: '${value['msg']}');
-          deleteState = true;
+          deleteState = true.obs;
           WidgetsFlutterBinding.ensureInitialized();
           update();
         }
@@ -82,10 +84,11 @@ class HomeController extends GetxController {
     update();
   }
 
+//update
   bool updateState = true;
   TextEditingController limitUpdateController = TextEditingController();
   Future<void> updateLimit({
-    required String limit,
+    required String limitValue,
     required String limitUrl,
   }) async {
     print('helllllo updateLimit');
@@ -93,15 +96,15 @@ class HomeController extends GetxController {
     update();
     Http.updateData(
             endpoint: '${Endpoint.limitsDelete}/$limitUrl',
-            map: {"limit": limit},
+            map: {"limit": limitValue},
             token: CacheHelper.prefs?.getString('token'))
         .then(
-      (value) {
+      (value) async {
         print(value);
         if (value['msg'] == 'Limit Updated Successfully') {
+          await getLimitsData();
           toast(msg: '${value['msg']}', color: AppColor.buttonColor);
-          getLimitsData();
-
+          limitUpdateController.clear();
           updateState = true;
           WidgetsFlutterBinding.ensureInitialized();
           update();
@@ -124,6 +127,7 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
+//post
   bool addstate = true;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -145,6 +149,7 @@ class HomeController extends GetxController {
         map: map,
         token: token,
       ).then((value) async {
+        valueController.clear();
         addstate = true;
         toast(msg: value['msg'].toString(), color: Colors.green);
         // getHomeData();

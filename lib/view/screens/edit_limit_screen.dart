@@ -82,14 +82,16 @@ class EditLimit extends StatelessWidget {
               ),
               GetBuilder<HomeController>(
                 builder: (co) => ConditionalBuilder(
-                  condition: controller.deleteState,
+                  condition: controller.deleteState.isTrue,
                   fallback: (context) => const Center(
                     child: CircularProgressIndicator(),
                   ),
                   builder: (context) => CustomButton(
                     textButton: 'Edit',
                     onPressed: () async {
-                      await controller.deleteLimit(limitUrl: limitId.id);
+                      await controller.updateLimit(
+                          limitValue: controller.limitUpdateController.text,
+                          limitUrl: limitId.id);
                     },
                   ),
                 ),
