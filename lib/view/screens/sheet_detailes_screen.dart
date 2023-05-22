@@ -25,40 +25,38 @@ class SheetDetials extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0,
         backgroundColor: AppColor.backgroundColor,
-        title: const Text(
-          "Sheet detailes",
-          style: TextStyle(
-            fontWeight: FontWeight.w100,
-            fontSize: 30,
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: AppColor.backgroundColor,
+          title: const Text(
+            "Sheet detailes",
+            style: TextStyle(
+              fontWeight: FontWeight.w100,
+              fontSize: 30,
+            ),
           ),
-        ),
-        // actions: [
+          // actions: [
 
-        //   const SizedBox(
-        //     width: 15,
-        //   )
-        // ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Form(
-          key: controller.formkey,
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              children: [
-                // const SizedBox(
-                //   height: 30,
-                // ),
-                SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
+          //   const SizedBox(
+          //     width: 15,
+          //   )
+          // ],
+        ),
+        body: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Form(
+              key: controller.formkey,
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(children: [
+                  // const SizedBox(
+                  //   height: 30,
+                  // ),
+                  SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(children: [
                       Row(
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -182,6 +180,44 @@ class SheetDetials extends StatelessWidget {
                         height: 10,
                       ),
                       // list
+                      SizedBox(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                // color: AppColor.hintTextColor,
+                              ),
+                              child: const Text(
+                                'Total',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: AppColor.hintTextColor,
+                              ),
+                              child: GetBuilder<sheetsController>(
+                                builder: (c) => Text(
+                                  // '${(c.model?.data?[index!].value) ?? 0} EGP',
+                                  ' EGP',
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Container(
                         height: 380,
                         child: SizedBox(
@@ -208,8 +244,8 @@ class SheetDetials extends StatelessWidget {
                                         controller.model.expenses!.length,
                                     itemBuilder: (context, index) {
                                       return CustomContainer(
-                                        decraption: controller
-                                            .model.expenses![index].description!,
+                                        decraption: controller.model
+                                            .expenses![index].description!,
                                         index: index,
                                         date: controller
                                             .model.expenses![index].label,
@@ -226,44 +262,10 @@ class SheetDetials extends StatelessWidget {
                           }),
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              // color: AppColor.hintTextColor,
-                            ),
-                            child: const Text(
-                              'Total',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: AppColor.hintTextColor,
-                            ),
-                            child: GetBuilder<sheetsController>(
-                              
-                              builder: (c) => Text(
-                                '${c.model.data![index!].value} EGP',
-                                style: const TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ),
-                    ],
+                    ]),
                   ),
-                    ]
-            ),
-          ),
-              ]
-        ),
-      ),
-    )));
+                ]),
+              ),
+            )));
   }
 }
