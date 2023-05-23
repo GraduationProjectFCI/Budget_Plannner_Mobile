@@ -35,67 +35,57 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Expanded(
-              child: GetBuilder<HomeController>(
-                builder: (controller) => Container(
-                  //  margin: EdgeInsets.all(30),
-                  padding: const EdgeInsets.all(30),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: AppColor.backgroundColor,
-                  ),
-
-                  child: SingleChildScrollView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+            GetBuilder<HomeController>(
+              builder: (controller) => Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Spent',
+                      style:
+                          TextStyle(fontSize: 26, fontWeight: FontWeight.w100),
+                    ),
+                    Text(
+                      '${controller.homeModel?.data.spent ?? 0}',
+                      style: const TextStyle(
+                          fontSize: 85, fontWeight: FontWeight.w100),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        const Text(
-                          'Spent',
-                          style: TextStyle(
-                              fontSize: 26, fontWeight: FontWeight.w100),
+                        Text(
+                          'Total : ${controller.homeModel?.data.total ?? 0}',
+                          style: const TextStyle(
+                            fontSize: 17,
+                          ),
                         ),
                         Text(
-                          '${controller.homeModel?.data.spent ?? 0}',
+                          'remaining : ${controller.homeModel?.data.remaining ?? 0}',
                           style: const TextStyle(
-                              fontSize: 85, fontWeight: FontWeight.w100),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              'Total : ${controller.homeModel?.data.total ?? 0}',
-                              style: const TextStyle(
-                                fontSize: 17,
-                              ),
-                            ),
-                            Text(
-                              'remaining : ${controller.homeModel?.data.remaining ?? 0}',
-                              style: const TextStyle(
-                                fontSize: 17,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 14,
-                        ),
-                        const Divider(thickness: 2),
-                        CustomButton(
-                          textButton: 'Add limit',
-                          //function
-                          onPressed: () async {
-                            Get.toNamed(AppRoutes.limitAdd)?.then((value) {
-                              controller.getLimitsData();
-                            });
-                          },
+                            fontSize: 17,
+                          ),
                         ),
                       ],
                     ),
-                  ),
+                    const SizedBox(
+                      height: 14,
+                    ),
+                    const Divider(thickness: 2),
+                    CustomButton(
+                      textButton: 'Add limit',
+                      //function
+                      onPressed: () async {
+                        Get.toNamed(AppRoutes.limitAdd)?.then((value) {
+                          controller.getLimitsData();
+                        });
+                      },
+                    ),
+                    // const SizedBox(height: 10),
+                  ],
                 ),
               ),
             ),
