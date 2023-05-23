@@ -26,8 +26,9 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     LoginController controller = Get.put(LoginController());
     return Scaffold(
+      backgroundColor: AppColor.backgroundColor,
       body: SingleChildScrollView(
-        // physics: const BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Container(
           padding: const EdgeInsets.fromLTRB(10, 263, 10, 269),
           width: double.infinity,

@@ -103,7 +103,9 @@ class HomeScreen extends StatelessWidget {
               child: GetBuilder<HomeController>(
                 builder: (controller) => ListView.builder(
                   physics: const BouncingScrollPhysics(),
-                  itemCount: controller.limitsModel?.limits.length,
+                  itemCount: controller.flagGetLimit
+                      ? controller.limitsModel?.limits.length
+                      : 0,
                   itemBuilder: (context, index) => Column(
                     children: [
                       Padding(

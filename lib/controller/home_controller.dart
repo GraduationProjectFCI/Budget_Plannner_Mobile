@@ -35,6 +35,7 @@ class HomeController extends GetxController {
   LimitsModel? limitsModel;
   Future<void> getLimitsData() async {
     print('helllllo getLimitsData');
+    flagGetLimit = false;
     state2 = false.obs;
     Http.getHomeData(
             endPoints: Endpoint.limits,
