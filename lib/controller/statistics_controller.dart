@@ -8,21 +8,23 @@ class StatisticsController extends GetxController {
   late StatisticsModel model;
   int spanBudget = 0;
   int state = 1;
-  Future <void> getStatisticData() async {
+  Future<void> getStatisticData() async {
     state = 1;
     var url;
     String? token = CacheHelper.prefs!.getString('token');
     Http.getData(token: token, url: Endpoint.statisticsData).then((value) {
-      model = StatisticsModel.fromJson(value);
+      if (value['msg'] != 'Forbidden') {
+        model = StatisticsModel.fromJson(value);
 
-      if (model.data == null) {
-        state = 2;
-      } else {
-        state = 3;
-        spanBudget = model.spentBudget;
+        if (model.data == null) {
+          state = 2;
+        } else {
+          state = 3;
+          spanBudget = model.spentBudget;
+        }
+
+        update();
       }
-
-      update();
     });
     update();
   }

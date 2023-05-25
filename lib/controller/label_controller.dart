@@ -67,27 +67,28 @@ class LabelController extends GetxController {
         .then(
       (value) async {
         print(value);
+        if (value['msg'] != 'Forbidden') {
+          if (value['data'].length > 0) {
+            print('success!!');
+            Constant.labelsList = [];
 
-        if (value['data'].length > 0) {
-          print('success!!');
-          Constant.labelsList = [];
+            LabelModel labelModel = await LabelModel.fromJson(value);
+            // toast(msg: '${value['msg']}', color: AppColor.buttonColor);
+            for (var i = 0; i < labelModel.data!.length; i++) {
+              Constant.labelsList.add(labelModel.data![i]);
+            }
+            // print(Constant.labelsList[0].label);
 
-          LabelModel labelModel = await LabelModel.fromJson(value);
-          // toast(msg: '${value['msg']}', color: AppColor.buttonColor);
-          for (var i = 0; i < labelModel.data!.length; i++) {
-            Constant.labelsList.add(labelModel.data![i]);
+            state = true.obs;
+            WidgetsFlutterBinding.ensureInitialized();
+            update();
+          } else {
+            print('error');
+            toast(msg: '${value['msg']}');
+            state = true.obs;
+            WidgetsFlutterBinding.ensureInitialized();
+            update();
           }
-          // print(Constant.labelsList[0].label);
-
-          state = true.obs;
-          WidgetsFlutterBinding.ensureInitialized();
-          update();
-        } else {
-          print('error');
-          toast(msg: '${value['msg']}');
-          state = true.obs;
-          WidgetsFlutterBinding.ensureInitialized();
-          update();
         }
       },
     );

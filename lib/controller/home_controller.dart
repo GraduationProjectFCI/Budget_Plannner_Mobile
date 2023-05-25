@@ -21,7 +21,11 @@ class HomeController extends GetxController {
         .then((value) {
       print('sucess');
       print('Home controllrer = $value');
-      homeModel = HomeModel.fromJson(value);
+      if (value['msg'] != 'Forbidden') {
+        homeModel = HomeModel.fromJson(value);
+      } else {
+        toast(msg: 'please login again');
+      }
       state = true.obs;
       WidgetsFlutterBinding.ensureInitialized();
       update();
@@ -43,7 +47,11 @@ class HomeController extends GetxController {
         .then((value) async {
       print('sucess');
       print('limits controllrer = $value');
-      limitsModel = await LimitsModel.fromJson(value);
+      if (value['msg'] != 'Forbidden') {
+        limitsModel = await LimitsModel.fromJson(value);
+      } else {
+        toast(msg: 'please login again');
+      }
       print(' @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n\n${limitsModel}');
       flagGetLimit = true;
       state2 = true.obs;

@@ -1,6 +1,7 @@
 import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/controller/profile_controller.dart';
+import 'package:budget_planner_app/functions/refresh_data.dart';
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProfileController controller = Get.put(ProfileController());
+    final hight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
@@ -52,68 +54,79 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: GetBuilder<ProfileController>(
-            builder: (controller) => ConditionalBuilder(
-              condition: controller.state.isTrue,
-              fallback: (context) => const Center(
-                  heightFactor: 20, child: CircularProgressIndicator()),
-              builder: (context) => Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 5,
+        child: RefreshIndicator(
+          onRefresh: () async {
+            print('loaded data');
+            await loadProfileData();
+            // return Future.delayed(Duration(seconds: 1));
+          },
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: GetBuilder<ProfileController>(
+              builder: (controller) => ConditionalBuilder(
+                condition: controller.state.isTrue,
+                fallback: (context) => const Center(
+                    heightFactor: 20, child: CircularProgressIndicator()),
+                builder: (context) => SizedBox(
+                  height: hight / 1.2,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const CircleAvatar(
+                        radius: 80,
+                        backgroundImage: AssetImage('assets/photo2.jpg'),
+                      ),
+                      const SizedBox(
+                        height: 32,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      CustomContainer(
+                          label: 'Name',
+                          text: '${controller.profileModel?.userData.name}'),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      CustomContainer(
+                          label: 'E-mail',
+                          text: '${controller.profileModel?.userData.email}'),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      CustomContainer(
+                          label: 'Gender',
+                          text: '${controller.profileModel?.userData.gender}'),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      CustomContainer(
+                          label: 'Budget',
+                          text: '${controller.profileModel?.userData.budget}'),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      CustomContainer(
+                          label: 'Currency',
+                          text:
+                              '${controller.profileModel?.userData.currency}'),
+                      // CustomContainer(label: 'Address', text: '${controller.profileModel?.userData.}'),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      CustomButton(
+                        colorButton: AppColor.buttonColor,
+                        textButton: 'Update Profile',
+                        onPressed: () async {
+                          Get.toNamed(AppRoutes.updateProfile);
+                        },
+                      ),
+                    ],
                   ),
-                  const CircleAvatar(
-                    radius: 80,
-                    backgroundImage: AssetImage('assets/photo2.jpg'),
-                  ),
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  CustomContainer(
-                      label: 'Name',
-                      text: '${controller.profileModel?.userData.name}'),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  CustomContainer(
-                      label: 'E-mail',
-                      text: '${controller.profileModel?.userData.email}'),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  CustomContainer(
-                      label: 'Gender',
-                      text: '${controller.profileModel?.userData.gender}'),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  CustomContainer(
-                      label: 'Budget',
-                      text: '${controller.profileModel?.userData.budget}'),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  CustomContainer(
-                      label: 'Currency',
-                      text: '${controller.profileModel?.userData.currency}'),
-                  // CustomContainer(label: 'Address', text: '${controller.profileModel?.userData.}'),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  CustomButton(
-                    colorButton: AppColor.buttonColor,
-                    textButton: 'Update Profile',
-                    onPressed: () async {
-                      Get.toNamed(AppRoutes.updateProfile);
-                    },
-                  ),
-                ],
+                ),
               ),
             ),
           ),

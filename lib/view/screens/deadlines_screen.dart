@@ -1,6 +1,7 @@
 import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/controller/deadline_controller.dart';
+import 'package:budget_planner_app/functions/refresh_data.dart';
 import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +12,10 @@ import '../../controller/deadline_info_controller.dart';
 class DeadlinesScreen extends StatelessWidget {
   DeadlinesScreen({super.key});
   DeadlineController controller = Get.put(DeadlineController());
-
   @override
   Widget build(BuildContext context) {
+    final hight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
@@ -45,36 +47,46 @@ class DeadlinesScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: GetBuilder<DeadlineController>(builder: (c) {
-                return ConditionalBuilder(
-                  condition: controller.state == 3,
-                  fallback: (context) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  builder: (context) {
-                    return ListView.separated(
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) => CustomContainer(
-                            index: index,
-                            deadlineId:
-                                '${controller.model.data![index].sheetId}',
-                            label:
-                                '${controller.model.data![index].deadlineName}',
-                            date: '${controller.model.data![index].updatedAt}',
-                            money: '${controller.model.data![index].value}'),
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(height: 10),
-                        itemCount: controller.model.data!.length);
-                  },
-                );
-              }),
-            ),
-          ],
+        child: RefreshIndicator(
+          onRefresh: () async {
+            print('loaded data');
+            await loadDeadlinesData();
+            // return Future.delayed(Duration(seconds: 1));
+          },
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            // mainAxisAlignment: MainAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: hight - 150,
+                child: GetBuilder<DeadlineController>(builder: (c) {
+                  return ConditionalBuilder(
+                    condition: controller.state == 3,
+                    fallback: (context) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    builder: (context) {
+                      return ListView.separated(
+                          physics: const BouncingScrollPhysics(),
+                          itemBuilder: (context, index) => CustomContainer(
+                              index: index,
+                              deadlineId:
+                                  '${controller.model.data![index].sheetId}',
+                              label:
+                                  '${controller.model.data![index].deadlineName}',
+                              date:
+                                  '${controller.model.data![index].updatedAt}',
+                              money: '${controller.model.data![index].value}'),
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: 10),
+                          itemCount: controller.model.data!.length);
+                    },
+                  );
+                }),
+              ),
+            ],
+          ),
         ),
       ),
     );

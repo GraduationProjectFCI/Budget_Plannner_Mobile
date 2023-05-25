@@ -1,5 +1,6 @@
 import 'package:budget_planner_app/constants/app_color.dart';
 import 'package:budget_planner_app/controller/statistics_controller.dart';
+import 'package:budget_planner_app/functions/refresh_data.dart';
 import 'package:budget_planner_app/view/screens/deadlines_screen.dart';
 import 'package:budget_planner_app/view/widgets/statistics_element.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -26,44 +27,50 @@ class StaticsScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Spent',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w200,
-                      fontSize: 26,
-                    ),
-                  ),
-                  GetBuilder<StatisticsController>(builder: (c) {
-                    return Text(
-                      '${controller.spanBudget}',
-                      style: const TextStyle(
+        child: RefreshIndicator(
+          onRefresh: () async {
+            print('loaded data');
+            await loadStatisticData();
+            // return Future.delayed(Duration(seconds: 1));
+          },
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Spent',
+                      style: TextStyle(
                         fontWeight: FontWeight.w200,
-                        fontSize: 85,
+                        fontSize: 26,
                       ),
-                    );
-                  })
-                ],
+                    ),
+                    GetBuilder<StatisticsController>(builder: (c) {
+                      return Text(
+                        '${controller.spanBudget}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w200,
+                          fontSize: 85,
+                        ),
+                      );
+                    })
+                  ],
+                ),
               ),
-            ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(40, 0, 30, 0),
-              child: Divider(
-                color: Colors.black12,
+              const Padding(
+                padding: EdgeInsets.fromLTRB(40, 0, 30, 0),
+                child: Divider(
+                  color: Colors.black12,
+                ),
               ),
-            ),
 
-//xxxxxxxxxxxxxxxxxx
+              //xxxxxxxxxxxxxxxxxx
 
-            Expanded(
-              child: SizedBox(
-                height: double.infinity,
+              SizedBox(
+                height: 500,
                 child: GetBuilder<StatisticsController>(builder: (c) {
                   return ConditionalBuilder(
                     condition: controller.state == 3,
@@ -89,20 +96,20 @@ class StaticsScreen extends StatelessWidget {
                   );
                 }),
               ),
-            ),
 
-            //XXXXXXXXXXXXXXX
-            // Expanded(
-            //   flex: 10,
-            //   child: ListView.builder(
-            //     itemCount: 20,
-            //     itemBuilder: (context, index) {
-            //       return StatisticsContainer(
-            //           label: 'Phone Bill', percentage: '45', money: '400');
-            //     },
-            //   ),
-            // ),
-          ],
+              //XXXXXXXXXXXXXXX
+              // Expanded(
+              //   flex: 10,
+              //   child: ListView.builder(
+              //     itemCount: 20,
+              //     itemBuilder: (context, index) {
+              //       return StatisticsContainer(
+              //           label: 'Phone Bill', percentage: '45', money: '400');
+              //     },
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );

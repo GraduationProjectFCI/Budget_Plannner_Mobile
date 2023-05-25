@@ -13,11 +13,11 @@ class CustomSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     // HomeController homeController = Get.put(HomeController());
     return Slider(
-      value: value.toDouble(),
+      value: value > max ? max.toDouble() : value.toDouble(),
       // value: _currentSliderValue,
       min: 0,
       max: max.toDouble(),
-      label: value.toInt().toString(),
+      // label: value > max ? max.toDouble().toString() : value.toInt().toString(),
       activeColor: AppColor.buttonColor,
       inactiveColor: Colors.grey,
       onChanged: (double value) {

@@ -101,8 +101,7 @@ class SheetsScreen extends StatelessWidget {
                           physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) => CustomContainer(
                               index: index,
-                              time:
-                                  '${controller.model.data![index].time}',
+                              time: '${controller.model.data![index].time}',
                               sheetId:
                                   '${controller.model.data![index].sheetId}',
                               sheetType:
@@ -165,17 +164,14 @@ class CustomContainer extends StatelessWidget {
             Get.toNamed(AppRoutes.sheetInfo, arguments: sheetId);
           });
         },
-        child:
-           
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
               children: [
-                
-                Column(
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        sheetType == 'export'
+                    sheetType == 'export'
                         ? const Icon(
                             Icons.arrow_upward,
                             color: Colors.red,
@@ -184,34 +180,8 @@ class CustomContainer extends StatelessWidget {
                             Icons.arrow_downward,
                             color: Colors.green,
                           ),
-                        Text(
-                          '${time}',
-                          style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w300,
-                            height: 1,
-                            color: Color(0xff000000),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                
-                Text(
-                  '${date}',
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w300,
-                    height: 1,
-                    color: Color(0xff000000),
-                  ),
-                ),
-                // const Spacer(),
-                Row(
-                  children: [
                     Text(
-                      '${money} EGP',
+                      '${time}',
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w300,
@@ -219,25 +189,46 @@ class CustomContainer extends StatelessWidget {
                         color: Color(0xff000000),
                       ),
                     ),
-                     InkWell(
-                      onTap: () async {
-                        await controller.deleteSheet(
-                            sheetId:
-                                sheetcontroller.model.data![index!].sheetId);
-                      },
-                      child: const Icon(
-                        Icons.delete,
-                        color: Colors.grey,
-                      ),
-                    ),
                   ],
                 ),
-               
-               
-                
               ],
             ),
-        
+
+            Text(
+              '${date}',
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w300,
+                height: 1,
+                color: Color(0xff000000),
+              ),
+            ),
+            // const Spacer(),
+            Row(
+              children: [
+                Text(
+                  '${money} EGP',
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w300,
+                    height: 1,
+                    color: Color(0xff000000),
+                  ),
+                ),
+                InkWell(
+                  onTap: () async {
+                    await controller.deleteSheet(
+                        sheetId: sheetcontroller.model.data![index!].sheetId);
+                  },
+                  child: const Icon(
+                    Icons.delete,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
