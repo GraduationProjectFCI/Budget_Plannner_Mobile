@@ -4,6 +4,7 @@ import 'package:budget_planner_app/functions/refresh_data.dart';
 import 'package:budget_planner_app/view/screens/deadlines_screen.dart';
 import 'package:budget_planner_app/view/widgets/statistics_element.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:countup/countup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -49,12 +50,13 @@ class StaticsScreen extends StatelessWidget {
                       ),
                     ),
                     GetBuilder<StatisticsController>(builder: (c) {
-                      return Text(
-                        '${controller.spanBudget}',
+                      return Countup(
+                        begin: 0,
+                        end: controller.spanBudget.toDouble() ?? 0,
+                        duration: const Duration(seconds: 3),
+                        separator: ',',
                         style: const TextStyle(
-                          fontWeight: FontWeight.w200,
-                          fontSize: 85,
-                        ),
+                            fontSize: 85, fontWeight: FontWeight.w200),
                       );
                     })
                   ],

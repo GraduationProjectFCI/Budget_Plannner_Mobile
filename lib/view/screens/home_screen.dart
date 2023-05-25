@@ -7,6 +7,7 @@ import 'package:budget_planner_app/view/widgets/custom_button.dart';
 import 'package:budget_planner_app/view/widgets/custom_slider.dart';
 import 'package:budget_planner_app/view/widgets/toast.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:countup/countup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -55,10 +56,13 @@ class HomeScreen extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 26, fontWeight: FontWeight.w100),
                       ),
-                      Text(
-                        '${controller.homeModel?.data.spent ?? 0}',
+                      Countup(
+                        begin: 0,
+                        end: controller.homeModel?.data.spent.toDouble() ?? 0,
+                        duration: const Duration(seconds: 3),
+                        separator: ',',
                         style: const TextStyle(
-                            fontSize: 85, fontWeight: FontWeight.w100),
+                            fontSize: 70, fontWeight: FontWeight.w200),
                       ),
                       const SizedBox(
                         height: 5,
@@ -66,17 +70,45 @@ class HomeScreen extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text(
-                            'Total : ${controller.homeModel?.data.total ?? 0}',
-                            style: const TextStyle(
-                              fontSize: 17,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Total : ',
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.w200),
+                              ),
+                              Countup(
+                                begin: 0,
+                                end: controller.homeModel?.data.total
+                                        .toDouble() ??
+                                    0,
+                                duration: const Duration(seconds: 3),
+                                separator: ',',
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w200),
+                              ),
+                            ],
                           ),
-                          Text(
-                            'remaining : ${controller.homeModel?.data.remaining ?? 0}',
-                            style: const TextStyle(
-                              fontSize: 17,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'remaining : ',
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.w200),
+                              ),
+                              Countup(
+                                begin: 0,
+                                end: controller.homeModel?.data.remaining
+                                        .toDouble() ??
+                                    0,
+                                duration: const Duration(seconds: 3),
+                                separator: ',',
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w200),
+                              ),
+                            ],
                           ),
                         ],
                       ),

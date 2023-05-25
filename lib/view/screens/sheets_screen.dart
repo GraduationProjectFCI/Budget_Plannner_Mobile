@@ -3,6 +3,7 @@ import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/controller/expense_controller.dart';
 import 'package:budget_planner_app/controller/sheet_info_controller.dart';
 import 'package:budget_planner_app/controller/sheets_controller.dart';
+import 'package:budget_planner_app/functions/refresh_data.dart';
 import 'package:budget_planner_app/view/screens/sheet_info.dart';
 import 'package:budget_planner_app/view/widgets/toast.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -85,39 +86,45 @@ class SheetsScreen extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.all(16.0),
         width: double.infinity,
-        child: Column(
-          children: [
-            Expanded(
-              child: SizedBox(
-                height: double.infinity,
-                child: GetBuilder<sheetsController>(builder: (c) {
-                  return ConditionalBuilder(
-                    condition: controller.state,
-                    fallback: (context) => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    builder: (context) {
-                      return ListView.separated(
-                          physics: const BouncingScrollPhysics(),
-                          itemBuilder: (context, index) => CustomContainer(
-                              index: index,
-                              time: '${controller.model.data![index].time}',
-                              sheetId:
-                                  '${controller.model.data![index].sheetId}',
-                              sheetType:
-                                  '${controller.model.data![index].sheetType}',
-                              date:
-                                  '${controller.model.data![index].createdAt}',
-                              money: '${controller.model.data![index].value}'),
-                          separatorBuilder: (context, index) =>
-                              const SizedBox(height: 10),
-                          itemCount: controller.model.data!.length);
-                    },
-                  );
-                }),
+        child: RefreshIndicator(
+          onRefresh: () async {
+            await loadSheetData();
+          },
+          child: Column(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  height: double.infinity,
+                  child: GetBuilder<sheetsController>(builder: (c) {
+                    return ConditionalBuilder(
+                      condition: controller.state,
+                      fallback: (context) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      builder: (context) {
+                        return ListView.separated(
+                            physics: const BouncingScrollPhysics(),
+                            itemBuilder: (context, index) => CustomContainer(
+                                index: index,
+                                time: '${controller.model.data![index].time}',
+                                sheetId:
+                                    '${controller.model.data![index].sheetId}',
+                                sheetType:
+                                    '${controller.model.data![index].sheetType}',
+                                date:
+                                    '${controller.model.data![index].createdAt}',
+                                money:
+                                    '${controller.model.data![index].value}'),
+                            separatorBuilder: (context, index) =>
+                                const SizedBox(height: 10),
+                            itemCount: controller.model.data!.length);
+                      },
+                    );
+                  }),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
