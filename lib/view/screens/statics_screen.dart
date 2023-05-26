@@ -13,6 +13,8 @@ class StaticsScreen extends StatelessWidget {
   StatisticsController controller = Get.put(StatisticsController());
   @override
   Widget build(BuildContext context) {
+    final hight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
@@ -68,11 +70,8 @@ class StaticsScreen extends StatelessWidget {
                   color: Colors.black12,
                 ),
               ),
-
-              //xxxxxxxxxxxxxxxxxx
-
               SizedBox(
-                height: 500,
+                height: hight / 1.5,
                 child: GetBuilder<StatisticsController>(builder: (c) {
                   return ConditionalBuilder(
                     condition: controller.state == 3,

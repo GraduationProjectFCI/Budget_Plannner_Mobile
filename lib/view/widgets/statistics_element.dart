@@ -15,22 +15,22 @@ class StatisticsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 35,
+      height: 25,
       margin: const EdgeInsets.symmetric(vertical: 5),
-      padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
+      padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
       decoration: BoxDecoration(
-        
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        // mainAxisAlignment: MainAxisAlignment.start,
+        // crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             label!,
             style: const TextStyle(
               fontSize: 19,
-              fontWeight: FontWeight.w300,
+              fontWeight: FontWeight.w200,
               height: 1,
               color: Color(0xff000000),
             ),
@@ -46,10 +46,10 @@ class StatisticsContainer extends StatelessWidget {
             ),
           ),
           Text(
-            ' ${percentage} %',
+            ' ${double.parse(percentage).round()} %',
             style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w100,
+              fontSize: 15,
+              fontWeight: FontWeight.w300,
               height: 1,
               color: Color(0xff000000),
             ),

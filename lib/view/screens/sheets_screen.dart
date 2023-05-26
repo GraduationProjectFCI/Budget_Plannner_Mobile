@@ -95,6 +95,9 @@ class SheetsScreen extends StatelessWidget {
             width: double.infinity,
             child: Column(
               children: [
+                const SizedBox(
+                  height: 10,
+                ),
                 SizedBox(
                   height: hight / 1.2,
                   child: GetBuilder<sheetsController>(builder: (c) {
@@ -123,6 +126,9 @@ class SheetsScreen extends StatelessWidget {
                       },
                     );
                   }),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
               ],
             ),
