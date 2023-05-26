@@ -204,8 +204,8 @@ class SheetDetials extends StatelessWidget {
                               ),
                               child: GetBuilder<sheetsController>(
                                 builder: (c) => Text(
-                                  // '${(c.model?.data?[index!].value) ?? 0} EGP',
-                                  ' EGP',
+                                  '${(c.model.data?[index!].value) ?? 0} EGP',
+                                  // ' EGP',
                                   style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),

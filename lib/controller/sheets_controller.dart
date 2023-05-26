@@ -30,15 +30,15 @@ class sheetsController extends GetxController {
     Http.postData(endpoint: Endpoint.sheetData, token: token, map: data)
         .then((value) async {
       CacheHelper.prefs?.setString("sheetId", value['data']['_id']);
-
-      await getSheetData().then((value) {});
+      await getSheetData().then((value) {
+        // Get.toNamed(AppRoutes.sheetInfo, arguments: sheetType);
+        CacheHelper.prefs?.setInt("sheetIndex", model.data!.length);
+      });
       importstate = true;
       exportstate = true;
       sheetInfoControll
           .getSheetExpense(sheetId: value['data']['_id'])
-          .then((value) {
-        Get.toNamed(AppRoutes.sheetInfo, arguments: sheetType);
-      });
+          .then((value) {});
 
       toast(msg: value['msg'], color: Colors.green);
     });

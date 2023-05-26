@@ -21,6 +21,7 @@ class SheetsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hight = MediaQuery.of(context).size.height;
     cont.expenses.clear();
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
@@ -83,18 +84,19 @@ class SheetsScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        padding: const EdgeInsets.all(16.0),
-        width: double.infinity,
-        child: RefreshIndicator(
-          onRefresh: () async {
-            await loadSheetData();
-          },
-          child: Column(
-            children: [
-              Expanded(
-                child: SizedBox(
-                  height: double.infinity,
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await loadSheetData();
+        },
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Container(
+            padding: const EdgeInsets.all(16.0),
+            width: double.infinity,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: hight / 1.2,
                   child: GetBuilder<sheetsController>(builder: (c) {
                     return ConditionalBuilder(
                       condition: controller.state,
@@ -122,8 +124,8 @@ class SheetsScreen extends StatelessWidget {
                     );
                   }),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
