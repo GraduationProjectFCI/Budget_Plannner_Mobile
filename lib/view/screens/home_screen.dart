@@ -133,87 +133,71 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: hight / 2,
                 child: GetBuilder<HomeController>(
-                  builder: (controller) => ConditionalBuilder(
-                    condition: false,
-                    fallback: (context) => const Center(
-                        child: Text(
-                      'There is no limit created \nor there is loading...',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w100,
-                      ),
-                    )),
-                    builder: (context) => ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: controller.flagGetLimit
-                          ? controller.limitsModel?.limits.length
-                          : 0,
-                      itemBuilder: (context, index) => Column(
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                // const Spacer(
-                                //   flex: 2,
-                                // ),
-                                Text(
-                                  '${controller.limitsModel?.limits[index].label}',
-                                  style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w300),
-                                ),
-                                const Spacer(),
-                                GetBuilder<HomeController>(
-                                  builder: (co) => ConditionalBuilder(
-                                    condition: controller.updateState,
-                                    fallback: (context) => const Center(
-                                      child: CircularProgressIndicator(),
-                                    ),
-                                    builder: (context) => InkWell(
-                                      onTap: () {
-                                        Get.toNamed(AppRoutes.editLimit,
-                                            arguments: controller
-                                                .limitsModel?.limits[index]);
-                                      },
-                                      child: const Icon(
-                                        Icons.edit,
-                                        color: Colors.green,
-                                      ),
+                  builder: (controller) => ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: controller.flagGetLimit
+                        ? controller.limitsModel?.limits.length
+                        : 0,
+                    itemBuilder: (context, index) => Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              // const Spacer(
+                              //   flex: 2,
+                              // ),
+                              Text(
+                                '${controller.limitsModel?.limits[index].label}',
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w300),
+                              ),
+                              const Spacer(),
+                              GetBuilder<HomeController>(
+                                builder: (co) => ConditionalBuilder(
+                                  condition: controller.updateState,
+                                  fallback: (context) => const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                  builder: (context) => InkWell(
+                                    onTap: () {
+                                      Get.toNamed(AppRoutes.editLimit,
+                                          arguments: controller
+                                              .limitsModel?.limits[index]);
+                                    },
+                                    child: const Icon(
+                                      Icons.edit,
+                                      color: Colors.green,
                                     ),
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
 
-                                GetBuilder<HomeController>(
-                                  builder: (co) => InkWell(
-                                      onTap: () async {
-                                        await controller.deleteLimit(
-                                            limitUrl: controller
-                                                .limitsModel!.limits[index].id);
-                                      },
-                                      child: const Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
-                                      )),
-                                )
-                              ],
-                            ),
+                              GetBuilder<HomeController>(
+                                builder: (co) => InkWell(
+                                    onTap: () async {
+                                      await controller.deleteLimit(
+                                          limitUrl: controller
+                                              .limitsModel!.limits[index].id);
+                                    },
+                                    child: const Icon(
+                                      Icons.delete,
+                                      color: Colors.red,
+                                    )),
+                              )
+                            ],
                           ),
-                          CustomSlider(
-                            max: controller.limitsModel?.limits[index].limit ??
-                                0,
-                            value:
-                                controller.limitsModel?.limits[index].value ??
-                                    0,
-                          ),
-                        ],
-                      ),
+                        ),
+                        CustomSlider(
+                          max: controller.limitsModel?.limits[index].limit ?? 0,
+                          value:
+                              controller.limitsModel?.limits[index].value ?? 0,
+                        ),
+                      ],
                     ),
                   ),
                 ),
