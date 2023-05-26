@@ -52,7 +52,7 @@ class StaticsScreen extends StatelessWidget {
                     GetBuilder<StatisticsController>(builder: (c) {
                       return Countup(
                         begin: 0,
-                        end: controller.spanBudget.toDouble() ?? 0,
+                        end: controller.spanBudget.toDouble(),
                         duration: const Duration(seconds: 3),
                         separator: ',',
                         style: const TextStyle(

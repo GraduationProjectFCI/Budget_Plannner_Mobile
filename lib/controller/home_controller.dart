@@ -41,6 +41,8 @@ class HomeController extends GetxController {
     print('helllllo getLimitsData');
     flagGetLimit = false;
     state2 = false.obs;
+    WidgetsFlutterBinding.ensureInitialized();
+    update();
     Http.getHomeData(
             endPoints: Endpoint.limits,
             token: CacheHelper.prefs!.getString('token').toString())

@@ -133,69 +133,28 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: hight / 2,
                 child: GetBuilder<HomeController>(
-                  builder: (controller) => ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: controller.flagGetLimit
-                        ? controller.limitsModel?.limits.length
-                        : 0,
-                    itemBuilder: (context, index) => Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: ConditionalBuilder(
-                            condition: controller.flagGetLimit,
-                            fallback: (context) => Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                // const Spacer(
-                                //   flex: 2,
-                                // ),
-                                Text(
-                                  '${controller.limitsModel?.limits[index].label}',
-                                  style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w300),
-                                ),
-                                const Spacer(),
-                                GetBuilder<HomeController>(
-                                  builder: (co) => ConditionalBuilder(
-                                    condition: controller.updateState,
-                                    fallback: (context) => const Center(
-                                      child: CircularProgressIndicator(),
-                                    ),
-                                    builder: (context) => InkWell(
-                                      onTap: () {
-                                        toast(
-                                            msg: 'please wait data is loading');
-                                      },
-                                      child: const Icon(
-                                        Icons.edit,
-                                        color: Colors.green,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                GetBuilder<HomeController>(
-                                  builder: (co) => ConditionalBuilder(
-                                    condition: controller.deleteState.isTrue,
-                                    fallback: (context) => const Center(
-                                      child: CircularProgressIndicator(),
-                                    ),
-                                    builder: (context) => InkWell(
-                                        onTap: () {
-                                          toast(
-                                              msg:
-                                                  'please wait data is loading');
-                                        },
-                                        child: const Icon(
-                                          Icons.delete,
-                                          color: Colors.red,
-                                        )),
-                                  ),
-                                )
-                              ],
-                            ),
-                            builder: (context) => Row(
+                  builder: (controller) => ConditionalBuilder(
+                    condition: false,
+                    fallback: (context) => const Center(
+                        child: Text(
+                      'There is no limit created \nor there is loading...',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w100,
+                      ),
+                    )),
+                    builder: (context) => ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: controller.flagGetLimit
+                          ? controller.limitsModel?.limits.length
+                          : 0,
+                      itemBuilder: (context, index) => Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 // const Spacer(
@@ -246,13 +205,15 @@ class HomeScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                        ),
-                        CustomSlider(
-                          max: controller.limitsModel?.limits[index].limit ?? 0,
-                          value:
-                              controller.limitsModel?.limits[index].value ?? 0,
-                        ),
-                      ],
+                          CustomSlider(
+                            max: controller.limitsModel?.limits[index].limit ??
+                                0,
+                            value:
+                                controller.limitsModel?.limits[index].value ??
+                                    0,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
