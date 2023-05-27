@@ -1,5 +1,7 @@
 import 'package:budget_planner_app/constants/app_color.dart';
+import 'package:budget_planner_app/constants/app_routes.dart';
 import 'package:budget_planner_app/constants/endpoint.dart';
+import 'package:budget_planner_app/controller/profile_controller.dart';
 import 'package:budget_planner_app/helper/cashe_helper.dart';
 import 'package:budget_planner_app/models/home_model.dart';
 import 'package:budget_planner_app/models/limits_model.dart';
@@ -10,6 +12,7 @@ import '../helper/http_helper.dart';
 import '../view/widgets/toast.dart';
 
 class HomeController extends GetxController {
+  ProfileController profileController = Get.put(ProfileController());
   RxBool state = true.obs;
   HomeModel? homeModel;
   Future<void> getHomeData() async {
@@ -53,6 +56,10 @@ class HomeController extends GetxController {
         limitsModel = await LimitsModel.fromJson(value);
       } else {
         toast(msg: 'please login again');
+        CacheHelper.prefs?.clear().then((value) async {
+          await Get.offAllNamed(AppRoutes.login);
+          profileController.onClose();
+        });
       }
       print(' @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n\n${limitsModel}');
       flagGetLimit = true;
