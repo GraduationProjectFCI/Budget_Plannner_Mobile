@@ -64,7 +64,7 @@ class RegisterScreen extends StatelessWidget {
                   fieldType: TextInputType.name,
                   textController: controller.nameTextController,
                   validator: (value) {
-                    return validInput(value!, 5, 100, 'username');
+                    return validInput(value!, 3, 100, 'username');
                   },
                 ),
                 const SizedBox(height: 10),
@@ -79,7 +79,7 @@ class RegisterScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 CustomTextFormField(
                     validator: (value) {
-                      return validInput(value!, 5, 100, 'gender');
+                      return validInput(value!, 4, 100, 'gender');
                     },
                     labelText: 'Gender',
                     hintText: 'Gender',
@@ -88,7 +88,7 @@ class RegisterScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 CustomTextFormField(
                     validator: (value) {
-                      return validInput(value!, 5, 100, 'budget');
+                      return validInput(value!, 0, 100, 'budget');
                     },
                     prefixIcon: const Icon(Icons.attach_money_outlined),
                     labelText: 'Budget',
@@ -98,7 +98,7 @@ class RegisterScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 CustomTextFormField(
                     validator: (value) {
-                      return validInput(value!, 5, 100, 'currency');
+                      return validInput(value!, 2, 100, 'currency');
                     },
                     labelText: 'Currency',
                     hintText: 'currency',

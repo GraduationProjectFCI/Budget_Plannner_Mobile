@@ -34,8 +34,8 @@ class LoginController extends GetxController {
         Get.offNamed(AppRoutes.bottomNavigationBar);
         CacheHelper.prefs?.setString('token', '${loginModel?.token}');
       } else {
-        for (int i = 0; i < loginModel?.message.length; i++)
-          toast(msg: loginModel?.message[i]);
+        // for (int i = 0; i < loginModel?.message.length; i++)
+        toast(msg: loginModel?.message);
       }
 
       update();

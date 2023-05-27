@@ -76,8 +76,9 @@ class ProfileScreen extends StatelessWidget {
                         height: 5,
                       ),
                       const CircleAvatar(
+                        backgroundColor: Colors.amber,
                         radius: 80,
-                        backgroundImage: AssetImage('assets/photo2.jpg'),
+                        backgroundImage: AssetImage('assets/photo2.png'),
                       ),
                       const SizedBox(
                         height: 32,
@@ -152,14 +153,29 @@ class CustomContainer extends StatelessWidget {
         color: const Color(0xffffffff),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Text(
-        '${label}: ${text}',
-        style: const TextStyle(
-          fontSize: 19,
-          fontWeight: FontWeight.w300,
-          height: 1.115,
-          color: Color(0xff000000),
-        ),
+      child: Row(
+        children: [
+          Text(
+            '${label}:',
+            style: const TextStyle(
+              overflow: TextOverflow.ellipsis,
+              fontSize: 16,
+              fontWeight: FontWeight.w300,
+              height: 1.115,
+              color: Color(0xff000000),
+            ),
+          ),
+          Text(
+            '${text}',
+            style: const TextStyle(
+              overflow: TextOverflow.ellipsis,
+              fontSize: 16,
+              fontWeight: FontWeight.w300,
+              height: 1.115,
+              color: Color(0xff000000),
+            ),
+          ),
+        ],
       ),
     );
   }

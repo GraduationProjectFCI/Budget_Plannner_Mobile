@@ -132,44 +132,41 @@ class CustomContainer extends StatelessWidget {
             Text(
               '${label}',
               style: const TextStyle(
-                fontSize: 19,
+                fontSize: 16,
                 fontWeight: FontWeight.w300,
                 height: 1,
                 color: Color(0xff000000),
               ),
             ),
+            const Spacer(),
             Text(
               '${date}',
               style: const TextStyle(
-                fontSize: 19,
+                fontSize: 12,
+                fontWeight: FontWeight.w100,
+                height: 1,
+                color: Color(0xff000000),
+              ),
+            ),
+            const Spacer(),
+            Text(
+              '${money} EGP',
+              style: const TextStyle(
+                fontSize: 16,
                 fontWeight: FontWeight.w300,
                 height: 1,
                 color: Color(0xff000000),
               ),
             ),
-            Row(
-              children: [
-                Text(
-                  '${money} EGP',
-                  style: const TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.w300,
-                    height: 1,
-                    color: Color(0xff000000),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    controller.deleteDeadline(
-                        deadlinId:
-                            deadlinecontroller.model.data![index].sheetId!);
-                  },
-                  child: const Icon(
-                    Icons.delete_forever,
-                    color: Colors.grey,
-                  ),
-                ),
-              ],
+            InkWell(
+              onTap: () {
+                controller.deleteDeadline(
+                    deadlinId: deadlinecontroller.model.data![index].sheetId!);
+              },
+              child: const Icon(
+                Icons.delete_forever,
+                color: Colors.grey,
+              ),
             ),
           ],
         ),

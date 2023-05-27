@@ -31,7 +31,7 @@ class sheetsController extends GetxController {
         .then((value) async {
       CacheHelper.prefs?.setString("sheetId", value['data']['_id']);
       await getSheetData().then((value) {
-        // Get.toNamed(AppRoutes.sheetInfo, arguments: sheetType);
+        Get.toNamed(AppRoutes.sheetInfo, arguments: sheetType);
         CacheHelper.prefs?.setInt("sheetIndex", model.data!.length);
       });
       importstate = true;

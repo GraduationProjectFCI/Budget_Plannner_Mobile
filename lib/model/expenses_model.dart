@@ -6,9 +6,9 @@ class ExpensesModel {
 
   ExpensesModel.fromJson(Map<String, dynamic> json) {
     message = json['msg'];
-    if (json['expenses'] != null) {
+    if (json['data'] != null) {
       expenses = List<Expenses>.from(
-        json['expenses'].map((x) => Expenses.fromJson(x)),
+        json['data'].map((x) => Expenses.fromJson(x)),
       );
     } else {
       expenses = [];
