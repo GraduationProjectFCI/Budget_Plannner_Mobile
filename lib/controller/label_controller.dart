@@ -84,7 +84,7 @@ class LabelController extends GetxController {
             update();
           } else {
             print('error');
-            toast(msg: '${value['msg']}');
+            toast(msg: '${value['msg']}', color: AppColor.buttonColor);
             state = true.obs;
             WidgetsFlutterBinding.ensureInitialized();
             update();
